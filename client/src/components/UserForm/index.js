@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, Card, CardContent, FormGroup, MenuItem, TextField, Typography, Container } from '@material-ui/core'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from "yup"
+import API from '../../utils/API'
 import './style.css'
 var to = require('to-case')
 
@@ -79,6 +80,7 @@ function UserForm (props) {
               console.log(user)
               
               // TODO: Add HTTP POST request
+              API.createUser(user)
             }}
           >
             {({ errors, touched, values }) => (
@@ -138,7 +140,7 @@ function UserForm (props) {
                     </span>
                   ) : null}
                 </FormGroup>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Create</Button>
                 <pre>{JSON.stringify(values, null, 2)}</pre>
                 <pre>{JSON.stringify(errors, null, 2)}</pre>
               </Form>

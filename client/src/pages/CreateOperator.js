@@ -1,6 +1,5 @@
 import React from 'react';
 import UserForm from '../components/UserForm/index'
-
 import operatorRanks from '../utils/operatorRanks'
 import operatorOccupations from '../utils/operatorOccupations'
 

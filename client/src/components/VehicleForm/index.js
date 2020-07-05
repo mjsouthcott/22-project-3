@@ -109,7 +109,7 @@ function VehicleForm (props) {
                     </span>
                   ) : null}
                 </FormGroup>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Create</Button>
                 <pre>{JSON.stringify(values, null, 2)}</pre>
                 <pre>{JSON.stringify(errors, null, 2)}</pre>
               </Form>
