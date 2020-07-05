@@ -5,8 +5,8 @@ import * as Yup from "yup"
 import './style.css'
 var to = require('to-case')
 
-function EquipmentForm (props) {
-  const EquipmentFormSchema = Yup.object().shape({
+function VehicleForm (props) {
+  const VehicleFormSchema = Yup.object().shape({
     type: Yup.string()
       .required('Required'),
     configurationCode: Yup.string()
@@ -38,25 +38,32 @@ function EquipmentForm (props) {
               registrationNumber: '',
               callSign: ''
             }}
-            validationSchema={EquipmentFormSchema}
+            validationSchema={VehicleFormSchema}
             onSubmit={values => {
-              // TODO: Add HTTP POST request
-              let body = values
-              body.callSign = to.upper(body.callSign)
-              body.status = 'Serviceable'
-              let selectedType = props.types.find(type => {
-                return type.type === body.type
+              const selectedVehicle = props.vehicles.find(vehicle => {
+                return vehicle.type === values.type
               })
-              body.icon = selectedType.icon
-              body.occupant = {}
-              console.log(body)
+              const vehicle = {
+                type: values.type,
+                configurationCode: values.configurationCode,
+                registrationNumber: values.registrationNumber,
+                callSign: to.upper(values.callSign),
+                status: 'Serviceable',
+                icon: selectedVehicle.icon,
+                occupant: {},
+                location: {},
+                repairRequests: []
+              }
+              console.log(vehicle)
+
+              // TODO: Add HTTP POST request
             }}
           >
             {({ errors, touched, values }) => (
               <Form>
                 <FormGroup style={{ marginBottom: 15 }}>
                   <Field name="type" as={TextField} select label="Type">
-                    {props.types.map(type => <MenuItem key={type.type} value={type.type}>{type.type}</MenuItem>)}
+                    {props.vehicles.map(vehicle => <MenuItem key={vehicle.type} value={vehicle.type}>{vehicle.type}</MenuItem>)}
                   </Field>
                   {errors.type && touched.type ? (
                     <ErrorMessage name="type" />
@@ -92,4 +99,4 @@ function EquipmentForm (props) {
   )
 }
 
-export default EquipmentForm
+export default VehicleForm

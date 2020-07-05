@@ -1,8 +1,8 @@
 import React from 'react';
 import CreateOperator from './pages/CreateOperator'
 import CreateTechnician from './pages/CreateTechnician'
-import CreateOperatorEquipment from './pages/CreateOperatorEquipment'
-import CreateTechnicianEquipment from './pages/CreateTechnicianEquipment'
+import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
+import CreateTechnicianVehicle from './pages/CreateTechnicianVehicle'
 import './App.css';
 
 function App() {
@@ -12,9 +12,9 @@ function App() {
       <br></br>
       <CreateTechnician />
       <br></br>
-      <CreateOperatorEquipment />
+      <CreateOperatorVehicle />
       <br></br>
-      <CreateTechnicianEquipment />
+      <CreateTechnicianVehicle />
     </>
   )
 }

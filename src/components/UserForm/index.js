@@ -52,12 +52,19 @@ function UserForm (props) {
             }}
             validationSchema={UserFormSchema}
             onSubmit={values => {
+              const user = {
+                role: values.role,
+                rank: values.rank,
+                firstName: to.title(values.firstName).trim(),
+                lastName: to.title(values.lastName).trim(),
+                occupation: values.occupation,
+                username: to.lower(values.username),
+                password: values.password,
+                status: 'Free'
+              }
+              console.log(user)
+              
               // TODO: Add HTTP POST request
-              let body = values
-              body.firstName = to.title(body.firstName).trim()
-              body.lastName = to.title(body.lastName).trim()
-              body.username = to.lower(body.username)
-              console.log(body)
             }}
           >
             {({ errors, touched, values }) => (

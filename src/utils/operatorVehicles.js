@@ -1,4 +1,4 @@
-const operatorEquipment = [
+const operatorVehicles = [
   {
     type: 'Armoured Engineering Vehicle',
     icon: './assets/images/armoured-engineering-vehicle.png'
@@ -33,4 +33,4 @@ const operatorEquipment = [
   }
 ]
 
-export default operatorEquipment
+export default operatorVehicles

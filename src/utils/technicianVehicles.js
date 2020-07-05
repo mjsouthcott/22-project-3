@@ -1,4 +1,4 @@
-const technicianEquipment = [
+const technicianVehicles = [
   {
     type: 'Armoured Recovery Vehicle',
     icon: './assets/images/armoured-recovery-vehicle.png'
@@ -9,4 +9,4 @@ const technicianEquipment = [
   },
 ]
 
-export default technicianEquipment
+export default technicianVehicles
