@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, Card, CardContent, FormGroup, MenuItem, TextField, Typography, Container } from '@material-ui/core'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from "yup"
+import API from '../../utils/API'
 import './style.css'
 var to = require('to-case')
 
@@ -64,6 +65,8 @@ function VehicleForm (props) {
                 callSign: to.upper(values.callSign),
                 status: 'Serviceable',
                 icon: selectedVehicle.icon,
+
+                // TODO: Validate data types
                 occupant: {},
                 location: {},
                 repairRequests: []
@@ -71,6 +74,7 @@ function VehicleForm (props) {
               console.log(vehicle)
 
               // TODO: Add HTTP POST request
+              API.createVehicle(vehicle)
             }}
           >
             {({ errors, touched, values }) => (
@@ -110,8 +114,8 @@ function VehicleForm (props) {
                   ) : null}
                 </FormGroup>
                 <Button type="submit">Create</Button>
-                <pre>{JSON.stringify(values, null, 2)}</pre>
-                <pre>{JSON.stringify(errors, null, 2)}</pre>
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre>
+                <pre>{JSON.stringify(errors, null, 2)}</pre> */}
               </Form>
             )}
           </Formik>

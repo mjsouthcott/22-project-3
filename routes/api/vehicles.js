@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const usersController = require('../../controllers/usersController')
+const vehiclesController = require('../../controllers/vehiclesController')
 
 router.route('/')
-  .get(usersController.findAll)
-  .post(usersController.create)
+  .get(vehiclesController.findAll)
+  .post(vehiclesController.create)
 
 // router
 //   .route("/:id")
