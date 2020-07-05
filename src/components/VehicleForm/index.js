@@ -1,4 +1,5 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import { Button, Card, CardContent, FormGroup, MenuItem, TextField, Typography, Container } from '@material-ui/core'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from "yup"
@@ -6,6 +7,19 @@ import './style.css'
 var to = require('to-case')
 
 function VehicleForm (props) {
+  const useStyles = makeStyles({
+    typography: {
+      marginBottom: 15
+    },
+    formGroup: {
+      marginBottom: 15
+    },
+    errorMessage: {
+      color: 'red',
+    }
+  })
+  const classes = useStyles()
+
   const VehicleFormSchema = Yup.object().shape({
     type: Yup.string()
       .required('Required'),
@@ -30,7 +44,7 @@ function VehicleForm (props) {
     <Container maxWidth="sm">
       <Card>
         <CardContent>
-          <Typography variant="h4" style={{ marginBottom: 15 }}>{props.formTitle}</Typography>
+          <Typography variant="h4" className={classes.typography}>{props.formTitle}</Typography>
           <Formik
             initialValues={{
               type: '',
@@ -61,30 +75,38 @@ function VehicleForm (props) {
           >
             {({ errors, touched, values }) => (
               <Form>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="type" as={TextField} select label="Type">
                     {props.vehicles.map(vehicle => <MenuItem key={vehicle.type} value={vehicle.type}>{vehicle.type}</MenuItem>)}
                   </Field>
                   {errors.type && touched.type ? (
-                    <ErrorMessage name="type" />
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="type" />
+                    </span>
                   ) : null}
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="configurationCode" as={TextField} label="Configuration Code" />
                   {errors.configurationCode && touched.configurationCode ? (
-                    <ErrorMessage name="configurationCode" />
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="configurationCode" />
+                    </span>
                   ) : null}
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="registrationNumber" as={TextField} label="Registration Number" />
                   {errors.registrationNumber && touched.registrationNumber ? (
-                    <ErrorMessage name="registrationNumber" />
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="registrationNumber" />
+                    </span>
                   ) : null}
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="callSign" as={TextField} label="Call Sign" />
                   {errors.callSign && touched.callSign ? (
-                    <ErrorMessage name="callSign" />
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="callSign" />
+                    </span>
                   ) : null}
                 </FormGroup>
                 <Button type="submit">Submit</Button>

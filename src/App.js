@@ -11,15 +11,15 @@ import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 function App() {
   return (
     <>
-      {/* <CreateOperator />
+      <CreateOperator />
       <br></br>
       <CreateTechnician />
       <br></br>
       <CreateOperatorVehicle />
       <br></br>
       <CreateTechnicianVehicle />
-      <br></br> */}
-      <List>
+      <br></br>
+      {/* <List>
         <ListItem>
           <ListItemAvatar>
             <VehicleAvatar backgroundColor='red' icon='assets/images/medium-logistic-vehicle-cargo.png' type='Medium Logistic Vehicle' imageWidth={80} />
@@ -40,7 +40,7 @@ function App() {
       <VehicleAvatar backgroundColor='red' icon='assets/images/main-battle-tank.png' type='Medium Logistic Vehicle' imageWidth={80} />
       <br></br>
       <VehicleAvatar backgroundColor='red' icon='assets/images/infantry-fighting-vehicle.png' type='Medium Logistic Vehicle' imageWidth={80} />
-      <br></br>
+      <br></br> */}
     </>
   )
 }

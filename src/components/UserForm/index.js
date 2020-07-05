@@ -1,4 +1,5 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import { Button, Card, CardContent, FormGroup, MenuItem, TextField, Typography, Container } from '@material-ui/core'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from "yup"
@@ -6,6 +7,19 @@ import './style.css'
 var to = require('to-case')
 
 function UserForm (props) {
+  const useStyles = makeStyles({
+    typography: {
+      marginBottom: 15
+    },
+    formGroup: {
+      marginBottom: 15
+    },
+    errorMessage: {
+      color: 'red',
+    }
+  })
+  const classes = useStyles()
+
   const UserFormSchema = Yup.object().shape({
     role: Yup.string()
       .required('Required'),
@@ -39,7 +53,7 @@ function UserForm (props) {
     <Container maxWidth="sm">
       <Card>
         <CardContent>
-          <Typography variant="h4" style={{ marginBottom: 15 }}>{props.formTitle}</Typography>
+          <Typography variant="h4" className={classes.typography}>{props.formTitle}</Typography>
           <Formik
             initialValues={{
               role: props.role,
@@ -69,47 +83,59 @@ function UserForm (props) {
           >
             {({ errors, touched, values }) => (
               <Form>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="role" as={TextField} label="Role" InputProps={{ readOnly: true }} />
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="rank" as={TextField} select label="Rank">
                     {props.ranks.map(rank => <MenuItem key={rank} value={rank}>{rank}</MenuItem>)}
                   </Field>
                   {errors.rank && touched.rank ? (
-                    <ErrorMessage name="rank" />
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="rank" />
+                    </span>
                   ) : null}
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="firstName" as={TextField} label="First Name" />
                   {errors.firstName && touched.firstName ? (
-                    <ErrorMessage name="firstName" />
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="firstName" />
+                    </span>
                   ) : null}
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="lastName" as={TextField} label="Last Name" />
-                    {errors.lastName && touched.lastName ? (
-                    <ErrorMessage name="lastName" />
+                  {errors.lastName && touched.lastName ? (
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="lastName" />
+                    </span>
                   ) : null}
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="occupation" as={TextField} select label="Occupation">
                   {props.occupations.map(occupation => <MenuItem key={occupation} value={occupation}>{occupation}</MenuItem>)}
                   </Field>
                   {errors.occupation && touched.occupation ? (
-                    <ErrorMessage name="occupation" />
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="occupation" />
+                    </span>
                   ) : null}
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
-                <Field name="username" as={TextField} label="Username" />
-                    {errors.username && touched.username ? (
-                    <ErrorMessage name="username" />
+                <FormGroup className={classes.formGroup}>
+                  <Field name="username" as={TextField} label="Username" />
+                  {errors.username && touched.username ? (
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="username" />
+                    </span>
                   ) : null}
                 </FormGroup>
-                <FormGroup style={{ marginBottom: 15 }}>
+                <FormGroup className={classes.formGroup}>
                   <Field name="password" as={TextField} label="Password" />
-                    {errors.password && touched.password ? (
-                    <ErrorMessage name="password" />
+                  {errors.password && touched.password ? (
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="password" />
+                    </span>
                   ) : null}
                 </FormGroup>
                 <Button type="submit">Submit</Button>
