@@ -4,6 +4,7 @@ import CreateTechnician from './pages/CreateTechnician'
 import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
 import CreateTechnicianVehicle from './pages/CreateTechnicianVehicle'
 import VehicleAvatar from './components/VehicleAvatar/index'
+import CreateInspectionWorkOrder from './pages/CreateInspectionWorkOrder'
 import './App.css';
 
 import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
@@ -11,7 +12,8 @@ import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 function App() {
   return (
     <>
-      <CreateOperator />
+      <CreateInspectionWorkOrder />
+      {/* <CreateOperator />
       <br></br>
       <CreateTechnician />
       <br></br>
@@ -19,7 +21,7 @@ function App() {
       <br></br>
       <CreateTechnicianVehicle />
       <br></br>
-      {/* <List>
+      <List>
         <ListItem>
           <ListItemAvatar>
             <VehicleAvatar backgroundColor='red' icon='assets/images/medium-logistic-vehicle-cargo.png' type='Medium Logistic Vehicle' imageWidth={80} />
