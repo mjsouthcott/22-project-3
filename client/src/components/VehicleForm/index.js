@@ -24,11 +24,6 @@ function VehicleForm (props) {
   const VehicleFormSchema = Yup.object().shape({
     type: Yup.string()
       .required('Required'),
-    configurationCode: Yup.string()
-      .matches('^[0-9]*$', 'Can only contain numbers')
-      .min(6, 'Must be 6 characters')
-      .max(6, 'Must be 6 characters')
-      .required('Required'),
     registrationNumber: Yup.string()
       .matches('^[0-9]*$', 'Can only contain numbers')
       .min(5, 'Must be 5 characters')
@@ -49,7 +44,6 @@ function VehicleForm (props) {
           <Formik
             initialValues={{
               type: '',
-              configurationCode: '',
               registrationNumber: '',
               callSign: ''
             }}
@@ -60,16 +54,9 @@ function VehicleForm (props) {
               })
               const vehicle = {
                 type: values.type,
-                configurationCode: values.configurationCode,
                 registrationNumber: values.registrationNumber,
                 callSign: to.upper(values.callSign),
-                status: 'Serviceable',
-                icon: selectedVehicle.icon,
-
-                // TODO: Validate data types
-                occupant: {},
-                location: {},
-                repairRequests: []
+                iconSrc: selectedVehicle.icon
               }
               console.log(vehicle)
 
@@ -86,14 +73,6 @@ function VehicleForm (props) {
                   {errors.type && touched.type ? (
                     <span className={classes.errorMessage}>
                       <ErrorMessage name="type" />
-                    </span>
-                  ) : null}
-                </FormGroup>
-                <FormGroup className={classes.formGroup}>
-                  <Field name="configurationCode" as={TextField} label="Configuration Code" />
-                  {errors.configurationCode && touched.configurationCode ? (
-                    <span className={classes.errorMessage}>
-                      <ErrorMessage name="configurationCode" />
                     </span>
                   ) : null}
                 </FormGroup>

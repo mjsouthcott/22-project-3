@@ -4,7 +4,6 @@ import CreateTechnician from './pages/CreateTechnician'
 import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
 import CreateTechnicianVehicle from './pages/CreateTechnicianVehicle'
 import VehicleAvatar from './components/VehicleAvatar/index'
-import CreateInspectionWorkOrder from './pages/CreateInspectionWorkOrder'
 import './App.css';
 
 import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
@@ -12,15 +11,15 @@ import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 function App() {
   return (
     <>
-      <CreateInspectionWorkOrder />
-      {/* <CreateOperator />
+      {/* <CreateInspectionWorkOrder /> */}
+      <CreateOperator />
       <br></br>
       <CreateTechnician />
       <br></br>
       <CreateOperatorVehicle />
       <br></br>
       <CreateTechnicianVehicle />
-      <br></br>
+      {/* <br></br>
       <List>
         <ListItem>
           <ListItemAvatar>

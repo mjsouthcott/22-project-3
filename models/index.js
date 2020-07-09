@@ -1,4 +1,6 @@
 module.exports = {
   User: require('./user'),
-  Vehicle: require('./vehicle')
-};
+  Vehicle: require('./vehicle'),
+  RepairRequest: require('./repairRequest'),
+  RepairWorkOrder: require('./repairWorkOrder')
+}

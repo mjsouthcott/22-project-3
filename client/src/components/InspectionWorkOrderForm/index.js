@@ -28,8 +28,12 @@ function InspectionWorkOrderForm (props) {
   const InspectionWorkOrderFormSchema = Yup.object().shape({
     inspectionItems: Yup.array().of(
       Yup.object().shape({
+        serial: Yup.number(),
+        description: Yup.string(),
         subsystems: Yup.array().of(
           Yup.object().shape({
+            serial: Yup.string(),
+            description: Yup.string(),
             status: Yup.string()
               .required('Required'),
             recommendedAction: Yup.string()
@@ -48,66 +52,66 @@ function InspectionWorkOrderForm (props) {
 
   return (
     <Container maxWidth="sm">
-    <Card>
-      <CardContent>
-        <Typography variant="h4" className={classes.typography}>Create Inspection Work Order</Typography>
-        <Formik
-          initialValues={{inspectionItems}}
-          validationSchema={InspectionWorkOrderFormSchema}
-          onSubmit={values => {
-            const inspectionWorkOrder = values
+      <Card>
+        <CardContent>
+          <Typography variant="h4" className={classes.typography}>Create Inspection Work Order</Typography>
+          <Formik
+            initialValues={{inspectionItems}}
+            validationSchema={InspectionWorkOrderFormSchema}
+            onSubmit={values => {
+              const inspectionWorkOrder = values
 
-            console.log(inspectionWorkOrder)
-            
-            // TODO: Add HTTP POST request
-          }}
-        >
-          {({ errors, touched, values }) => (
-            <Form>
-              {inspectionItems.map((system, index1) => (
-                <React.Fragment>
-                  {/* System heading */}
-                  <Typography variant="h5" className={classes.typography}>{system.serial}. {system.description}</Typography>
-                  {system.subsystems.map((subsystem, index2) => (
-                    <React.Fragment>
-                      {/* Subsystem heading */}
-                      <Typography variant="h6" className={classes.typography}>{subsystem.serial.slice(subsystem.serial.length - 1)}. {subsystem.description}</Typography>
-                      {/* Subsystem status TextField */}
-                      <FormGroup className={classes.formGroup}>
-                        <Field name={`inspectionItems.${index1}.subsystems.${index2}.status`} as={TextField} select label="Status">
-                          {inspectionItemStatuses.map(status => <MenuItem key={status.code} value={status.code}>{status.code}</MenuItem>)}
-                        </Field>
-                        {/* {errors.inspectionItems[index1].subsystems[index2].status && touched.inspectionItems[index1].subsystems[index2].status ? ( */}
-                          <span className={classes.errorMessage}>
-                            <ErrorMessage name={`inspectionItems.${index1}.subsystems.${index2}.status`} />
-                          </span>
-                        {/* ) : null} */}
-                      </FormGroup>
-                      {/* Subsystem recommended action TextField */}
-                      {values.inspectionItems[index1].subsystems[index2].status === "M" && 
+              console.log(inspectionWorkOrder)
+              
+              // TODO: Add HTTP POST request
+            }}
+          >
+            {({ errors, touched, values }) => (
+              <Form>
+                {inspectionItems.map((system, index1) => (
+                  <React.Fragment>
+                    {/* System heading */}
+                    <Typography variant="h5" className={classes.typography}>{system.serial}. {system.description}</Typography>
+                    {system.subsystems.map((subsystem, index2) => (
+                      <React.Fragment>
+                        {/* Subsystem heading */}
+                        <Typography variant="h6" className={classes.typography}>{subsystem.serial.slice(subsystem.serial.length - 1)}. {subsystem.description}</Typography>
+                        {/* Subsystem status TextField */}
                         <FormGroup className={classes.formGroup}>
-                          <Field name={`inspectionItems.${index1}.subsystems.${index2}.recommendedAction`} as={TextField} label="Recommended Action" />
-                          {/* {errors.inspectionItems[index1].subsystems[index2].recommendedAction && touched.inspectionItems[index1].subsystems[index2].recommendedAction ? ( */}
+                          <Field name={`inspectionItems.${index1}.subsystems.${index2}.status`} as={TextField} select label="Status">
+                            {inspectionItemStatuses.map(status => <MenuItem key={status.code} value={status.code}>{status.code}</MenuItem>)}
+                          </Field>
+                          {/* {errors.inspectionItems[index1].subsystems[index2].status && touched.inspectionItems[index1].subsystems[index2].status ? ( */}
                             <span className={classes.errorMessage}>
-                              <ErrorMessage name={`inspectionItems.${index1}.subsystems.${index2}.recommendedAction`} />
+                              <ErrorMessage name={`inspectionItems.${index1}.subsystems.${index2}.status`} />
                             </span>
                           {/* ) : null} */}
                         </FormGroup>
-                      }
-                    </React.Fragment>
-                  ))}
-                  <Divider className={classes.divider}/>
-                </React.Fragment>
-              ))}
-              <Button type="submit">Create</Button>
-              {/* <pre>{JSON.stringify(values, null, 2)}</pre>
-              <pre>{JSON.stringify(errors, null, 2)}</pre> */}
-            </Form>
-          )}
-        </Formik>
-      </CardContent>
-    </Card>
-  </Container>
+                        {/* Subsystem recommended action TextField */}
+                        {values.inspectionItems[index1].subsystems[index2].status === "M" && 
+                          <FormGroup className={classes.formGroup}>
+                            <Field name={`inspectionItems.${index1}.subsystems.${index2}.recommendedAction`} as={TextField} label="Recommended Action" />
+                            {/* {errors.inspectionItems[index1].subsystems[index2].recommendedAction && touched.inspectionItems[index1].subsystems[index2].recommendedAction ? ( */}
+                              <span className={classes.errorMessage}>
+                                <ErrorMessage name={`inspectionItems.${index1}.subsystems.${index2}.recommendedAction`} />
+                              </span>
+                            {/* ) : null} */}
+                          </FormGroup>
+                        }
+                      </React.Fragment>
+                    ))}
+                    <Divider className={classes.divider}/>
+                  </React.Fragment>
+                ))}
+                <Button type="submit">Create</Button>
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre>
+                <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+              </Form>
+            )}
+          </Formik>
+        </CardContent>
+      </Card>
+    </Container>
   )
 }
 
