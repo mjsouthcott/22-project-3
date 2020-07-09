@@ -40,7 +40,7 @@ function UserForm (props) {
       .required('Required'),
     username: Yup.string()
       .matches('^[a-zA-Z][a-zA-Z0-9]*$', 'Must begin with a letter, and can only contain letters and numbers')
-      .min(8, 'Minimum 8 characters')
+      .min(6, 'Minimum 6 characters')
       .max(20, 'Maximum 20 characters')
       .required('Required'),
     password: Yup.string()
@@ -74,8 +74,7 @@ function UserForm (props) {
                 lastName: to.title(values.lastName).trim(),
                 occupation: values.occupation,
                 username: to.lower(values.username),
-                password: values.password,
-                status: 'Free'
+                password: values.password
               }
               console.log(user)
               
