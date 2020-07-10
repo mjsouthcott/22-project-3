@@ -1,4 +1,6 @@
 import React from 'react';
+import RepairWorkOrderForm from './components/RepairWorkOrderForm/index'
+import RepairRequestForm from './components/RepairRequestForm/index'
 import CreateOperator from './pages/CreateOperator'
 import CreateTechnician from './pages/CreateTechnician'
 import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
@@ -11,14 +13,15 @@ import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 function App() {
   return (
     <>
-      {/* <CreateInspectionWorkOrder /> */}
-      <CreateOperator />
+      {/* <RepairWorkOrderForm /> */}
+      <RepairRequestForm />
+      {/* <CreateOperator />
       <br></br>
       <CreateTechnician />
       <br></br>
       <CreateOperatorVehicle />
       <br></br>
-      <CreateTechnicianVehicle />
+      <CreateTechnicianVehicle /> */}
       {/* <br></br>
       <List>
         <ListItem>

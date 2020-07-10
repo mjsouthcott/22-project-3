@@ -22,8 +22,6 @@ function UserForm (props) {
   const classes = useStyles()
 
   const UserFormSchema = Yup.object().shape({
-    role: Yup.string()
-      .required('Required'),
     rank: Yup.string()
       .required('Required'),
     firstName: Yup.string()

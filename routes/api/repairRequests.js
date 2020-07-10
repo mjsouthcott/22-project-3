@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const usersController = require('../../controllers/usersController')
+const repairRequestsController = require('../../controllers/repairRequestsController')
 
 router.route('/')
-  .get(usersController.findAll)
-  .post(usersController.create)
+  .get(repairRequestsController.findAll)
+  .post(repairRequestsController.create)
 
 // TODO: Add additional routes
 
