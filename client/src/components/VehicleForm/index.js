@@ -61,7 +61,7 @@ function VehicleForm (props) {
               console.log(vehicle)
 
               // TODO: Add HTTP POST request
-              API.createVehicle(vehicle)
+              API.saveVehicle(vehicle)
             }}
           >
             {({ errors, touched, values }) => (
