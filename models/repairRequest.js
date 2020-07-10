@@ -1,38 +1,11 @@
 const mongoose = require('mongoose')
-const AutoIncrement = require('mongoose-sequence')(mongoose)
 const Schema = mongoose.Schema
-
-// Fault photo schema
-// const faultPhotoSchema = new Schema ({
-// 	src: {
-// 		type: String,
-// 		required: true
-// 	}
-// },
-// {
-// 	timestamps: true
-// })
-
-// // Location schema
-// const locationSchema = new Schema ({
-// 	latitude: {
-// 		type: Number,
-// 		required: true
-// 	},
-// 	longitude: {
-// 		type: Number,
-// 		required: true
-// 	}
-// },
-// {
-// 	timestamps: true
-// })
 
 // Repair request schema
 const repairRequestSchema = new Schema ({
 	number: {
-    type: Number,
-    default: 1
+		type: Number,
+		required: true
 	},
 	estimatedConditionClass: {
 		type: String,
@@ -67,10 +40,6 @@ const repairRequestSchema = new Schema ({
 		type: Boolean,
 		required: true
 	},
-	// faultPhotos: [{
-	// 	type: Schema.Types.ObjectId,
-	// 	ref: 'FaultPhoto'
-	// }],
 	faultPhotos: {
 		type: [{
 			src: {
@@ -79,11 +48,6 @@ const repairRequestSchema = new Schema ({
 			}
 		}]
 	},
-	// location: {
-	// 	type: Schema.Types.ObjectId,
-	// 	ref: 'Location',
-	// 	required: true
-	// },
 	location: {
 		type: {
 			latitude: {
@@ -119,12 +83,6 @@ const repairRequestSchema = new Schema ({
 	timestamps: true
 })
 
-repairRequestSchema.plugin(AutoIncrement, { inc_field: 'number' })
-
-// const FaultPhoto = mongoose.model('FaultPhoto', faultPhotoSchema)
-// const Location = mongoose.model('Location', locationSchema)
 const RepairRequest = mongoose.model('RepairRequest', repairRequestSchema)
 
-// module.exports = FaultPhoto
-// module.exports = Location
 module.exports = RepairRequest
