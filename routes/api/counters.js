@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const usersController = require('../../controllers/usersController')
+const countersController = require('../../controllers/countersController')
 
 router.route('/')
-  .get(usersController.findAll)
-  .post(usersController.create)
+  .get(countersController.findAll)
+  .post(countersController.create)
 
 // TODO: Add additional routes
 

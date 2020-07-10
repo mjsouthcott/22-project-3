@@ -15,7 +15,7 @@ const repairRequestSchema = new Schema ({
 			'Depot',
 			'General Support',
 			'Integral',
-			'Unknwon'
+			'Unknown'
 		],
 		required: true
 	},
