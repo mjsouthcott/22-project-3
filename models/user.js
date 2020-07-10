@@ -67,17 +67,19 @@ const userSchema = new Schema ({
 		],
 		required: true
 	},
-	status: {
-		type: String,
-		enum: [
-			'Available',
-			'Not Available'
-		],
-		default: 'Available',
-		required: true
+	available: {
+		type: Boolean,
+		default: true,
+		require: true
+	},
+	dismounted: {
+		type: Boolean,
+		default: true,
+		require: true
 	},
 	username: {
 		type: String,
+		hide: true,
 		lowercase: true,
 		minlength: 6,
 		maxlength: 20,
@@ -97,6 +99,8 @@ const userSchema = new Schema ({
 {
 	timestamps: true
 })
+
+userSchema.plugin(mongooseHidden)
 
 const User = mongoose.model('User', userSchema)
 

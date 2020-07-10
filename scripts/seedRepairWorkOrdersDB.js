@@ -42,12 +42,6 @@ const repairWorkOrderSeed = [
 ]
 
 db.RepairWorkOrder
-  // .remove({})
-  // .then(() => db.RepairWorkOrder.collection.insertMany(repairWorkOrderSeed))
-  // .then(data => {
-  //   console.log(data.result.n + " records inserted!");
-  //   process.exit(0);
-  // })
   .insertMany(repairWorkOrderSeed)
   .then(() => {
     console.log(repairWorkOrderSeed.length + " RepairWorkOrder records inserted!")

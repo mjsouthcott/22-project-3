@@ -11,7 +11,7 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "seed": "node scripts/seedUsersDB.js && node scripts/seedVehiclesDB.js && node scripts/seedRepairRequestsDB.js && node scripts/seedRepairWorkOrdersDB.js"
+    "seed": "node scripts/seedUsersDB.js && node scripts/seedRepairWorkOrdersDB.js && node scripts/seedRepairRequestsDB.js && node scripts/seedVehiclesDB.js"
   },
   "author": "",
   "license": "ISC",
@@ -27,7 +27,6 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
     "mongoose-hidden": "^1.9.0",
-    "mongoose-sequence": "^5.2.2",
     "to-case": "^2.0.0",
     "yup": "^0.29.1"
   }
