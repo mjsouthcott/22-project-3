@@ -79,7 +79,7 @@ function UserForm (props) {
               console.log(user)
               
               // TODO: Add HTTP POST request
-              API.createUser(user)
+              API.saveUser(user)
             }}
           >
             {({ errors, touched, values }) => (
