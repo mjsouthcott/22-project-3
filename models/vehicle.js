@@ -2,6 +2,16 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const vehicleSchema = new Schema ({
+	role: {
+		type: String,
+		enum: [
+			'Maintenance Manager',
+			'Operations Manager',
+			'Operator',
+			'Technician'
+		],
+		required: true
+	},
 	type: {
 		type: String,
 		enum: [
@@ -62,7 +72,7 @@ const vehicleSchema = new Schema ({
 	serviceable: {
 		type: Boolean,
 		default: true,
-		require: true
+		required: true
 	},
 	occupant: {
 		type: Schema.Types.ObjectId,

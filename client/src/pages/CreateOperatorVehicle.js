@@ -4,7 +4,7 @@ import operatorVehicles from '../utils/operatorVehicles'
 
 function CreateOperatorVehicle () {
   return (
-    <VehicleForm formTitle={'Create Operator Vehicle'} vehicles={operatorVehicles} />
+    <VehicleForm formTitle={'Create Operator Vehicle'} role={"Operator"} vehicles={operatorVehicles} />
   )
 }
 

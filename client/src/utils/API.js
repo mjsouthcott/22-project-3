@@ -107,11 +107,27 @@ export default {
   getVehicles: function () {
     return axios.get("/api/vehicles");
   },
-
+  
   getVehicle: function (vehicleId) {
     return axios.get("/api/vehicles", {
       params: {
         id: vehicleId,
+      },
+    });
+  },
+  
+  getOperatorVehicles: function () {
+    return axios.get("/api/vehicles", {
+      params: {
+        role: "Operator",
+      },
+    });
+  },
+
+  getTechnicianVehicles: function () {
+    return axios.get("/api/vehicles", {
+      params: {
+        role: "Technician",
       },
     });
   },
