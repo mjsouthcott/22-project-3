@@ -6,7 +6,7 @@ const counterSchema = new Schema ({
     type: String,
     required: true
   },
-  count: {
+  value: {
     type: Number,
     default: 1
   }

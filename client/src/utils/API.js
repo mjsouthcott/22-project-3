@@ -1,26 +1,6 @@
 import axios from "axios";
 
 export default {
-  // Counter methods
-  getNumberCounter: function () {
-    return axios.get("/api/counters", {
-      params: {
-        name: "Number",
-      },
-    });
-  },
-
-  updateNumberCounter: function (newCount) {
-    return axios.patch("/api/counters", {
-      params: {
-        name: "Number",
-      },
-      data: {
-        count: newCount,
-      },
-    });
-  },
-
   // User methods
   getUsers: function () {
     return axios.get("/api/users");

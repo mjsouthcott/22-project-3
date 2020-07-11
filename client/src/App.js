@@ -15,15 +15,15 @@ function App() {
   return (
     <>
       {/* <RepairWorkOrderForm /> */}
-      {/* <RepairRequestForm /> */}
+      <RepairRequestForm />
       {/* <Dashboard/> */}
       {/* <CreateOperator />
       <br></br>
       <CreateTechnician />
       <br></br> */}
-      <CreateOperatorVehicle />
+      {/* <CreateOperatorVehicle />
       <br></br>
-      <CreateTechnicianVehicle />
+      <CreateTechnicianVehicle /> */}
       {/* <br></br>
       <List>
         <ListItem>

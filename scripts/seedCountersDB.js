@@ -9,7 +9,7 @@ mongoose.connect(
 const counterSeed = [
   {
     name: 'Number',
-    count: 4
+    value: 4
   }
 ]
 
