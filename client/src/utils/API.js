@@ -174,6 +174,14 @@ export default {
     });
   },
 
+  getRepairRequestByTechnician: function (userId) {
+    return axios.get('/api/repair-requests', {
+        params: {
+            assignedTo: userId
+        }
+    })
+  },
+
   updateRepairRequestStatus: function (repairRequestId, newStatus) {
     return axios.patch("/api/repair-requests", {
       params: {

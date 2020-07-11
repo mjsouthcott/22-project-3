@@ -1,16 +1,29 @@
 const router = require('express').Router()
 const vehiclesController = require('../../controllers/vehiclesController')
 
-router.route('/')
+/*  Vehicles
+    /
+        GET
+        POST
+    
+    /:id
+        GET
+        PATCH
+    
+    /:occupant
+        GET
+*/
+
+router
+  .route("/")
   .get(vehiclesController.findAll)
-  .post(vehiclesController.create)
+  .post(vehiclesController.create);
 
-// TODO: Add additional routes
+router
+  .route("/:id")
+  .get(vehiclesController.findById)
+  .patch(vehiclesController.updateById);
 
-// router
-//   .route("/:id")
-//   .get(booksController.findById)
-//   .put(booksController.update)
-//   .delete(booksController.remove)
+router.route("/:occupant").get(vehiclesController.findAll);
 
 module.exports = router;

@@ -1,16 +1,29 @@
 const router = require('express').Router()
 const repairRequestsController = require('../../controllers/repairRequestsController')
 
-router.route('/')
+/*  Repair Requests
+    /
+        GET
+        POST
+    
+    /:id
+        GET
+        PATCH
+
+    /:assignedTo
+        GET
+*/
+
+router
+  .route("/")
   .get(repairRequestsController.findAll)
-  .post(repairRequestsController.create)
+  .post(repairRequestsController.create);
 
-// TODO: Add additional routes
+router
+  .route("/:id")
+  .get(repairRequestsController.findById)
+  .patch(repairRequestsController.updateById);
 
-// router
-//   .route("/:id")
-//   .get(booksController.findById)
-//   .put(booksController.update)
-//   .delete(booksController.remove)
+router.route("/:assignedTo").get(repairRequestsController.findAll);
 
 module.exports = router;
