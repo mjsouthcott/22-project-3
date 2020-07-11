@@ -1,16 +1,15 @@
 const router = require('express').Router()
 const countersController = require('../../controllers/countersController')
 
-router.route('/')
+/*  Counters
+    /:name
+        GET
+        PATCH
+*/
+
+router
+  .route("/:name")
   .get(countersController.findAll)
-  .post(countersController.create)
-
-// TODO: Add additional routes
-
-// router
-//   .route("/:id")
-//   .get(booksController.findById)
-//   .put(booksController.update)
-//   .delete(booksController.remove)
+  .patch(countersController.update);
 
 module.exports = router;
