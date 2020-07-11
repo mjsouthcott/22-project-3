@@ -1,4 +1,4 @@
-const inspectionItemStatuses = [
+const automotiveSubsystemStatuses = [
 	{
 		"code": "S",
 		"status": "Serviceable"
@@ -17,4 +17,4 @@ const inspectionItemStatuses = [
 	},
 ]
 
-export default inspectionItemStatuses
+export default automotiveSubsystemStatuses
