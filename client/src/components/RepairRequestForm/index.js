@@ -8,23 +8,11 @@ import './style.css'
 
 function RepairRequestForm (props) {
   const [currentLocation, setCurrentLocation] = useState()
-  const [number, setNumber] = useState()
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(pos => {
       setCurrentLocation({ latitude: pos.coords.latitude, longitude: pos.coords.longitude })
     })
-
-    // TODO: Fix API methods/routes/controllers
-    // API.getNumberCounter()
-    //   .then(res => {
-    //     setNumber(res.data.count)
-    //   })
-    //   .then(API.updateNumberCounter(number + 1))
-    //   .catch(err => {
-    //     console.log(err)
-    //   })
-    setNumber(5)
   }, [])
 
   const vehicleConditionClasses = [
@@ -86,7 +74,6 @@ function RepairRequestForm (props) {
           validationSchema={RepairRequestFormSchema}
           onSubmit={values => {
             const repairRequest = {
-              number: number,
               estimatedConditionClass: values.estimatedConditionClass,
               vehicleCanBeMovedBy: values.vehicleCanBeMovedBy,
               localTacticalSituation: values.localTacticalSituation,
@@ -96,15 +83,11 @@ function RepairRequestForm (props) {
             console.log(repairRequest)
             
             // TODO: Add HTTP POST request
+            API.saveRepairRequest(repairRequest)
           }}
         >
           {({ errors, touched, values }) => (
             <Form>
-              <FormGroup className={classes.formGroup}>
-
-                {/* TODO: Get number to appear below */}
-                <Field name="number" as={TextField} label="Number" InputProps={{ readOnly: true }} value={number} />
-              </FormGroup>
               <FormGroup className={classes.formGroup}>
                 <Field name="estimatedConditionClass" as={TextField} select label="Estimated Condition Class">
                   {vehicleConditionClasses.map(conditionClass => <MenuItem key={conditionClass} value={conditionClass}>{conditionClass}</MenuItem>)}
