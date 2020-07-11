@@ -70,12 +70,12 @@ const userSchema = new Schema ({
 	available: {
 		type: Boolean,
 		default: true,
-		require: true
+		required: true
 	},
 	dismounted: {
 		type: Boolean,
 		default: true,
-		require: true
+		required: true
 	},
 	username: {
 		type: String,

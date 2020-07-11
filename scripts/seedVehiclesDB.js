@@ -8,18 +8,21 @@ mongoose.connect(
 
 const vehicleSeed = [
   {
+    role: "Maintenance Manager",
     type: 'Medium Logistic Vehicle, Command Post',
     registrationNumber: '19000',
     callSign: '88A',
     iconSrc: 'assets/images/medium-logistic-vehicle-command-post.png'
   },
   {
+    role: "Operations Manager",
     type: 'Main Battle Tank',
     registrationNumber: '12000',
     callSign: '39C',
     iconSrc: 'assets/images/main-battle-tank.png'
   },
   {
+    role: "Operator",
     type: 'Medium Logistic Vehicle, Gun Tractor',
     registrationNumber: '19001',
     callSign: '71G',
@@ -28,6 +31,7 @@ const vehicleSeed = [
     repairRequests: []
   },
   {
+    role: "Operator",
     type: 'Armoured Patrol Vehicle',
     registrationNumber: '18000',
     callSign: '52H',
@@ -36,6 +40,7 @@ const vehicleSeed = [
     repairRequests: []
   },
   {
+    role: "Operator",
     type: 'Armoured Engineering Vehicle',
     registrationNumber: '16000',
     callSign: '63I',
@@ -44,18 +49,21 @@ const vehicleSeed = [
     repairRequests: []
   },
   {
+    role: "Technician",
     type: 'Medium Logistic Vehicle, Mobile Repair Team',
     registrationNumber: '19002',
     callSign: '88E1',
     iconSrc: 'assets/images/medium-logistic-vehicle-mobile-repair-team.png'
   },
   {
+    role: "Technician",
     type: 'Medium Logistic Vehicle, Mobile Repair Team',
     registrationNumber: '19003',
     callSign: '88W2',
     iconSrc: 'assets/images/medium-logistic-vehicle-mobile-repair-team.png'
   },
   {
+    role: "Technician",
     type: 'Armoured Recovery Vehicle',
     registrationNumber: '15000',
     callSign: '88R1',

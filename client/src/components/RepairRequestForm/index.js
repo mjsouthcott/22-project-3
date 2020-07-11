@@ -16,14 +16,15 @@ function RepairRequestForm (props) {
     })
 
     // TODO: Fix API methods/routes/controllers
-    API.getNumberCounter()
-      .then(res => {
-        setNumber(res.data.count)
-      })
-      .then(API.updateNumberCounter(number + 1))
-      .catch(err => {
-        console.log(err)
-      })
+    // API.getNumberCounter()
+    //   .then(res => {
+    //     setNumber(res.data.count)
+    //   })
+    //   .then(API.updateNumberCounter(number + 1))
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+    setNumber(5)
   }, [])
 
   const vehicleConditionClasses = [
@@ -102,7 +103,7 @@ function RepairRequestForm (props) {
               <FormGroup className={classes.formGroup}>
 
                 {/* TODO: Get number to appear below */}
-                <Field name="number" as={TextField} label="Number" InputProps={{ readOnly: true }}>{number}</Field>
+                <Field name="number" as={TextField} label="Number" InputProps={{ readOnly: true }} value={number} />
               </FormGroup>
               <FormGroup className={classes.formGroup}>
                 <Field name="estimatedConditionClass" as={TextField} select label="Estimated Condition Class">

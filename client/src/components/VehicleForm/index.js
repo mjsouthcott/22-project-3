@@ -43,6 +43,7 @@ function VehicleForm (props) {
           <Typography variant="h4" className={classes.typography}>{props.formTitle}</Typography>
           <Formik
             initialValues={{
+              role: props.role,
               type: '',
               registrationNumber: '',
               callSign: ''
@@ -53,6 +54,7 @@ function VehicleForm (props) {
                 return vehicle.type === values.type
               })
               const vehicle = {
+                role: values.role,
                 type: values.type,
                 registrationNumber: values.registrationNumber,
                 callSign: to.upper(values.callSign),
@@ -66,6 +68,9 @@ function VehicleForm (props) {
           >
             {({ errors, touched, values }) => (
               <Form>
+                <FormGroup className={classes.formGroup}>
+                  <Field name="role" as={TextField} label="Role" InputProps={{ readOnly: true }} />
+                </FormGroup>
                 <FormGroup className={classes.formGroup}>
                   <Field name="type" as={TextField} select label="Type">
                     {props.vehicles.map(vehicle => <MenuItem key={vehicle.type} value={vehicle.type}>{vehicle.type}</MenuItem>)}

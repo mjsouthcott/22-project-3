@@ -4,7 +4,7 @@ import technicianVehicles from '../utils/technicianVehicles'
 
 function CreateTechnicianVehicle () {
   return (
-    <VehicleForm formTitle={'Create Technician Vehicle'} vehicles={technicianVehicles} />
+    <VehicleForm formTitle={'Create Technician Vehicle'} role={"Technician"} vehicles={technicianVehicles} />
   )
 }
 
