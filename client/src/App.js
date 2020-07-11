@@ -6,7 +6,7 @@ import CreateTechnician from './pages/CreateTechnician'
 import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
 import CreateTechnicianVehicle from './pages/CreateTechnicianVehicle'
 import VehicleAvatar from './components/VehicleAvatar/index'
-import Dashboard from './components/Dashboard'
+// import Dashboard from './components/Dashboard'
 import './App.css';
 
 import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
@@ -16,7 +16,7 @@ function App() {
     <>
       {/* <RepairWorkOrderForm /> */}
       <RepairRequestForm />
-      <Dashboard/>
+      {/* <Dashboard/> */}
       {/* <CreateOperator />
       <br></br>
       <CreateTechnician />
