@@ -29,7 +29,7 @@ export default {
   getUser: function (userId) {
     return axios.get("/api/users", {
       params: {
-        _id: userId,
+        id: userId,
       },
     });
   },
@@ -80,7 +80,7 @@ export default {
   updateUserDismountedStatus: function (userId, newDismountedStatus) {
     return axios.patch("/api/users", {
       params: {
-        _id: userId,
+        id: userId,
       },
       data: {
         dismounted: newDismountedStatus,
@@ -91,7 +91,7 @@ export default {
   updateUserAvailableStatus: function (userId, newAvailableStatus) {
     return axios.patch("/api/users", {
       params: {
-        _id: userId,
+        id: userId,
       },
       data: {
         available: newAvailableStatus,
@@ -111,7 +111,7 @@ export default {
   getVehicle: function (vehicleId) {
     return axios.get("/api/vehicles", {
       params: {
-        _id: vehicleId,
+        id: vehicleId,
       },
     });
   },
@@ -127,7 +127,7 @@ export default {
   updateVehicleServiceableStatus: function (vehicleId, newServiceableStatus) {
     return axios.patch("/api/vehicles", {
       params: {
-        _id: vehicleId,
+        id: vehicleId,
       },
       data: {
         serviceable: newServiceableStatus,
@@ -138,7 +138,7 @@ export default {
   updateVehicleOccupant: function (vehicleId, newUserId) {
     return axios.patch("/api/vehicles", {
       params: {
-        _id: vehicleId,
+        id: vehicleId,
       },
       data: {
         occupant: newUserId,
@@ -149,7 +149,7 @@ export default {
   updateVehicleRepairRequests: function (vehicleId, newRepairRequestIdArray) {
     return axios.patch("/api/vehicles", {
       params: {
-        _id: vehicleId,
+        id: vehicleId,
       },
       data: {
         repairRequests: newRepairRequestIdArray,
@@ -169,7 +169,7 @@ export default {
   getRepairRequest: function (repairRequestId) {
     return axios.get("/api/repair-requests", {
       params: {
-        _id: repairRequestId,
+        id: repairRequestId,
       },
     });
   },
@@ -185,7 +185,7 @@ export default {
   updateRepairRequestStatus: function (repairRequestId, newStatus) {
     return axios.patch("/api/repair-requests", {
       params: {
-        _id: repairRequestId,
+        id: repairRequestId,
       },
       data: {
         status: newStatus,
@@ -196,7 +196,7 @@ export default {
   updateRepairRequestAssignedTo: function (repairRequestId, newTechnicianId) {
     return axios.patch("/api/repair-requests", {
       params: {
-        _id: repairRequestId,
+        id: repairRequestId,
       },
       data: {
         assignedTo: newTechnicianId,
@@ -210,7 +210,7 @@ export default {
   ) {
     return axios.patch("/api/repair-requests", {
       params: {
-        _id: repairRequestId,
+        id: repairRequestId,
       },
       data: {
         repairWorkOrder: newRepairWorkOrderId,

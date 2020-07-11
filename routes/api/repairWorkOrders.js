@@ -12,6 +12,4 @@ router
   .get(repairWorkOrdersController.findAll)
   .post(repairWorkOrdersController.create);
 
-module.exports(router);
-
 module.exports = router;
