@@ -67,11 +67,11 @@ const vehicleSchema = new Schema ({
 	},
 	occupant: {
 		type: Schema.Types.ObjectId,
-    ref: 'User'
+		ref: 'User',
 	},
 	repairRequests: [{
 		type: Schema.Types.ObjectId,
-		ref: 'RepairRequest'
+		ref: 'RepairRequest',
 	}]
 },
 {

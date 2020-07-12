@@ -1,9 +1,10 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Card, CardContent, FormGroup, MenuItem, TextField, Container } from '@material-ui/core'
+import { Button, FormGroup, MenuItem, TextField, Container } from '@material-ui/core'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from "yup"
 import './style.css'
+import API from '../../utils/API'
 
 function AssignVehicleOccupantInput (props) {
   const useStyles = makeStyles({
@@ -33,10 +34,10 @@ function AssignVehicleOccupantInput (props) {
         }}
         validationSchema={UserFormSchema}
         onSubmit={values => {
-          
-          console.log(values)
 
-          // TODO: Add appropriate API method call
+          /* TODO: Add appropriate API method call */
+          API.updateVehicleOccupant(values.vehicle, values.occupant)
+            // .then(API.updateUserDismountedStatus(values.occupant, true))
         }}
       >
         {({ errors, touched, values }) => (
