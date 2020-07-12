@@ -20,39 +20,23 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Item-1" />
+      <ListItemText primary="View Dashboard" />
     </ListItem>
     </Link>
-    <Link href="/repair-request">
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Item-2" />
-    </ListItem>
-    </Link>
-    <Link href="https://www.google.ca/">
+    <Link href="/create-operator">
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Item-3" />
+      <ListItemText primary="Create Operator" />
     </ListItem>
     </Link>
-    <Link href="https://www.google.ca/">
+    <Link href="/create-technician">
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+        <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Item-4" />
-    </ListItem>
-    </Link>
-    <Link href="https://www.google.ca/">
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Item-5" />
+      <ListItemText primary="Create Technician" />
     </ListItem>
     </Link>
     {/* </Router> */}
@@ -61,24 +45,38 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button component="a" href="https://www.google.com">
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Form-1" />
-    </ListItem>
+    <ListSubheader inset>Requests</ListSubheader>
+    <Link href="/repair-request">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Form-2" />
+      <ListItemText primary="New Repair Request" />
     </ListItem>
+    </Link>
+    <Link href="/repair-workorder">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Form-3" />
+      <ListItemText primary="New Repair Work Order" />
     </ListItem>
+    </Link>
+    <Link href="/create-operatorVehicle">
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="New Operator Vehicle" />
+    </ListItem>
+    </Link>
+    <Link href="/create-technicianVehicle">
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="New Technician Vehicle" />
+    </ListItem>
+    </Link>
   </div>
 );

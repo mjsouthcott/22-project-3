@@ -16,7 +16,6 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -25,16 +24,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './components/listItems';
-import Chart from './components/Chart';
-import Deposits from './components/Deposits';
-// import {WebMapView} from '../WebMapView'
 
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -43,7 +36,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
 
   
-  const drawerWidth = 240;
+  const drawerWidth = 260;
   
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -215,16 +208,17 @@ function App() {
         <Divider />
         <List>{secondaryListItems}</List>
         </Drawer>
-     
+ 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-        {/* <Dashboard/> */}
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/repair-request" component={RepairRequestForm} />
-        {/* <Route exact path="/discover"  />
-        <Route exact path="/search" /> */}
-
+        <Route exact path="/repair-workorder" component={RepairWorkOrderForm} />
+        <Route exact path="/create-operator" component={CreateOperator} />
+        <Route exact path="/create-technician" component={CreateTechnician} />
+        <Route exact path="/create-operatorVehicle" component={CreateOperatorVehicle} />
+        <Route exact path="/create-technicianVehicle" component={CreateTechnicianVehicle} />
         </Container>
       </main>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo  } from 'react';
 import { loadModules } from 'esri-loader';
 
 export const WebMapView = () => {
@@ -46,7 +46,7 @@ export const WebMapView = () => {
 
 
 
-    useEffect(
+    useMemo(
       () => {
         // lazy load the required ArcGIS API for JavaScript modules and CSS
         loadModules(['esri/Map', 
@@ -58,15 +58,15 @@ export const WebMapView = () => {
                     'esri/widgets/Legend'], { css: true })
         .then(([ArcGISMap, MapView, Graphic, GraphicsLayer, BasemapToggle,CoordinateConversion,Legend]) => {
           const map = new ArcGISMap({
-            basemap: 'topo-vector'
+            basemap: 'hybrid'
           });
 
           // load the map view at the ref's DOM node
           const view = new MapView({
             container: mapRef.current,
             map: map,
-            center: [-75.69, 45.42],
-            zoom: 8
+            center: [-75.48, 45.46],
+            zoom: 12
           });
 
           let pointGraphics = []
@@ -109,7 +109,7 @@ export const WebMapView = () => {
           let toggle = new BasemapToggle({
             // 2 - Set properties
             view: view, // view that provides access to the map's 'topo' basemap
-            nextBasemap: "hybrid" // allows for toggling to the 'hybrid' basemap
+            nextBasemap: "topo-vector" // allows for toggling to the 'hybrid' basemap
           });
 
           view.ui.add(toggle, "top-left");
