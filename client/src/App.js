@@ -9,6 +9,7 @@ import DisplayOperatorVehicles from './pages/DisplayOperatorVehicles'
 import DisplayTechnicianVehicles from './pages/DisplayTechnicianVehicles'
 import CreateRepairRequestForm from './components/CreateRepairRequestForm/index'
 import CreateRepairWorkOrderForm from './components/CreateRepairWorkOrderForm/index'
+import AssignOperatorVehicleOccupantInput from './components/AssignOperatorVehicleOccupantInput/index'
 // import Dashboard from './components/Dashboard'
 import './App.css';
 
@@ -17,6 +18,7 @@ import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 function App() {
   return (
     <>
+      <AssignOperatorVehicleOccupantInput />
       {/* <CreateOperator />
       <br></br>
       <CreateOperatorVehicle />
@@ -29,9 +31,9 @@ function App() {
       <br></br>
       <DisplayTechnicians />
       <br></br> */}
-      <DisplayOperatorVehicles />
+      {/* <DisplayOperatorVehicles />
       <br></br>
-      <DisplayTechnicianVehicles />
+      <DisplayTechnicianVehicles /> */}
       {/* <br></br>
       <CreateRepairRequestForm />
       <br></br>
