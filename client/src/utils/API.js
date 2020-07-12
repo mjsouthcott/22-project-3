@@ -1,4 +1,5 @@
 import axios from "axios";
+const mongoose = require('mongoose')
 
 export default {
   // User methods
@@ -132,12 +133,14 @@ export default {
   },
 
   updateVehicleOccupant: function (vehicleId, newUserId) {
+
+    /* TODO: Fix (getting 404 (Not Found) responses) */
     return axios.patch("/api/vehicles", {
       params: {
-        id: vehicleId,
+        id: mongoose.Types.ObjectId(vehicleId),
       },
       data: {
-        occupant: newUserId,
+        occupant: mongoose.Types.ObjectId(newUserId),
       },
     });
   },
