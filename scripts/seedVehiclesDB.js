@@ -12,21 +12,21 @@ const vehicleSeed = [
     type: 'Medium Logistic Vehicle, Command Post',
     registrationNumber: '19000',
     callSign: '88A',
-    iconSrc: 'assets/images/medium-logistic-vehicle-command-post.png'
+    iconSrc: 'assets/images/vehicleIcons/medium-logistic-vehicle-command-post.png'
   },
   {
     role: "Operations Manager",
     type: 'Main Battle Tank',
     registrationNumber: '12000',
     callSign: '39C',
-    iconSrc: 'assets/images/main-battle-tank.png'
+    iconSrc: 'assets/images/vehicleIcons/main-battle-tank.png'
   },
   {
     role: "Operator",
     type: 'Medium Logistic Vehicle, Gun Tractor',
     registrationNumber: '19001',
     callSign: '71G',
-    iconSrc: 'assets/images/medium-logistic-vehicle-gun-tractor.png',
+    iconSrc: 'assets/images/vehicleIcons/medium-logistic-vehicle-gun-tractor.png',
     serviceable: false,
     repairRequests: []
   },
@@ -35,7 +35,7 @@ const vehicleSeed = [
     type: 'Armoured Patrol Vehicle',
     registrationNumber: '18000',
     callSign: '52H',
-    iconSrc: 'assets/images/armoured-patrol-vehicle.png',
+    iconSrc: 'assets/images/vehicleIcons/armoured-patrol-vehicle.png',
     serviceable: false,
     repairRequests: []
   },
@@ -44,7 +44,7 @@ const vehicleSeed = [
     type: 'Armoured Engineering Vehicle',
     registrationNumber: '16000',
     callSign: '63I',
-    iconSrc: 'assets/images/armoured-engineering-vehicle.png',
+    iconSrc: 'assets/images/vehicleIcons/armoured-engineering-vehicle.png',
     serviceable: false,
     repairRequests: []
   },
@@ -53,21 +53,21 @@ const vehicleSeed = [
     type: 'Medium Logistic Vehicle, Mobile Repair Team',
     registrationNumber: '19002',
     callSign: '88E1',
-    iconSrc: 'assets/images/medium-logistic-vehicle-mobile-repair-team.png'
+    iconSrc: 'assets/images/vehicleIcons/medium-logistic-vehicle-mobile-repair-team.png'
   },
   {
     role: "Technician",
     type: 'Medium Logistic Vehicle, Mobile Repair Team',
     registrationNumber: '19003',
     callSign: '88W2',
-    iconSrc: 'assets/images/medium-logistic-vehicle-mobile-repair-team.png'
+    iconSrc: 'assets/images/vehicleIcons/medium-logistic-vehicle-mobile-repair-team.png'
   },
   {
     role: "Technician",
     type: 'Armoured Recovery Vehicle',
     registrationNumber: '15000',
     callSign: '88R1',
-    iconSrc: 'assets/images/armoured-recovery-vehicle.png'
+    iconSrc: 'assets/images/vehicleIcons/armoured-recovery-vehicle.png'
   }
 ]
 

@@ -46,17 +46,17 @@ const vehicleSchema = new Schema ({
 	iconSrc: {
 		type: String,
 		enum: [
-			'assets/images/armoured-engineering-vehicle.png',
-			'assets/images/armoured-patrol-vehicle.png',
-			'assets/images/armoured-recovery-vehicle.png',
-			'assets/images/heavy-logistic-vehicle-refueller.png',
-			'assets/images/heavy-logistic-vehicle-tank-transporter.png',
-			'assets/images/infantry-fighting-vehicle.png',
-			'assets/images/main-battle-tank.png',
-			'assets/images/medium-logistic-vehicle-cargo.png',
-			'assets/images/medium-logistic-vehicle-command-post.png',
-			'assets/images/medium-logistic-vehicle-gun-tractor.png',
-			'assets/images/medium-logistic-vehicle-mobile-repair-team.png'
+			'assets/images/vehicleIcons/armoured-engineering-vehicle.png',
+			'assets/images/vehicleIcons/armoured-patrol-vehicle.png',
+			'assets/images/vehicleIcons/armoured-recovery-vehicle.png',
+			'assets/images/vehicleIcons/heavy-logistic-vehicle-refueller.png',
+			'assets/images/vehicleIcons/heavy-logistic-vehicle-tank-transporter.png',
+			'assets/images/vehicleIcons/infantry-fighting-vehicle.png',
+			'assets/images/vehicleIcons/main-battle-tank.png',
+			'assets/images/vehicleIcons/medium-logistic-vehicle-cargo.png',
+			'assets/images/vehicleIcons/medium-logistic-vehicle-command-post.png',
+			'assets/images/vehicleIcons/medium-logistic-vehicle-gun-tractor.png',
+			'assets/images/vehicleIcons/medium-logistic-vehicle-mobile-repair-team.png'
 		],
 		required: true
 	},
