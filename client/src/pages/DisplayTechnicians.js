@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import UserTable from '../components/UserTable/index'
+import DisplayUserTable from '../components/DisplayUserTable/index'
 import API from '../utils/API'
 
-function DisplayTechnicianTable () {
+function DisplayTechnicians () {
   const [technicians, setTechnicians] = useState([])
 
   useEffect(() => {
@@ -13,8 +13,8 @@ function DisplayTechnicianTable () {
   }, [])
   
   return (
-    <UserTable users={technicians} roles={"Technicians"}/>
+    <DisplayUserTable users={technicians} roles={"Display Technicians"}/>
   )
 }
 
-export default DisplayTechnicianTable
+export default DisplayTechnicians

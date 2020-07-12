@@ -1,11 +1,11 @@
 import React from 'react';
-import VehicleForm from '../components/VehicleForm/index'
+import CreateVehicleForm from '../components/CreateVehicleForm/index'
 import technicianVehicles from '../utils/technicianVehicles'
 
-function CreateTechnicianVehicle () {
+function CreateTechnicianVehicleForm () {
   return (
-    <VehicleForm formTitle={'Create Technician Vehicle'} role={"Technician"} vehicles={technicianVehicles} />
+    <CreateVehicleForm formTitle={'Create Technician Vehicle'} role={"Technician"} vehicles={technicianVehicles} />
   )
 }
 
-export default CreateTechnicianVehicle
+export default CreateTechnicianVehicleForm

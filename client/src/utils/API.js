@@ -34,7 +34,7 @@ export default {
     return axios.get("/api/users", {
       params: {
         role: "Operator",
-        dismounted: true,
+        mounted: false,
       },
     });
   },
@@ -43,7 +43,7 @@ export default {
     return axios.get("/api/users", {
       params: {
         role: "Technician",
-        dismounted: true,
+        mounted: false,
       },
     });
   },
@@ -63,7 +63,7 @@ export default {
         id: userId,
       },
       data: {
-        dismounted: newDismountedStatus,
+        mounted: newDismountedStatus,
       },
     });
   },

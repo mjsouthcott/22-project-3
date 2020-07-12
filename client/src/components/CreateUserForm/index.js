@@ -76,7 +76,6 @@ function UserForm (props) {
               }
               console.log(user)
               
-              // TODO: Add HTTP POST request
               API.saveUser(user)
             }}
           >

@@ -68,6 +68,48 @@ const vehicleSeed = [
     registrationNumber: '15000',
     callSign: '88R1',
     iconSrc: 'assets/images/vehicleIcons/armoured-recovery-vehicle.png'
+  },
+  {
+    role: "Operator",
+    type: 'Infantry Fighting Vehicle',
+    registrationNumber: "14000",
+    callSign: "12D",
+    iconSrc: 'assets/images/vehicleIcons/infantry-fighting-vehicle.png'
+  },
+  {
+    role: "Operator",
+    type: 'Heavy Logistic Vehicle, Refueller',
+    registrationNumber: "11000",
+    callSign: "81R",
+    iconSrc: 'assets/images/vehicleIcons/heavy-logistic-vehicle-refueller.png',
+  },
+  {
+    role: "Operator",
+    type: 'Medium Logistic Vehicle, Cargo',
+    registrationNumber: "19004",
+    callSign: "82C",
+    iconSrc: 'assets/images/vehicleIcons/medium-logistic-vehicle-cargo.png',
+  },
+  {
+    role: "Technician",
+    type: 'Medium Logistic Vehicle, Mobile Repair Team',
+    registrationNumber: "19005",
+    callSign: "88M",
+    iconSrc: 'assets/images/vehicleIcons/medium-logistic-vehicle-mobile-repair-team.png'
+  },
+  {
+    role: "Technician",
+    type: 'Medium Logistic Vehicle, Mobile Repair Team',
+    registrationNumber: "19006",
+    callSign: "88V1",
+    iconSrc: 'assets/images/vehicleIcons/medium-logistic-vehicle-mobile-repair-team.png'
+  },
+  {
+    role: "Technician",
+    type: 'Medium Logistic Vehicle, Mobile Repair Team',
+    registrationNumber: "19007",
+    callSign: "88W1",
+    iconSrc: 'assets/images/vehicleIcons/medium-logistic-vehicle-mobile-repair-team.png'
   }
 ]
 
@@ -75,7 +117,7 @@ db.User
   .find()
   .sort({ createdAt: 1 })
   .then(users => {
-    for (let i = 0; i < vehicleSeed.length; i++) {
+    for (let i = 0; i < 8; i++) {
       vehicleSeed[i].occupant = users[i]._id
     }
     return vehicleSeed
