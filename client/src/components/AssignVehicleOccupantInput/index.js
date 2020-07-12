@@ -25,41 +25,38 @@ function AssignVehicleOccupantInput (props) {
   })
  
   return (
-    <Container maxWidth="sm">
-      <Card>
-        <CardContent>
-          <Formik
-            initialValues={{
-              occupant: ''
-            }}
-            validationSchema={UserFormSchema}
-            onSubmit={values => {
-              
-              console.log(values.occupant)
+    <Container maxWidth="xs">
+      <Formik
+        initialValues={{
+          vehicle: props.vehicle._id,
+          occupant: ''
+        }}
+        validationSchema={UserFormSchema}
+        onSubmit={values => {
+          
+          console.log(values)
 
-              // TODO: Add appropriate API method call
-            }}
-          >
-            {({ errors, touched, values }) => (
-              <Form>
-                <FormGroup className={classes.formGroup}>
-                  <Field name="occupant" as={TextField} select label="Assign Occupant">
-                    {props.users.map(user => <MenuItem key={user._id} value={user._id}>{`${user.rank} ${user.firstName} ${user.lastName}, ${user.occupation}`}</MenuItem>)}
-                  </Field>
-                  {errors.occupant && touched.occupant ? (
-                    <span className={classes.errorMessage}>
-                      <ErrorMessage name="occupantId" />
-                    </span>
-                  ) : null}
-                </FormGroup>
-                <Button type="submit">Assign</Button>
-                <pre>{JSON.stringify(values, null, 2)}</pre>
-                <pre>{JSON.stringify(errors, null, 2)}</pre>
-              </Form>
-            )}
-          </Formik>
-        </CardContent>
-      </Card>
+          // TODO: Add appropriate API method call
+        }}
+      >
+        {({ errors, touched, values }) => (
+          <Form>
+            <FormGroup className={classes.formGroup} >
+              <Field name="occupant" as={TextField} select label="Assign">
+                {props.dismountedUsers.map(user => <MenuItem key={user._id} value={user._id}>{`${user.rank} ${user.firstName} ${user.lastName}`}</MenuItem>)}
+              </Field>
+              {errors.occupant && touched.occupant ? (
+                <span className={classes.errorMessage}>
+                  <ErrorMessage name="occupant" />
+                </span>
+              ) : null}
+            </FormGroup>
+            <Button type="submit">Assign</Button>
+            {/* <pre>{JSON.stringify(values, null, 2)}</pre>
+            <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+          </Form>
+        )}
+      </Formik>
     </Container>
   )
 }

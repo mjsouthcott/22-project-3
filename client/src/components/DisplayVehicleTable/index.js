@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container, Typography, Card, CardContent, Chip } from '@material-ui/core'
 import VehicleAvatar from '../VehicleAvatar/index'
+import AssignVehicleOccupantInput from '../AssignVehicleOccupantInput'
 
 const useStyles = makeStyles({
   table: {
@@ -50,7 +51,8 @@ function VehicleTable (props) {
                     <TableCell align="right">{vehicle.registrationNumber}</TableCell>
                     <TableCell align="right">{vehicle.type}</TableCell>
                     <TableCell align="right">
-                      {vehicle.occupant ? `${vehicle.occupant.rank} ${vehicle.occupant.firstName} ${vehicle.occupant.lastName}` : <Chip label="No" style={{ color: "white", backgroundColor: "red" }} />}
+                      {/* {vehicle.occupant ? `${vehicle.occupant.rank} ${vehicle.occupant.firstName} ${vehicle.occupant.lastName}` : <Chip label="No" style={{ color: "white", backgroundColor: "red" }} />} */}
+                      {vehicle.occupant ? `${vehicle.occupant.rank} ${vehicle.occupant.firstName} ${vehicle.occupant.lastName}` : <AssignVehicleOccupantInput dismountedUsers={props.dismountedUsers} vehicle={vehicle}/>}
                     </TableCell>
                     <TableCell align="right">
                       {vehicle.serviceable ? <Chip label="Yes" style={{ color: "white", backgroundColor: "green" }}/> : <Chip label="No" style={{ color: "white", backgroundColor: "red" }} />}
