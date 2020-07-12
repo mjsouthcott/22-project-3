@@ -61,83 +61,80 @@ function RepairRequestForm (props) {
 
   return (
     <Container maxWidth="sm">
-    <Card>
-      <CardContent>
-        <Typography variant="h4" className={classes.typography}>Create Repair Request</Typography>
-        <Formik
-          initialValues={{
-            estimatedConditionClass: '',
-            vehicleCanBeMovedBy: '',
-            localTacticalSituation: '',
-            crewRemainedWithVehicle: ''
-          }}
-          validationSchema={RepairRequestFormSchema}
-          onSubmit={values => {
-            const repairRequest = {
-              estimatedConditionClass: values.estimatedConditionClass,
-              vehicleCanBeMovedBy: values.vehicleCanBeMovedBy,
-              localTacticalSituation: values.localTacticalSituation,
-              crewRemainedWithVehicle: values.crewRemainedWithVehicle,
-              location: currentLocation
-            }
-            console.log(repairRequest)
-            
-            // TODO: Add HTTP POST request
-            API.saveRepairRequest(repairRequest)
-          }}
-        >
-          {({ errors, touched, values }) => (
-            <Form>
-              <FormGroup className={classes.formGroup}>
-                <Field name="estimatedConditionClass" as={TextField} select label="Estimated Condition Class">
-                  {vehicleConditionClasses.map(conditionClass => <MenuItem key={conditionClass} value={conditionClass}>{conditionClass}</MenuItem>)}
-                </Field>
-                {errors.estimatedConditionClass && touched.estimatedConditionClass ? (
-                  <span className={classes.errorMessage}>
-                    <ErrorMessage name="estimatedConditionClass" />
-                  </span>
-                ) : null}
-              </FormGroup>
-              <FormGroup className={classes.formGroup}>
-                <Field name="vehicleCanBeMovedBy" as={TextField} select label="Vehicle Can Be Moved By">
-                  {vehicleMovementOptions.map(option => <MenuItem key={option} value={option}>{option}</MenuItem>)}
-                </Field>
-                {errors.vehicleCanBeMovedBy && touched.vehicleCanBeMovedBy ? (
-                  <span className={classes.errorMessage}>
-                    <ErrorMessage name="vehicleCanBeMovedBy" />
-                  </span>
-                ) : null}
-              </FormGroup>
-              <FormGroup className={classes.formGroup}>
-                <Field name="localTacticalSituation" as={TextField} select label="Local Tactical Situation">
-                  {tacticalSituationStatuses.map(status => <MenuItem key={status} value={status}>{status}</MenuItem>)}
-                </Field>
-                {errors.localTacticalSituation && touched.localTacticalSituation ? (
-                  <span className={classes.errorMessage}>
-                    <ErrorMessage name="localTacticalSituation" />
-                  </span>
-                ) : null}
-              </FormGroup>
-              <FormGroup className={classes.formGroup}>
-                <Field name="crewRemainedWithVehicle" as={TextField} select label="Crew Remained With Vehicle">
-                  <MenuItem key="Yes" value={true}>Yes</MenuItem>
-                  <MenuItem key="No" value={false}>No</MenuItem>
-                </Field>
-                {errors.crewRemainedWithVehicle && touched.crewRemainedWithVehicle ? (
-                  <span className={classes.errorMessage}>
-                    <ErrorMessage name="crewRemainedWithVehicle" />
-                  </span>
-                ) : null}
-              </FormGroup>
-              <Button type="submit">Create</Button>
-              <pre>{JSON.stringify(values, null, 2)}</pre>
-              <pre>{JSON.stringify(errors, null, 2)}</pre>
-            </Form>
-          )}
-        </Formik>
-      </CardContent>
-    </Card>
-  </Container>
+      <Card>
+        <CardContent>
+          <Typography variant="h4" className={classes.typography}>Create Repair Request</Typography>
+          <Formik
+            initialValues={{
+              estimatedConditionClass: '',
+              vehicleCanBeMovedBy: '',
+              localTacticalSituation: '',
+              crewRemainedWithVehicle: ''
+            }}
+            validationSchema={RepairRequestFormSchema}
+            onSubmit={values => {
+              const repairRequest = {
+                estimatedConditionClass: values.estimatedConditionClass,
+                vehicleCanBeMovedBy: values.vehicleCanBeMovedBy,
+                localTacticalSituation: values.localTacticalSituation,
+                crewRemainedWithVehicle: values.crewRemainedWithVehicle,
+                location: currentLocation
+              }           
+              API.saveRepairRequest(repairRequest)
+            }}
+          >
+            {({ errors, touched, values }) => (
+              <Form>
+                <FormGroup className={classes.formGroup}>
+                  <Field name="estimatedConditionClass" as={TextField} select label="Estimated Condition Class">
+                    {vehicleConditionClasses.map(conditionClass => <MenuItem key={conditionClass} value={conditionClass}>{conditionClass}</MenuItem>)}
+                  </Field>
+                  {errors.estimatedConditionClass && touched.estimatedConditionClass ? (
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="estimatedConditionClass" />
+                    </span>
+                  ) : null}
+                </FormGroup>
+                <FormGroup className={classes.formGroup}>
+                  <Field name="vehicleCanBeMovedBy" as={TextField} select label="Vehicle Can Be Moved By">
+                    {vehicleMovementOptions.map(option => <MenuItem key={option} value={option}>{option}</MenuItem>)}
+                  </Field>
+                  {errors.vehicleCanBeMovedBy && touched.vehicleCanBeMovedBy ? (
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="vehicleCanBeMovedBy" />
+                    </span>
+                  ) : null}
+                </FormGroup>
+                <FormGroup className={classes.formGroup}>
+                  <Field name="localTacticalSituation" as={TextField} select label="Local Tactical Situation">
+                    {tacticalSituationStatuses.map(status => <MenuItem key={status} value={status}>{status}</MenuItem>)}
+                  </Field>
+                  {errors.localTacticalSituation && touched.localTacticalSituation ? (
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="localTacticalSituation" />
+                    </span>
+                  ) : null}
+                </FormGroup>
+                <FormGroup className={classes.formGroup}>
+                  <Field name="crewRemainedWithVehicle" as={TextField} select label="Crew Remained With Vehicle">
+                    <MenuItem key="Yes" value={true}>Yes</MenuItem>
+                    <MenuItem key="No" value={false}>No</MenuItem>
+                  </Field>
+                  {errors.crewRemainedWithVehicle && touched.crewRemainedWithVehicle ? (
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name="crewRemainedWithVehicle" />
+                    </span>
+                  ) : null}
+                </FormGroup>
+                <Button type="submit">Create</Button>
+                <pre>{JSON.stringify(values, null, 2)}</pre>
+                <pre>{JSON.stringify(errors, null, 2)}</pre>
+              </Form>
+            )}
+          </Formik>
+        </CardContent>
+      </Card>
+    </Container>
   )
 }
 

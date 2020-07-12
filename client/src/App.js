@@ -7,6 +7,10 @@ import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
 import CreateTechnicianVehicle from './pages/CreateTechnicianVehicle'
 import VehicleAvatar from './components/VehicleAvatar/index'
 // import Dashboard from './components/Dashboard'
+import DisplayOperatorTable from './pages/displayOperatorTable'
+import DisplayTechnicianTable from './pages/displayTechnicianTable'
+import DisplayOperatorVehicleTable from './pages/displayOperatorVehicleTable'
+import DisplayTechnicianVehicleTable from './pages/displayTechnicianVehicleTable'
 import './App.css';
 
 import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
@@ -14,8 +18,15 @@ import { List, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core'
 function App() {
   return (
     <>
+      <DisplayOperatorTable />
+      <br></br>
+      <DisplayTechnicianTable />
+      <br></br>
+      <DisplayOperatorVehicleTable />
+      <br></br>
+      <DisplayTechnicianVehicleTable />
       {/* <RepairWorkOrderForm /> */}
-      <RepairRequestForm />
+      {/* <RepairRequestForm /> */}
       {/* <Dashboard/> */}
       {/* <CreateOperator />
       <br></br>
