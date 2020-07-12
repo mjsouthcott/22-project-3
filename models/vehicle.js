@@ -60,15 +60,6 @@ const vehicleSchema = new Schema ({
 		],
 		required: true
 	},
-	// maintenanceStatus: {
-	// 	type: String,
-	// 	enum: [
-	// 		'Serviceable',
-	// 		'Unserviceable'
-	// 	],
-	// 	default: 'Serviceable',
-	// 	required: true
-	// },
 	serviceable: {
 		type: Boolean,
 		default: true,

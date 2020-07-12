@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const mongooseHidden = require('mongoose-hidden')()
+const mongooseHidden = require('mongoose-hidden')({ defaultHidden: { username: true, password: true }})
 const Schema = mongoose.Schema
 
 const userSchema = new Schema ({
@@ -79,7 +79,6 @@ const userSchema = new Schema ({
 	},
 	username: {
 		type: String,
-		hide: true,
 		lowercase: true,
 		minlength: 6,
 		maxlength: 20,
@@ -89,7 +88,6 @@ const userSchema = new Schema ({
 	},
 	password:  {
 		type: String,
-		hide: true,
 		minlength: 8,
 		maxlength: 20,
 		trim: true,
