@@ -72,9 +72,9 @@ const userSchema = new Schema ({
 		default: true,
 		required: true
 	},
-	dismounted: {
+	mounted: {
 		type: Boolean,
-		default: true,
+		default: false,
 		required: true
 	},
 	username: {

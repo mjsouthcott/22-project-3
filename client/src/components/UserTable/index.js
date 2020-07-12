@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container, Typography, Card, CardContent } from '@material-ui/core'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container, Typography, Card, CardContent, Chip } from '@material-ui/core'
 
 const useStyles = makeStyles({
   table: {
@@ -56,7 +56,7 @@ function UserTable (props) {
                   <TableCell align="right">Last Name</TableCell>
                   <TableCell align="right">Occupation</TableCell>
                   <TableCell align="right">Available</TableCell>
-                  <TableCell align="right">Dismounted</TableCell>
+                  <TableCell align="right">Mounted</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -69,8 +69,12 @@ function UserTable (props) {
                     <TableCell align="right">{user.firstName}</TableCell>
                     <TableCell align="right">{user.lastName}</TableCell>
                     <TableCell align="right">{user.occupation}</TableCell>
-                    <TableCell align="right">{user.available ? "Yes" : "No"}</TableCell>
-                    <TableCell align="right">{user.dismounted ? "Yes" : "No"}</TableCell>
+                    <TableCell align="right">
+                      {user.available ? <Chip label="Yes" style={{ color: "white", backgroundColor: "green" }}/> : <Chip label="No" style={{ color: "white", backgroundColor: "red" }} />}
+                    </TableCell>
+                    <TableCell align="right">
+                      {user.mounted ? <Chip label="Yes" style={{ color: "white", backgroundColor: "green" }}/> : <Chip label="No" style={{ color: "white", backgroundColor: "red" }} />}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
