@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import UserTable from '../components/UserTable/index'
+import DisplayUserTable from '../components/DisplayUserTable/index'
 import API from '../utils/API'
 
-function DisplayOperatorTable () {
+function DisplayOperators () {
   const [operators, setOperators] = useState([])
 
   useEffect(() => {
@@ -13,8 +13,8 @@ function DisplayOperatorTable () {
   }, [])
   
   return (
-    <UserTable users={operators} roles={"Operators"}/>
+    <DisplayUserTable users={operators} roles={"Display Operators"}/>
   )
 }
 
-export default DisplayOperatorTable
+export default DisplayOperators

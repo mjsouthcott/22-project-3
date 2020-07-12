@@ -1,12 +1,12 @@
 import React from 'react';
-import UserForm from '../components/UserForm/index'
+import CreateUserForm from '../components/CreateUserForm/index'
 import operatorRanks from '../utils/operatorRanks'
 import operatorOccupations from '../utils/operatorOccupations'
 
-function CreateOperator () {
+function CreateOperatorForm () {
   return (
-    <UserForm formTitle={'Create Operator'} role={'Operator'} ranks={operatorRanks} occupations={operatorOccupations} />
+    <CreateUserForm formTitle={'Create Operator'} role={'Operator'} ranks={operatorRanks} occupations={operatorOccupations} />
   )
 }
 
-export default CreateOperator
+export default CreateOperatorForm

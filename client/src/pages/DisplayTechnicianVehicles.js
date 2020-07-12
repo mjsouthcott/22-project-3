@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import VehicleTable from '../components/VehicleTable/index'
+import DisplayVehicleTable from '../components/DisplayVehicleTable/index'
 import API from '../utils/API'
 
-function DisplayTechnicianVehicleTable () {
+function DisplayTechnicianVehicles () {
   const [technicianVehicles, setTechnicianVehicles] = useState([])
 
   useEffect(() => {
@@ -14,8 +14,8 @@ function DisplayTechnicianVehicleTable () {
   }, [])
   
   return (
-    <VehicleTable vehicles={technicianVehicles} roles={"Technician Vehicles"}/>
+    <DisplayVehicleTable vehicles={technicianVehicles} roles={"Display Technician Vehicles"}/>
   )
 }
 
-export default DisplayTechnicianVehicleTable
+export default DisplayTechnicianVehicles
