@@ -9,62 +9,74 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import Link from '@material-ui/core/Link';
+// import { Link } from 'react-router-dom';
 
 export const mainListItems = (
   <div>
+    {/* <Router> */}
+    <Link href="/">
     <ListItem button>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Item-1" />
+      <ListItemText primary="View Dashboard" />
     </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Item-2" />
-    </ListItem>
+    </Link>
+    <Link href="/create-operator">
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Item-3" />
+      <ListItemText primary="Create Operator" />
     </ListItem>
+    </Link>
+    <Link href="/create-technician">
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+        <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Item-4" />
+      <ListItemText primary="Create Technician" />
     </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Item-5" />
-    </ListItem>
+    </Link>
+    {/* </Router> */}
   </div>
 );
 
 export const secondaryListItems = (
   <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
+    <ListSubheader inset>Requests</ListSubheader>
+    <Link href="/repair-request">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Form-1" />
+      <ListItemText primary="New Repair Request" />
     </ListItem>
+    </Link>
+    <Link href="/repair-workorder">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Form-2" />
+      <ListItemText primary="New Repair Work Order" />
     </ListItem>
+    </Link>
+    <Link href="/create-operatorVehicle">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Form-3" />
+      <ListItemText primary="New Operator Vehicle" />
     </ListItem>
+    </Link>
+    <Link href="/create-technicianVehicle">
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
+      <ListItemText primary="New Technician Vehicle" />
+    </ListItem>
+    </Link>
   </div>
 );
