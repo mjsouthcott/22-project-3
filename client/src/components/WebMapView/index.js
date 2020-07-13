@@ -1,9 +1,20 @@
-import React, { useEffect, useRef, useMemo  } from 'react';
+import React, { useEffect, useRef, useMemo, useState  } from 'react';
 import { loadModules } from 'esri-loader';
+import API from '../../utils/API'
+
 
 export const WebMapView = () => {
     const mapRef = useRef();
 
+    const [vehicles, setVehicles] = useState([])
+
+    useEffect(() => {
+      API.getVehicles()
+        .then(res => {
+          setVehicles(res.data)
+        })
+    }, [])
+    
 
     const mockupJson = {
       "requests" :[
@@ -131,4 +142,11 @@ export const WebMapView = () => {
     );
 
     return <div className="webmap" ref={mapRef} style={{height:"427px", width:"1250px"}}/>;
+    // return (
+    //   <div>
+    //     {vehicles.map(element=>(
+    //       <h1>{element.callSign}</h1>
+    //     ))}
+    //   </div>
+    // )
 };
