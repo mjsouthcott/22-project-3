@@ -46,29 +46,20 @@ const vehicleSchema = new Schema ({
 	iconSrc: {
 		type: String,
 		enum: [
-			'assets/images/armoured-engineering-vehicle.png',
-			'assets/images/armoured-patrol-vehicle.png',
-			'assets/images/armoured-recovery-vehicle.png',
-			'assets/images/heavy-logistic-vehicle-refueller.png',
-			'assets/images/heavy-logistic-vehicle-tank-transporter.png',
-			'assets/images/infantry-fighting-vehicle.png',
-			'assets/images/main-battle-tank.png',
-			'assets/images/medium-logistic-vehicle-cargo.png',
-			'assets/images/medium-logistic-vehicle-command-post.png',
-			'assets/images/medium-logistic-vehicle-gun-tractor.png',
-			'assets/images/medium-logistic-vehicle-mobile-repair-team.png'
+			'assets/images/vehicleIcons/armoured-engineering-vehicle.png',
+			'assets/images/vehicleIcons/armoured-patrol-vehicle.png',
+			'assets/images/vehicleIcons/armoured-recovery-vehicle.png',
+			'assets/images/vehicleIcons/heavy-logistic-vehicle-refueller.png',
+			'assets/images/vehicleIcons/heavy-logistic-vehicle-tank-transporter.png',
+			'assets/images/vehicleIcons/infantry-fighting-vehicle.png',
+			'assets/images/vehicleIcons/main-battle-tank.png',
+			'assets/images/vehicleIcons/medium-logistic-vehicle-cargo.png',
+			'assets/images/vehicleIcons/medium-logistic-vehicle-command-post.png',
+			'assets/images/vehicleIcons/medium-logistic-vehicle-gun-tractor.png',
+			'assets/images/vehicleIcons/medium-logistic-vehicle-mobile-repair-team.png'
 		],
 		required: true
 	},
-	// maintenanceStatus: {
-	// 	type: String,
-	// 	enum: [
-	// 		'Serviceable',
-	// 		'Unserviceable'
-	// 	],
-	// 	default: 'Serviceable',
-	// 	required: true
-	// },
 	serviceable: {
 		type: Boolean,
 		default: true,
@@ -76,11 +67,11 @@ const vehicleSchema = new Schema ({
 	},
 	occupant: {
 		type: Schema.Types.ObjectId,
-    ref: 'User'
+		ref: 'User',
 	},
 	repairRequests: [{
 		type: Schema.Types.ObjectId,
-		ref: 'RepairRequest'
+		ref: 'RepairRequest',
 	}]
 },
 {

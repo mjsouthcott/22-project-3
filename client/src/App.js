@@ -1,12 +1,12 @@
 import React from 'react';
-import RepairWorkOrderForm from './components/RepairWorkOrderForm/index'
-import RepairRequestForm from './components/RepairRequestForm/index'
 import CreateOperator from './pages/CreateOperator'
-import CreateTechnician from './pages/CreateTechnician'
 import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
+import CreateTechnician from './pages/CreateTechnician'
 import CreateTechnicianVehicle from './pages/CreateTechnicianVehicle'
-import VehicleAvatar from './components/VehicleAvatar/index'
+import CreateRepairRequestForm from './components/CreateRepairRequestForm/index'
+import CreateRepairWorkOrderForm from './components/CreateRepairWorkOrderForm/index'
 import Dashboard from './components/Dashboard'
+
 import './App.css';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -21,14 +21,15 @@ function App() {
       <Router>
         <Navigation>
         <Route exact path="/" component={Dashboard} />
-        <Route exact path="/repair-request" component={RepairRequestForm} />
-        <Route exact path="/repair-workorder" component={RepairWorkOrderForm} />
+        <Route exact path="/repair-request" component={CreateRepairRequestForm} />
+        <Route exact path="/repair-workorder" component={CreateRepairWorkOrderForm} />
         <Route exact path="/create-operator" component={CreateOperator} />
         <Route exact path="/create-technician" component={CreateTechnician} />
         <Route exact path="/create-operatorVehicle" component={CreateOperatorVehicle} />
         <Route exact path="/create-technicianVehicle" component={CreateTechnicianVehicle} />
         </Navigation>
       </Router>
+
     </>
   )
 }
