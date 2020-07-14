@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CreateOperator from './pages/CreateOperator'
 import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
 import CreateTechnician from './pages/CreateTechnician'
@@ -9,11 +9,13 @@ import Dashboard from './components/Dashboard'
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
+import UserContext from './utils/UserContext'
 
 function App () {
   return (
     <>
       <Router>
+        <UserContext.Provider value={userState}>
         <Navigation>
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/repair-request" component={CreateRepairRequestForm} />
@@ -23,6 +25,7 @@ function App () {
         <Route exact path="/create-operatorVehicle" component={CreateOperatorVehicle} />
         <Route exact path="/create-technicianVehicle" component={CreateTechnicianVehicle} />
         </Navigation>
+        </UserContext.Provider>
       </Router>
     </>
   )

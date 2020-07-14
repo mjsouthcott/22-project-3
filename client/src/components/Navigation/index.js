@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext }  from 'react';
 
 
 // import React from 'react';
@@ -18,13 +18,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from '../listItems';
-
+import UserContext from '../../utils/UserContext'
 
 
 
 export default function Navigation(props) {
-
-  
   const drawerWidth = 260;
   
   const useStyles = makeStyles((theme) => ({
@@ -115,13 +113,11 @@ export default function Navigation(props) {
     const handleDrawerClose = () => {
       setOpen(false);
     };
-  
 
-
-
-
-
-  return (
+    const { role } = useContext(UserContext);
+    let isManager = false
+    if (role === 'Operations Manager') isManager = true
+return (
     <div className={classes.root}>
     <CssBaseline />
     <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -151,17 +147,17 @@ export default function Navigation(props) {
       classes={{
         paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
       }}
-      open={open}
-    >
+      open={open}>
       <div className={classes.toolbarIcon}>
         <IconButton onClick={handleDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>
       </div>
       <Divider />
-      
-      <List>{mainListItems}</List>
-      <Divider />
+      { isManager
+      ? <div> <List>{mainListItems}</List> <Divider /> </div>
+      : <div></div>
+      }
       <List>{secondaryListItems}</List>
       </Drawer>
 

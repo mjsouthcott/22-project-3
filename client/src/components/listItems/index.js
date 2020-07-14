@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Link from '@material-ui/core/Link';
-// import { Link } from 'react-router-dom';
+
+import UserContext from '../../utils/UserContext'
+
+
+// const { role } = useContext(UserContext);
 
 export const mainListItems = (
   <div>
-    {/* <Router> */}
     <Link href="/">
     <ListItem button>
       <ListItemIcon>
@@ -39,7 +39,6 @@ export const mainListItems = (
       <ListItemText primary="Create Technician" />
     </ListItem>
     </Link>
-    {/* </Router> */}
   </div>
 );
 
