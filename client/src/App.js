@@ -9,13 +9,11 @@ import Dashboard from './components/Dashboard'
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from './components/Navigation';
-import DisplayOperatorVehicles from './pages/DisplayOperatorVehicles'
 
 function App () {
   return (
     <>
-    <DisplayOperatorVehicles />
-      {/* <Router>
+      <Router>
         <Navigation>
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/repair-request" component={CreateRepairRequestForm} />
@@ -25,7 +23,7 @@ function App () {
         <Route exact path="/create-operatorVehicle" component={CreateOperatorVehicle} />
         <Route exact path="/create-technicianVehicle" component={CreateTechnicianVehicle} />
         </Navigation>
-      </Router> */}
+      </Router>
     </>
   )
 }
