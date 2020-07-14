@@ -37,7 +37,18 @@ function AssignVehicleOccupantInput (props) {
 
           /* TODO: Add appropriate API method call */
           API.updateVehicleOccupant(values.vehicle, values.occupant)
-            // .then(API.updateUserDismountedStatus(values.occupant, true))
+            .then(() => {
+              API.updateUserDismountedStatus(values.occupant, true)
+            })
+            .then(() => {
+              const targetUser = props.dismountedUsers.find(user => {
+                return user._id === values.occupant
+              })
+              props.updateOperatorVehicles(values.vehicle, targetUser)
+            })
+            .then(() => {
+              props.updateDismountedOperators(values.occupant)
+            })
         }}
       >
         {({ errors, touched, values }) => (

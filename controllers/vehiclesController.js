@@ -25,8 +25,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   updateById: function(req, res) {
+    console.log(req.params, req.body)
     db.Vehicle
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body, { returnOriginal: false })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
