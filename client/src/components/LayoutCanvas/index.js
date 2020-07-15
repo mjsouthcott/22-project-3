@@ -114,9 +114,9 @@ export default function Navigation(props) {
       setOpen(false);
     };
 
-    const { role } = useContext(UserContext);
-    let isManager = false
-    if (role === 'Operations Manager') isManager = true
+    const { isManager } = useContext(UserContext);
+    // let isManager = false
+    // if (role === 'Operations Manager') isManager = true
 return (
     <div className={classes.root}>
     <CssBaseline />
@@ -167,7 +167,7 @@ return (
         {props.children}
       </Container>
       </main>
-      </div>
+  </div>
   );
 }
 

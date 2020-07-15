@@ -9,7 +9,7 @@ import Dashboard from './components/Dashboard'
 
 import './App.css';
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navigation from './components/Navigation';
 
 import UserContext from './utils/UserContext'
@@ -19,6 +19,7 @@ function App() {
 
   // TODO: the default state value is suppose be grapped from useEffect 
   const [userState, setUserState] = useState({
+    isManager : false,
     role: 'Operations Manager',
     rank: '',
     firstName: '',
@@ -44,26 +45,26 @@ function App() {
 //       username: 'maxguo',
 //       password: 'password',
 //     })
-//   }, []);
-
-
+//   }, []); 
+const unauthorized = <div>You are not allowed to view this buddy! </div>
   return (
-    <>
       <Router>
         <UserContext.Provider value={userState}>
         <Navigation>
-        <Route exact path="/" component={Dashboard} />
-        <Route exact path="/repair-request" component={CreateRepairRequestForm} />
-        <Route exact path="/repair-workorder" component={CreateRepairWorkOrderForm} />
-        <Route exact path="/create-operator" component={CreateOperator} />
-        <Route exact path="/create-technician" component={CreateTechnician} />
-        <Route exact path="/create-operatorVehicle" component={CreateOperatorVehicle} />
-        <Route exact path="/create-technicianVehicle" component={CreateTechnicianVehicle} />
+        <Switch>
+          <Route path="/repair-request" component={CreateRepairRequestForm} />
+          <Route path="/repair-workorder" component={CreateRepairWorkOrderForm} />
+          <Route path="/create-operator" >
+            {userState.isManager ? <CreateOperator/> : unauthorized}
+          </Route>
+          <Route path="/create-technician" component={CreateTechnician} />
+          <Route path="/create-operatorVehicle" component={CreateOperatorVehicle} />
+          <Route path="/create-technicianVehicle" component={CreateTechnicianVehicle} />
+          <Route path="/" component={Dashboard} />
+        </Switch> 
         </Navigation>
         </UserContext.Provider>
       </Router>
-
-    </>
   )
 }
 
