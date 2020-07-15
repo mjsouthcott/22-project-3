@@ -51,8 +51,7 @@ function VehicleTable (props) {
                     <TableCell align="right">{vehicle.registrationNumber}</TableCell>
                     <TableCell align="right">{vehicle.type}</TableCell>
                     <TableCell align="right">
-                      {/* {vehicle.occupant ? `${vehicle.occupant.rank} ${vehicle.occupant.firstName} ${vehicle.occupant.lastName}` : <Chip label="No" style={{ color: "white", backgroundColor: "red" }} />} */}
-                      {vehicle.occupant ? `${vehicle.occupant.rank} ${vehicle.occupant.firstName} ${vehicle.occupant.lastName}` : <AssignVehicleOccupantInput dismountedUsers={props.dismountedUsers} vehicle={vehicle}/>}
+                      {vehicle.occupant ? `${vehicle.occupant.rank} ${vehicle.occupant.firstName} ${vehicle.occupant.lastName}` : <AssignVehicleOccupantInput dismountedUsers={props.dismountedUsers} vehicle={vehicle} updateOperatorVehicles={props.updateOperatorVehicles} updateDismountedOperators={props.updateDismountedOperators}/>}
                     </TableCell>
                     <TableCell align="right">
                       {vehicle.serviceable ? <Chip label="Yes" style={{ color: "white", backgroundColor: "green" }}/> : <Chip label="No" style={{ color: "white", backgroundColor: "red" }} />}

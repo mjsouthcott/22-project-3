@@ -6,14 +6,17 @@ import CreateTechnicianVehicle from './pages/CreateTechnicianVehicle'
 import CreateRepairRequestForm from './components/CreateRepairRequestForm/index'
 import CreateRepairWorkOrderForm from './components/CreateRepairWorkOrderForm/index'
 import Dashboard from './components/Dashboard'
-
 import './App.css';
+<<<<<<< HEAD
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+=======
+import { BrowserRouter as Router, Route } from "react-router-dom";
+>>>>>>> master
 import Navigation from './components/Navigation';
-
 import UserContext from './utils/UserContext'
 
+<<<<<<< HEAD
 
 function App() {
 
@@ -47,6 +50,9 @@ function App() {
 //     })
 //   }, []); 
 const unauthorized = <div>You are not allowed to view this buddy! </div>
+=======
+function App () {
+>>>>>>> master
   return (
       <Router>
         <UserContext.Provider value={userState}>
@@ -65,6 +71,10 @@ const unauthorized = <div>You are not allowed to view this buddy! </div>
         </Navigation>
         </UserContext.Provider>
       </Router>
+<<<<<<< HEAD
+=======
+    </>
+>>>>>>> master
   )
 }
 
