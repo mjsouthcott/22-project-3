@@ -1,6 +1,5 @@
 import React, { useContext }  from 'react';
 
-
 // import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,13 +16,13 @@ import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from '../listItems';
+import { firstListItems, secondListItems, thirdListItems } from '../listItems';
 import UserContext from '../../utils/UserContext'
 
 
 
 export default function Navigation(props) {
-  const drawerWidth = 260;
+  const drawerWidth = 300;
   
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -114,9 +113,9 @@ export default function Navigation(props) {
       setOpen(false);
     };
 
-    const { role } = useContext(UserContext);
-    let isManager = false
-    if (role === 'Operations Manager') isManager = true
+    const { isManager } = useContext(UserContext);
+    // let isManager = false
+    // if (role === 'Operations Manager') isManager = true
 return (
     <div className={classes.root}>
     <CssBaseline />
@@ -155,10 +154,13 @@ return (
       </div>
       <Divider />
       { isManager
-      ? <div> <List>{mainListItems}</List> <Divider /> </div>
+      ? <div> <List>{firstListItems}</List></div>
       : <div></div>
       }
-      <List>{secondaryListItems}</List>
+      <Divider />
+      <List>{secondListItems}</List>
+      <Divider />
+      <List>{thirdListItems}</List>
       </Drawer>
 
     <main className={classes.content}>
@@ -167,7 +169,7 @@ return (
         {props.children}
       </Container>
       </main>
-      </div>
+  </div>
   );
 }
 

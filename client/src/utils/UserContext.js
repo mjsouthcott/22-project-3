@@ -1,6 +1,7 @@
 import React from "react";
 
 const UserContext = React.createContext({
+    isManager : false,
     role: '',
     rank: '',
     firstName: '',
