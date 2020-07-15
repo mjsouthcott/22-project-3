@@ -16,6 +16,7 @@ import DisplayTechnicianVehicles from './pages/DisplayTechnicianVehicles'
 // bring in all the components
 import LayoutCanvas from './components/LayoutCanvas';
 import Dashboard from './components/Dashboard'
+import Unauthorized from './components/Unauthorized'
 // bring in all the global css
 import './App.css';
 // bring in all the contexts
@@ -42,7 +43,6 @@ function App() {
 // // TODO: Logic of Passport JS goes in here
 //   useEffect(() => {setUserState()}, []); 
 
-  const unauthorized = <div>You are not allowed to view this buddy! </div>
 
   return (
       <Router>
@@ -58,21 +58,20 @@ function App() {
           <Route path="/repair-request"/>
           <Route path="/repair-workorder"/>
 
-
           <Route path="/create-operator">
-            {userState.isManager ? <CreateOperator/> : unauthorized}
+            {userState.isManager ? <CreateOperator/> : <Unauthorized/>}
           </Route>
           <Route path="/create-technician">
-          {userState.isManager ? <CreateTechnician/> : unauthorized}
+          {userState.isManager ? <CreateTechnician/> : <Unauthorized/>}
           </Route>
           <Route path="/create-operatorVehicle">
-          {userState.isManager ? <CreateOperatorVehicle/> : unauthorized}
+          {userState.isManager ? <CreateOperatorVehicle/> : <Unauthorized/>}
           </Route>
           <Route path="/create-technicianVehicle">
-          {userState.isManager ? <CreateTechnicianVehicle/> : unauthorized}
+          {userState.isManager ? <CreateTechnicianVehicle/> : <Unauthorized/>}
           </Route>
           <Route path="/" >
-          {userState.isManager ? <Dashboard/> : unauthorized}
+          {userState.isManager ? <Dashboard/> : <Unauthorized/>}
           </Route>
         </Switch> 
         </LayoutCanvas>
