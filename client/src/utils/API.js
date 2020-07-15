@@ -58,14 +58,10 @@ export default {
   },
 
   updateUserDismountedStatus: function (userId, newDismountedStatus) {
-    return axios.patch("/api/users", {
-      params: {
-        id: userId,
-      },
-      data: {
+    return axios.patch(`/api/users/${userId}`, {
         mounted: newDismountedStatus,
       },
-    });
+    );
   },
 
   updateUserAvailableStatus: function (userId, newAvailableStatus) {
@@ -132,14 +128,10 @@ export default {
   },
 
   updateVehicleOccupant: function (vehicleId, newUserId) {
-    return axios.patch("/api/vehicles", {
-      params: {
-        id: vehicleId,
-      },
-      data: {
+    return axios.patch(`/api/vehicles/${vehicleId}`, {
         occupant: newUserId,
       },
-    });
+    );
   },
 
   updateVehicleRepairRequests: function (vehicleId, newRepairRequestIdArray) {
