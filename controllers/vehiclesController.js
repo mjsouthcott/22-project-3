@@ -5,6 +5,9 @@ module.exports = {
     db.Vehicle.find(req.query)
       .populate("occupant")
       .populate("repairRequests")
+
+      // TODO: Populate technician info
+      .populate("assignedTo")
       .sort({ date: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

@@ -10,8 +10,11 @@ function DisplayRepairRequests() {
 
   useEffect(() => {
     API.getVehicles().then((res) => {
-      console.log(res.data);
-      setVehicles(res.data);
+      const filteredVehicles = res.data.filter((vehicle) => {
+        return vehicle.repairRequests.length !== 0;
+      });
+      console.log(filteredVehicles);
+      setVehicles(filteredVehicles);
     });
   }, []);
 
