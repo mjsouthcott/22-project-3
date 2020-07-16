@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DisplayVehicleTable from "../components/DisplayVehicleTable/index";
+import VehicleTable from "../components/VehicleTable/index";
 import API from "../utils/API";
 
 // const ROLE = "Operations Manager";
@@ -64,7 +64,7 @@ function DisplayVehicles() {
   }
 
   return (
-    <DisplayVehicleTable
+    <VehicleTable
       vehicles={vehicles}
       pageTitle={pageTitle}
       dismountedUsers={dismountedUsers}

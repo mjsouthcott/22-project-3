@@ -17,6 +17,7 @@ import CreateUser from "./pages/CreateUser";
 import CreateVehicle from "./pages/CreateVehicle";
 import DisplayUsers from "./pages/DisplayUsers";
 import DisplayVehicles from "./pages/DisplayVehicles";
+import DisplayRepairRequests from "./pages/DisplayRepairRequests";
 
 function App() {
   // TODO: the default state value is suppose be grapped from useEffect
@@ -38,13 +39,15 @@ function App() {
 
   return (
     <>
-      <DisplayUsers />
+      {/* <DisplayUsers />
       <br></br>
       <DisplayVehicles />
       <br></br>
       <CreateUser />
       <br></br>
       <CreateVehicle />
+      <br></br> */}
+      <DisplayRepairRequests />
     </>
     // <Router>
     //   <UserContext.Provider value={userState}>
