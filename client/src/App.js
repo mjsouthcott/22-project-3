@@ -41,59 +41,59 @@ function App() {
   //   useEffect(() => {setUserState()}, []);
 
   return (
-
-      <Router>
-         
-        <UserContext.Provider value={userState}>
-        <LayoutCanvas>
-        <SignIn />
-        <Switch>
-          {/* conditional render all the page if not authorized to see */}
-
     <>
-      {/* <DisplayUsers />
+      <DisplayUsers />
       <br></br>
       <DisplayVehicles />
       <br></br>
       <CreateUser />
       <br></br>
       <CreateVehicle />
-      <br></br> */}
+      <br></br>
       <DisplayRepairRequests />
     </>
-    // <Router>
-    //   <UserContext.Provider value={userState}>
-    //   <LayoutCanvas>
-    //   <Switch>
-    // {/* conditional render all the page if not authorized to see */}
+    //   <Router>
+         
+    //     <UserContext.Provider value={userState}>
+    //     <LayoutCanvas>
+    //     <SignIn />
+    //     <Switch>
+    //       {/* conditional render all the page if not authorized to see */}
 
 
-    //     <Route path="/display-operator" component={DisplayOperators} />
-    //     <Route path="/display-operatorVehicles" component={DisplayOperatorVehicles} />
-    //     <Route path="/display-technicians" component={DisplayTechnicians} />
-    //     <Route path="/display-technicianVehicles" component={DisplayTechnicianVehicles} />
-    //     <Route path="/repair-request"/>
-    //     <Route path="/repair-workorder"/>
+    //  <Router>
+    //    <UserContext.Provider value={userState}>
+    //    <LayoutCanvas>
+    //    <Switch>
+    //  {/* conditional render all the page if not authorized to see */}
 
-    //     <Route path="/create-operator">
-    //       {userState.isManager ? <CreateOperator/> : <Unauthorized/>}
-    //     </Route>
-    //     <Route path="/create-technician">
-    //     {userState.isManager ? <CreateTechnician/> : <Unauthorized/>}
-    //     </Route>
-    //     <Route path="/create-operatorVehicle">
-    //     {userState.isManager ? <CreateOperatorVehicle/> : <Unauthorized/>}
-    //     </Route>
-    //     <Route path="/create-technicianVehicle">
-    //     {userState.isManager ? <CreateTechnicianVehicle/> : <Unauthorized/>}
-    //     </Route>
-    //     <Route path="/" >
-    //     {userState.isManager ? <Dashboard/> : <Unauthorized/>}
-    //     </Route>
-    //   </Switch>
-    //   </LayoutCanvas>
-    //   </UserContext.Provider>
-    // </Router>
+
+    //      <Route path="/display-operator" component={DisplayOperators} />
+    //      <Route path="/display-operatorVehicles" component={DisplayOperatorVehicles} />
+    //      <Route path="/display-technicians" component={DisplayTechnicians} />
+    //      <Route path="/display-technicianVehicles" component={DisplayTechnicianVehicles} />
+    //      <Route path="/repair-request"/>
+    //      <Route path="/repair-workorder"/>
+
+    //      <Route path="/create-operator">
+    //        {userState.isManager ? <CreateOperator/> : <Unauthorized/>}
+    //      </Route>
+    //      <Route path="/create-technician">
+    //      {userState.isManager ? <CreateTechnician/> : <Unauthorized/>}
+    //      </Route>
+    //      <Route path="/create-operatorVehicle">
+    //      {userState.isManager ? <CreateOperatorVehicle/> : <Unauthorized/>}
+    //      </Route>
+    //      <Route path="/create-technicianVehicle">
+    //      {userState.isManager ? <CreateTechnicianVehicle/> : <Unauthorized/>}
+    //      </Route>
+    //      <Route path="/" >
+    //      {userState.isManager ? <Dashboard/> : <Unauthorized/>}
+    //      </Route>
+    //    </Switch>
+    //    </LayoutCanvas>
+    //    </UserContext.Provider>
+    //  </Router>
   );
 }
 
