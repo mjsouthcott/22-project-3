@@ -10,8 +10,8 @@ const ROLE = "Maintenance Manager";
 
 let formTitle, role, ranks, occupations;
 
-const getProps = function (role) {
-  switch (role) {
+const getProps = function (currentRole) {
+  switch (currentRole) {
     case "Operations Manager":
       formTitle = "Create Operator";
       role = "Operator";
