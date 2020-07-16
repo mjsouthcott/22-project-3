@@ -3,16 +3,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // bring in all the pages
 
-import CreateOperator from "./pages/CreateOperator";
-import CreateOperatorVehicle from "./pages/CreateOperatorVehicle";
-import CreateTechnician from "./pages/CreateTechnician";
-import CreateTechnicianVehicle from "./pages/CreateTechnicianVehicle";
 // import CreateRepairRequest from './pages/CreateRepairRequest'
 // import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
-import DisplayOperators from "./pages/DisplayOperators";
-import DisplayOperatorVehicles from "./pages/DisplayOperatorVehicles";
-import DisplayTechnicians from "./pages/DisplayTechnicians";
-import DisplayTechnicianVehicles from "./pages/DisplayTechnicianVehicles";
 // bring in all the components
 import LayoutCanvas from "./components/LayoutCanvas";
 import Dashboard from "./components/Dashboard";
@@ -23,6 +15,8 @@ import "./App.css";
 import UserContext from "./utils/UserContext";
 import CreateUser from "./pages/CreateUser";
 import CreateVehicle from "./pages/CreateVehicle";
+import DisplayUsers from "./pages/DisplayUsers";
+import DisplayVehicles from "./pages/DisplayVehicles";
 
 function App() {
   // TODO: the default state value is suppose be grapped from useEffect
@@ -43,8 +37,15 @@ function App() {
   //   useEffect(() => {setUserState()}, []);
 
   return (
-    <CreateUser />
-    // <CreateVehicle />
+    <>
+      <DisplayUsers />
+      <br></br>
+      <DisplayVehicles />
+      <br></br>
+      <CreateUser />
+      <br></br>
+      <CreateVehicle />
+    </>
     // <Router>
     //   <UserContext.Provider value={userState}>
     //   <LayoutCanvas>
