@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo, useState  } from 'react';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
 import { loadModules } from 'esri-loader';
 import API from '../../utils/API'
 
@@ -6,12 +6,14 @@ import API from '../../utils/API'
 export const WebMapView = () => {
     const mapRef = useRef();
 
-    const [vehicles, setVehicles] = useState([])
+    const [repairRequests, setRepairRequests] = useState([])
+
+
 
     useEffect(() => {
-      API.getVehicles()
+      API.getRepairRequests()
         .then(res => {
-          setVehicles(res.data)
+          setRepairRequests(res.data)
         })
     }, [])
     
@@ -23,7 +25,7 @@ export const WebMapView = () => {
           type: 'Medium Logistic Vehicle, Command Post',
           registrationNumber: '19000',
           callSign: '88A',
-          icon: 'assets/images/medium-logistic-vehicle-command-post.png',
+          icon: 'assets/images/vehicleicons/medium-logistic-vehicle-command-post.png',
           location:{
             latitude: 45.4801785,
             longitude: -75.472925
@@ -34,7 +36,7 @@ export const WebMapView = () => {
           type: 'Medium Logistic Vehicle, Gun Tractor',
           registrationNumber: '19000',
           callSign: '88A',
-          icon: 'assets/images/medium-logistic-vehicle-gun-tractor.png',
+          icon: 'assets/images/vehicleicons/medium-logistic-vehicle-gun-tractor.png',
           location:{
             latitude: 45.482142,
             longitude: -75.475700
@@ -45,7 +47,7 @@ export const WebMapView = () => {
           type: 'Armoured Patrol Vehicle',
           registrationNumber: '19000',
           callSign: '88A',
-          icon: 'assets/images/armoured-patrol-vehicle.png',
+          icon: 'assets/images/vehicleicons/armoured-patrol-vehicle.png',
           location:{
             latitude: 45.489154,
             longitude: -75.477379
@@ -81,7 +83,7 @@ export const WebMapView = () => {
           });
 
           let pointGraphics = []
-          pointGraphics = mockupJson['requests'].map(element => {
+          pointGraphics = repairRequests.map(element => {
 
             let point = {
               type: "point", // autocasts as new Point()
@@ -89,24 +91,21 @@ export const WebMapView = () => {
               latitude: element.location.latitude
             };
   
-            let iconSymbol = {
-              type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
-              url: element.icon,
-              width: "40px",
-              height: "32px"
+            let pointSymbol = {
+              type: "simple-marker",  // autocasts as new PictureMarkerSymbol()
+              color: "red",
+              size: "10px"
             }
   
             let pointGraphic = new Graphic({
               geometry: point,
-              symbol: iconSymbol,
+              symbol: pointSymbol,
               popupTemplate : {
-                title : "Armoured-recovery-vehicle",
-                content:`<ul><li>Operator Name: ${element.operatorName}</li>` +
-                        `<li>Vehicle Type: ${element.type}</li>` +
-                        `<li>Registration Number: ${element.registrationNumber}</li>` +
-                        `<li>CallSign: ${element.callSign}</li><ul>`
-              }
-            });
+                title : "Repair Request Details",
+                content:`<ul><li>Estimated Condition Class: ${element.estimatedConditionClass}</li>` +
+                        `<li>Can Be Moved By: ${element.vehicleCanBeMovedBy}</li>` +
+                        `<li>Local Tactical Situation: ${element.localTacticalSituation}</li>` +
+                        `<li>Crew Remained With Vehicle: ${element.crewRemainedWithVehicle}</li><ul>`}});
 
             return pointGraphic
             
@@ -119,8 +118,8 @@ export const WebMapView = () => {
 
           let toggle = new BasemapToggle({
             // 2 - Set properties
-            view: view, // view that provides access to the map's 'topo' basemap
-            nextBasemap: "topo-vector" // allows for toggling to the 'hybrid' basemap
+            view: view, // view that provides access to the map's 'hybrid' basemap
+            nextBasemap: "topo-vector" // allows for toggling to the 'topo' basemap
           });
 
           view.ui.add(toggle, "top-left");

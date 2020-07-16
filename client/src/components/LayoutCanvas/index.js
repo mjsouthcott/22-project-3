@@ -15,7 +15,7 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { firstListItems, secondListItems, thirdListItems } from '../listItems';
 import UserContext from '../../utils/UserContext'
 
@@ -135,7 +135,7 @@ return (
         </Typography>
         <IconButton color="inherit">
           <Badge badgeContent={4} color="secondary">
-            <NotificationsIcon />
+            <AccountCircleIcon />
           </Badge>
         </IconButton>
       </Toolbar>

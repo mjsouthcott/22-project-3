@@ -37,47 +37,39 @@ function App() {
   //   useEffect(() => {setUserState()}, []);
 
   return (
-    <>
-      <DisplayUsers />
-      <br></br>
-      <DisplayVehicles />
-      <br></br>
-      <CreateUser />
-      <br></br>
-      <CreateVehicle />
-    </>
-    // <Router>
-    //   <UserContext.Provider value={userState}>
-    //   <LayoutCanvas>
-    //   <Switch>
-    // {/* conditional render all the page if not authorized to see */}
+    // <>
+    //   <DisplayUsers />
+    //   <br></br>
+    //   <DisplayVehicles />
+    //   <br></br>
+    //   <CreateUser />
+    //   <br></br>
+    //   <CreateVehicle />
+    // </>
+    <Router>
+      <UserContext.Provider value={userState}>
+      <LayoutCanvas>
+      <Switch>
+    {/* conditional render all the page if not authorized to see */}
 
-    //     <Route path="/display-operator" component={DisplayOperators} />
-    //     <Route path="/display-operatorVehicles" component={DisplayOperatorVehicles} />
-    //     <Route path="/display-technicians" component={DisplayTechnicians} />
-    //     <Route path="/display-technicianVehicles" component={DisplayTechnicianVehicles} />
-    //     <Route path="/repair-request"/>
-    //     <Route path="/repair-workorder"/>
+        <Route path="/display-users" component={DisplayUsers} />
+        <Route path="/display-vehicles" component={DisplayVehicles} />
+        <Route path="/repair-request"/>
+        <Route path="/repair-workorder"/>
 
-    //     <Route path="/create-operator">
-    //       {userState.isManager ? <CreateOperator/> : <Unauthorized/>}
-    //     </Route>
-    //     <Route path="/create-technician">
-    //     {userState.isManager ? <CreateTechnician/> : <Unauthorized/>}
-    //     </Route>
-    //     <Route path="/create-operatorVehicle">
-    //     {userState.isManager ? <CreateOperatorVehicle/> : <Unauthorized/>}
-    //     </Route>
-    //     <Route path="/create-technicianVehicle">
-    //     {userState.isManager ? <CreateTechnicianVehicle/> : <Unauthorized/>}
-    //     </Route>
-    //     <Route path="/" >
-    //     {userState.isManager ? <Dashboard/> : <Unauthorized/>}
-    //     </Route>
-    //   </Switch>
-    //   </LayoutCanvas>
-    //   </UserContext.Provider>
-    // </Router>
+        <Route path="/create-user">
+          {userState.isManager ? <CreateUser/> : <Unauthorized/>}
+        </Route>
+        <Route path="/create-vehicle">
+        {userState.isManager ? <CreateVehicle/> : <Unauthorized/>}
+        </Route>
+        <Route path="/" >
+        {userState.isManager ? <Dashboard/> : <Unauthorized/>}
+        </Route>
+      </Switch>
+      </LayoutCanvas>
+      </UserContext.Provider>
+    </Router>
   );
 }
 
