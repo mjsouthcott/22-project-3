@@ -1,70 +1,91 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button, Card, CardContent, FormGroup, MenuItem, TextField, Typography, Container } from '@material-ui/core'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import * as Yup from "yup"
-import API from '../../utils/API'
-import './style.css'
-var to = require('to-case')
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Button,
+  Card,
+  CardContent,
+  FormGroup,
+  MenuItem,
+  TextField,
+  Typography,
+  Container,
+} from "@material-ui/core";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import API from "../../utils/API";
+import "./style.css";
+var to = require("to-case");
 
-function UserForm (props) {
+function UserForm(props) {
   const useStyles = makeStyles({
     typography: {
-      marginBottom: 15
+      marginBottom: 15,
     },
     formGroup: {
-      marginBottom: 15
+      marginBottom: 15,
     },
     errorMessage: {
-      color: 'red',
-    }
-  })
-  const classes = useStyles()
+      color: "red",
+    },
+  });
+  const classes = useStyles();
 
   const UserFormSchema = Yup.object().shape({
-    rank: Yup.string()
-      .required('Required'),
+    rank: Yup.string().required("Required"),
     firstName: Yup.string()
-      .matches('^[a-zA-Z][a-zA-Z-. ]*$', 'Must begin with a letter, and can only contain letters and spaces, - and .')
-      .min(2, 'Minimum 2 letters')
-      .max(30, 'Maximum 30 letters')
-      .required('Required'),
+      .matches(
+        "^[a-zA-Z][a-zA-Z-. ]*$",
+        "Must begin with a letter, and can only contain letters and spaces, - and ."
+      )
+      .min(2, "Minimum 2 letters")
+      .max(30, "Maximum 30 letters")
+      .required("Required"),
     lastName: Yup.string()
-      .matches('^[a-zA-Z][a-zA-Z-. ]*$', 'Must begin with a letter, and can only contain letters and spaces, - and .')
-      .min(2, 'Minimum 2 letters')
-      .max(30, 'Maximum 30 letters')
-      .required('Required'),
-    occupation: Yup.string()
-      .required('Required'),
+      .matches(
+        "^[a-zA-Z][a-zA-Z-. ]*$",
+        "Must begin with a letter, and can only contain letters and spaces, - and ."
+      )
+      .min(2, "Minimum 2 letters")
+      .max(30, "Maximum 30 letters")
+      .required("Required"),
+    occupation: Yup.string().required("Required"),
     username: Yup.string()
-      .matches('^[a-zA-Z][a-zA-Z0-9]*$', 'Must begin with a letter, and can only contain letters and numbers')
-      .min(6, 'Minimum 6 characters')
-      .max(20, 'Maximum 20 characters')
-      .required('Required'),
+      .matches(
+        "^[a-zA-Z][a-zA-Z0-9]*$",
+        "Must begin with a letter, and can only contain letters and numbers"
+      )
+      .min(6, "Minimum 6 characters")
+      .max(20, "Maximum 20 characters")
+      .required("Required"),
     password: Yup.string()
-      .matches('^[a-zA-Z0-9!@#%$&]*$', 'Can only contain letters, numbers, !, @, #, $, % and &')
-      .min(8, 'Minimum 8 characters')
-      .max(20, 'Maximum 20 characters')
-      .required('Required')
-  })
- 
+      .matches(
+        "^[a-zA-Z0-9!@#%$&]*$",
+        "Can only contain letters, numbers, !, @, #, $, % and &"
+      )
+      .min(8, "Minimum 8 characters")
+      .max(20, "Maximum 20 characters")
+      .required("Required"),
+  });
+
   return (
     <Container maxWidth="sm">
       <Card>
         <CardContent>
-          <Typography variant="h4" className={classes.typography}>{props.formTitle}</Typography>
+          <Typography variant="h4" className={classes.typography}>
+            {props.formTitle}
+          </Typography>
           <Formik
             initialValues={{
               role: props.role,
-              rank: '',
-              firstName: '',
-              lastName: '',
-              occupation: '',
-              username: '',
-              password: ''
+              rank: "",
+              firstName: "",
+              lastName: "",
+              occupation: "",
+              username: "",
+              password: "",
             }}
             validationSchema={UserFormSchema}
-            onSubmit={values => {
+            onSubmit={(values) => {
               const user = {
                 role: values.role,
                 rank: values.rank,
@@ -72,21 +93,23 @@ function UserForm (props) {
                 lastName: to.title(values.lastName).trim(),
                 occupation: values.occupation,
                 username: to.lower(values.username),
-                password: values.password
-              }
-              console.log(user)
-              
-              API.saveUser(user)
+                password: values.password,
+              };
+
+              API.saveUser(user);
+
+              // TODO: Add page redirect after save
             }}
           >
             {({ errors, touched, values }) => (
               <Form>
                 <FormGroup className={classes.formGroup}>
-                  <Field name="role" as={TextField} label="Role" InputProps={{ readOnly: true }} />
-                </FormGroup>
-                <FormGroup className={classes.formGroup}>
                   <Field name="rank" as={TextField} select label="Rank">
-                    {props.ranks.map(rank => <MenuItem key={rank} value={rank}>{rank}</MenuItem>)}
+                    {props.ranks.map((rank) => (
+                      <MenuItem key={rank} value={rank}>
+                        {rank}
+                      </MenuItem>
+                    ))}
                   </Field>
                   {errors.rank && touched.rank ? (
                     <span className={classes.errorMessage}>
@@ -111,8 +134,17 @@ function UserForm (props) {
                   ) : null}
                 </FormGroup>
                 <FormGroup className={classes.formGroup}>
-                  <Field name="occupation" as={TextField} select label="Occupation">
-                  {props.occupations.map(occupation => <MenuItem key={occupation} value={occupation}>{occupation}</MenuItem>)}
+                  <Field
+                    name="occupation"
+                    as={TextField}
+                    select
+                    label="Occupation"
+                  >
+                    {props.occupations.map((occupation) => (
+                      <MenuItem key={occupation} value={occupation}>
+                        {occupation}
+                      </MenuItem>
+                    ))}
                   </Field>
                   {errors.occupation && touched.occupation ? (
                     <span className={classes.errorMessage}>
@@ -145,7 +177,7 @@ function UserForm (props) {
         </CardContent>
       </Card>
     </Container>
-  )
+  );
 }
 
-export default UserForm
+export default UserForm;
