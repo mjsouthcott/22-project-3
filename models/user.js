@@ -70,12 +70,14 @@ const userSchema = new Schema ({
 	available: {
 		type: Boolean,
 		default: true,
-		required: true
+		//cant create a new user if this is required
+		// required: true
 	},
 	mounted: {
 		type: Boolean,
 		default: false,
-		required: true
+		//cant create a new user if this is required
+		// required: true
 	},
 	username: {
 		type: String,
@@ -99,6 +101,7 @@ const userSchema = new Schema ({
 })
 
 userSchema.plugin(mongooseHidden)
+
 
 const User = mongoose.model('User', userSchema)
 
