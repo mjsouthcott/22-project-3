@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // bring in all the pages 
 
+import SignIn from './pages/SignIn'
 import CreateOperator from './pages/CreateOperator'
 import CreateOperatorVehicle from './pages/CreateOperatorVehicle'
 import CreateTechnician from './pages/CreateTechnician'
@@ -46,8 +47,10 @@ function App() {
 
   return (
       <Router>
+         
         <UserContext.Provider value={userState}>
         <LayoutCanvas>
+        <SignIn />
         <Switch>
           {/* conditional render all the page if not authorized to see */}
 
