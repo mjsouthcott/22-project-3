@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   // Login method
   login: function (username, password) {
-    return axios.post(`/api/login/${username}`, {
+    return axios.post(`/api/login?username=${username}`, {
       password: password
     })
   },
@@ -14,71 +14,38 @@ export default {
   },
 
   getUser: function (userId) {
-    return axios.get("/api/users", {
-      params: {
-        id: userId,
-      },
-    });
+    return axios.get(`/api/users/${userId}`);
   },
 
   getOperators: function () {
-    return axios.get("/api/users", {
-      params: {
-        role: "Operator",
-      },
-    });
+    return axios.get('/api/users?role=Operator');
   },
 
   getTechnicians: function () {
-    return axios.get("/api/users", {
-      params: {
-        role: "Technician",
-      },
-    });
+    return axios.get("/api/users?role=Technician");
   },
 
   getDismountedOperators: function () {
-    return axios.get("/api/users", {
-      params: {
-        role: "Operator",
-        mounted: false,
-      },
-    });
+    return axios.get('/api/users?role=Operator&mounted=false');
   },
 
   getDismountedTechnicians: function () {
-    return axios.get("/api/users", {
-      params: {
-        role: "Technician",
-        mounted: false,
-      },
-    });
+    return axios.get("/api/users?role=Technician&mounted=false");
   },
 
   getAvailableTechnicians: function () {
-    return axios.get("/api/users", {
-      params: {
-        role: "Technician",
-        available: true,
-      },
-    });
+    return axios.get("/api/users?role=Technician&available=true");
   },
 
   updateUserDismountedStatus: function (userId, newDismountedStatus) {
     return axios.patch(`/api/users/${userId}`, {
-        mounted: newDismountedStatus,
-      },
-    );
+      mounted: newDismountedStatus,
+    });
   },
 
   updateUserAvailableStatus: function (userId, newAvailableStatus) {
-    return axios.patch("/api/users", {
-      params: {
-        id: userId,
-      },
-      data: {
-        available: newAvailableStatus,
-      },
+    return axios.patch(`/api/users/${userId}`, {
+      available: newAvailableStatus,
     });
   },
 
@@ -92,63 +59,36 @@ export default {
   },
   
   getVehicle: function (vehicleId) {
-    return axios.get("/api/vehicles", {
-      params: {
-        id: vehicleId,
-      },
-    });
+    return axios.get(`/api/vehicles/${vehicleId}`);
   },
   
   getOperatorVehicles: function () {
-    return axios.get("/api/vehicles", {
-      params: {
-        role: "Operator",
-      },
-    });
+    return axios.get("/api/vehicles?role=Operator");
   },
 
   getTechnicianVehicles: function () {
-    return axios.get("/api/vehicles", {
-      params: {
-        role: "Technician",
-      },
-    });
+    return axios.get("/api/vehicles?role=Technician");
   },
 
   getVehicleByOccupant: function (userId) {
-    return axios.get("/api/vehicles", {
-      params: {
-        occupant: userId,
-      },
-    });
+    return axios.get(`/api/vehicles?assignedTo=${userId}`);
   },
 
   updateVehicleServiceableStatus: function (vehicleId, newServiceableStatus) {
-    return axios.patch("/api/vehicles", {
-      params: {
-        id: vehicleId,
-      },
-      data: {
-        serviceable: newServiceableStatus,
-      },
+    return axios.patch(`/api/vehicles/${vehicleId}`, {
+      serviceable: newServiceableStatus,
     });
   },
 
   updateVehicleOccupant: function (vehicleId, newUserId) {
     return axios.patch(`/api/vehicles/${vehicleId}`, {
-        occupant: newUserId,
-      },
-    );
+      occupant: newUserId,
+    });
   },
 
   updateVehicleRepairRequests: function (vehicleId, newRepairRequestIdArray) {
-    return axios.patch("/api/vehicles", {
-      params: {
-        id: vehicleId,
-      },
-      data: {
-        repairRequests: newRepairRequestIdArray,
-      },
+    return axios.patch(`/api/vehicles/${vehicleId}`, {
+      repairRequests: newRepairRequestIdArray,
     });
   },
 
@@ -162,40 +102,22 @@ export default {
   },
 
   getRepairRequest: function (repairRequestId) {
-    return axios.get("/api/repair-requests", {
-      params: {
-        id: repairRequestId,
-      },
-    });
+    return axios.get(`/api/repair-requests/${repairRequestId}`);
   },
 
   getRepairRequestByTechnician: function (userId) {
-    return axios.get('/api/repair-requests', {
-        params: {
-            assignedTo: userId
-        }
-    })
+    return axios.get(`/api/repair-requests?assignedTo=${userId}`)
   },
 
   updateRepairRequestStatus: function (repairRequestId, newStatus) {
-    return axios.patch("/api/repair-requests", {
-      params: {
-        id: repairRequestId,
-      },
-      data: {
-        status: newStatus,
-      },
+    return axios.patch(`/api/repair-requests/${repairRequestId}`, {
+      status: newStatus,
     });
   },
 
   updateRepairRequestAssignedTo: function (repairRequestId, newTechnicianId) {
-    return axios.patch("/api/repair-requests", {
-      params: {
-        id: repairRequestId,
-      },
-      data: {
-        assignedTo: newTechnicianId,
-      },
+    return axios.patch(`/api/repair-requests/${repairRequestId}`, {
+      assignedTo: newTechnicianId,
     });
   },
 
@@ -203,13 +125,8 @@ export default {
     repairRequestId,
     newRepairWorkOrderId
   ) {
-    return axios.patch("/api/repair-requests", {
-      params: {
-        id: repairRequestId,
-      },
-      data: {
-        repairWorkOrder: newRepairWorkOrderId,
-      },
+    return axios.patch(`/api/repair-requests/${repairRequestId}`, {
+      repairWorkOrder: newRepairWorkOrderId,
     });
   },
 
