@@ -39,15 +39,15 @@ function App() {
 
   return (
     <>
-      {/* <DisplayUsers />
+      <DisplayUsers />
       <br></br>
       <DisplayVehicles />
       <br></br>
       <CreateUser />
       <br></br>
       <CreateVehicle />
-      <br></br> */}
-      <DisplayRepairRequests />
+      <br></br>
+      {/* <DisplayRepairRequests /> */}
     </>
     // <Router>
     //   <UserContext.Provider value={userState}>
