@@ -1,61 +1,69 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button, FormGroup, MenuItem, TextField, Container } from '@material-ui/core'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import * as Yup from "yup"
-import './style.css'
-import API from '../../utils/API'
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Button,
+  FormGroup,
+  MenuItem,
+  TextField,
+  Container,
+} from "@material-ui/core";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import "./style.css";
+import API from "../../utils/API";
 
-function AssignVehicleOccupantInput (props) {
+function AssignVehicleOccupantInput(props) {
   const useStyles = makeStyles({
     typography: {
-      marginBottom: 15
+      marginBottom: 15,
     },
     formGroup: {
-      marginBottom: 15
+      marginBottom: 15,
     },
     errorMessage: {
-      color: 'red',
-    }
-  })
-  const classes = useStyles()
+      color: "red",
+    },
+  });
+  const classes = useStyles();
 
   const UserFormSchema = Yup.object().shape({
-    occupant: Yup.string()
-      .required('Required')
-  })
- 
+    occupant: Yup.string().required("Required"),
+  });
+
   return (
     <Container maxWidth="xs">
       <Formik
         initialValues={{
           vehicle: props.vehicle._id,
-          occupant: ''
+          occupant: "",
         }}
         validationSchema={UserFormSchema}
-        onSubmit={values => {
-
-          /* TODO: Add appropriate API method call */
+        onSubmit={(values) => {
           API.updateVehicleOccupant(values.vehicle, values.occupant)
             .then(() => {
-              API.updateUserDismountedStatus(values.occupant, true)
+              API.updateUserDismountedStatus(values.occupant, true);
             })
             .then(() => {
-              const targetUser = props.dismountedUsers.find(user => {
-                return user._id === values.occupant
-              })
-              props.updateOperatorVehicles(values.vehicle, targetUser)
+              const targetUser = props.dismountedUsers.find((user) => {
+                return user._id === values.occupant;
+              });
+              props.updateOperatorVehicles(values.vehicle, targetUser);
             })
             .then(() => {
-              props.updateDismountedOperators(values.occupant)
-            })
+              props.updateDismountedOperators(values.occupant);
+            });
         }}
       >
         {({ errors, touched, values }) => (
           <Form>
-            <FormGroup className={classes.formGroup} >
+            <FormGroup className={classes.formGroup}>
               <Field name="occupant" as={TextField} select label="Assign">
-                {props.dismountedUsers.map(user => <MenuItem key={user._id} value={user._id}>{`${user.rank} ${user.firstName} ${user.lastName}`}</MenuItem>)}
+                {props.dismountedUsers.map((user) => (
+                  <MenuItem
+                    key={user._id}
+                    value={user._id}
+                  >{`${user.rank} ${user.firstName} ${user.lastName}`}</MenuItem>
+                ))}
               </Field>
               {errors.occupant && touched.occupant ? (
                 <span className={classes.errorMessage}>
@@ -70,7 +78,7 @@ function AssignVehicleOccupantInput (props) {
         )}
       </Formik>
     </Container>
-  )
+  );
 }
 
-export default AssignVehicleOccupantInput
+export default AssignVehicleOccupantInput;
