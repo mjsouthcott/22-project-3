@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // bring in all the pages
 
+
+import SignIn from './pages/SignIn'
+
 // import CreateRepairRequest from './pages/CreateRepairRequest'
 // import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
 // bring in all the components
@@ -38,6 +41,15 @@ function App() {
   //   useEffect(() => {setUserState()}, []);
 
   return (
+
+      <Router>
+         
+        <UserContext.Provider value={userState}>
+        <LayoutCanvas>
+        <SignIn />
+        <Switch>
+          {/* conditional render all the page if not authorized to see */}
+
     <>
       {/* <DisplayUsers />
       <br></br>
@@ -54,6 +66,7 @@ function App() {
     //   <LayoutCanvas>
     //   <Switch>
     // {/* conditional render all the page if not authorized to see */}
+
 
     //     <Route path="/display-operator" component={DisplayOperators} />
     //     <Route path="/display-operatorVehicles" component={DisplayOperatorVehicles} />
