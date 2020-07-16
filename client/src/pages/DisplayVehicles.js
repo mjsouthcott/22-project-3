@@ -68,8 +68,8 @@ function DisplayVehicles() {
       vehicles={vehicles}
       pageTitle={pageTitle}
       dismountedUsers={dismountedUsers}
-      updateOperatorVehicles={updateVehicles}
-      updateDismountedOperators={updateDismountedUsers}
+      updateVehicles={updateVehicles}
+      updateDismountedUsers={updateDismountedUsers}
     />
   );
 }
