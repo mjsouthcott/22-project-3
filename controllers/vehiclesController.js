@@ -4,10 +4,12 @@ module.exports = {
   findAll: function (req, res) {
     db.Vehicle.find(req.query)
       .populate("occupant")
-      .populate("repairRequests")
-
-      // TODO: Populate technician info
-      .populate("assignedTo")
+      .populate({
+        path: 'repairRequests',
+        populate: {
+          path: 'assignedTo'
+        }
+      })
       .sort({ date: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
@@ -15,7 +17,12 @@ module.exports = {
   findById: function (req, res) {
     db.Vehicle.findById(req.params.id)
       .populate("occupant")
-      .populate("repairRequests")
+      .populate({
+        path: 'repairRequests',
+        populate: {
+          path: 'assignedTo'
+        }
+      })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
