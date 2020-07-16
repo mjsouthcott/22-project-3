@@ -1,6 +1,13 @@
 import axios from "axios";
 
 export default {
+  // Login method
+  login: function (username, password) {
+    return axios.post(`/api/login/${username}`, {
+      password: password
+    })
+  },
+
   // User methods
   getUsers: function () {
     return axios.get("/api/users");
