@@ -10,11 +10,11 @@ import SignIn from './pages/SignIn'
 // import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
 // bring in all the components
 import LayoutCanvas from "./components/LayoutCanvas";
-import Dashboard from "./components/Dashboard";
 import Unauthorized from "./components/Unauthorized";
 // bring in all the global css
 import "./App.css";
 // bring in all the contexts
+import Dashboard from "./components/Dashboard";
 import UserContext from "./utils/UserContext";
 import CreateUser from "./pages/CreateUser";
 import CreateVehicle from "./pages/CreateVehicle";

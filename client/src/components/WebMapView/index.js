@@ -58,29 +58,40 @@ export const WebMapView = () => {
                   longitude: element.location.longitude,
                   latitude: element.location.latitude
                 };
-      
-                let pointSymbol = {
+                
+
+                let color = 'green'
+                if (element.status == 'Work In Progress') color = 'yellow'
+                else if (element.status = 'Open') color = 'red'
+
+
+                let symbol = {
                   type: "simple-marker",  // autocasts as new PictureMarkerSymbol()
-                  color: "red",
-                  size: "10px"
+                  color: color,
+                  size: "15px"
                 }
-      
-                let pointGraphic = new Graphic({
+                
+                element.localTacticalSituation === 'Safe' ? symbol.style = 'circle' : symbol.style = 'square'
+
+                let graphic = new Graphic({
                   geometry: point,
-                  symbol: pointSymbol,
-                  popupTemplate : {
-                    title : "Repair Request Details",
-                    content:`<ul><li>Vehicle Registration Number: ${registrationNumber}</li>` +
-                            `<li>Vehicle CallSign: ${callSign}</li>` +
-                            `<li>Operator Name: ${userName}</li>` +
-                            `<li>Operator Occupation: ${occupation}</li>` +
-                            `<li>Operator Rank: ${rank}</li>` +
-                            `<li>Estimated Condition Class: ${element.estimatedConditionClass}</li>` +
-                            `<li>Can Be Moved By: ${element.vehicleCanBeMovedBy}</li>` +
-                            `<li>Local Tactical Situation: ${element.localTacticalSituation}</li>` +
-                            `<li>Crew Remained With Vehicle: ${element.crewRemainedWithVehicle}</li><ul>`}});
+                  symbol: symbol});
+
+                
+
+                graphic.popupTemplate = {
+                title : "Repair Request Details",
+                content:`<ul><li>Vehicle Registration Number: ${registrationNumber}</li>` +
+                        `<li>Vehicle CallSign: ${callSign}</li>` +
+                        `<li>Operator Name: ${userName}</li>` +
+                        `<li>Operator Occupation: ${occupation}</li>` +
+                        `<li>Operator Rank: ${rank}</li>` +
+                        `<li>Estimated Condition Class: ${element.estimatedConditionClass}</li>` +
+                        `<li>Can Be Moved By: ${element.vehicleCanBeMovedBy}</li>` +
+                        `<li>Local Tactical Situation: ${element.localTacticalSituation}</li>` +
+                        `<li>Crew Remained With Vehicle: ${element.crewRemainedWithVehicle}</li><ul>`}
     
-                pointGraphics.push(pointGraphic)
+                pointGraphics.push(graphic)
               })
             }
             
