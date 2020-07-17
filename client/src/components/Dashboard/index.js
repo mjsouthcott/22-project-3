@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Chart from '../Chart';
 import Deposits from '../Deposits';
 import {WebMapView} from '../WebMapView'
-
+import LegendTable from '../LegendTable'
 
 const useStyles = makeStyles((theme) => ({
   
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 240,
+    height: 200,
   },
 }));
 
@@ -52,7 +52,12 @@ export default function Dashboard() {
         </Paper>
       </Grid>
       {/* Maps */}
-      <Grid item xs={12} md={6} lg={6}>
+      <Grid item xs={12} md={4} lg={3}>
+        <Paper style={{height: "500px"}}>
+        <LegendTable/>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={8} lg={9} style={{height: "500px"}}>
         <WebMapView/>
       </Grid>
     </Grid>
