@@ -66,7 +66,9 @@ function App() {
         <LayoutCanvas>
             <Switch>
               {/* conditional render all the page if not authorized to see */}
-
+              <Route exact path="/">
+                {userState.isManager ? <Dashboard /> : <Unauthorized />}
+              </Route>
               <Route path="/display-users" component={DisplayUsers} />
               <Route path="/display-vehicles" component={DisplayVehicles} />
               <Route
@@ -85,9 +87,7 @@ function App() {
                 {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
               </Route>
 
-              <Route path="/">
-                {userState.isManager ? <Dashboard /> : <Unauthorized />}
-              </Route>
+
             </Switch>
         </LayoutCanvas>
          )}
