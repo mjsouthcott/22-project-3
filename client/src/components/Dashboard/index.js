@@ -3,8 +3,9 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid, Paper} from '@material-ui/core';
 
-import Chart from '../Chart';
-import Deposits from '../Deposits';
+import LineCharts from '../LineCharts';
+import BarCharts from '../BarCharts';
+import PieCharts from '../PieCharts'
 import {WebMapView} from '../WebMapView'
 import LegendTable from '../LegendTable'
 
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   fixedHeight: {
-    height: 200,
+    height: 250,
   },
 }));
 
@@ -38,16 +39,22 @@ export default function Dashboard() {
 
   return (
     <Grid container spacing={3}>
-      {/* Chart */}
-      <Grid item xs={12} md={8} lg={9}>
+      {/* Line Chart */}
+      <Grid item xs={12} md={6} lg={6}>
         <Paper className={fixedHeightPaper}>
-          <Chart />
+          <LineCharts />
         </Paper>
       </Grid>
-      {/* Recent Deposits */}
-      <Grid item xs={12} md={4} lg={3}>
+      {/* Bar Charts */}
+      <Grid item xs={12} md={3} lg={3}>
         <Paper className={fixedHeightPaper}>
-          <Deposits />
+          <BarCharts/>
+        </Paper>
+      </Grid>
+      {/* Bar Charts */}
+      <Grid item xs={12} md={3} lg={3}>
+        <Paper className={fixedHeightPaper}>
+          <PieCharts/>
         </Paper>
       </Grid>
       {/* Maps */}
