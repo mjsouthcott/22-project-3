@@ -56,6 +56,10 @@ function App() {
     setUserState(data);
   }
 
+
+// setting isManager manually for testing purposes ------------------------------------
+  const isManager = true
+
   return (
     <Router>
       <UserContext.Provider value={userState}>
@@ -67,7 +71,8 @@ function App() {
             <Switch>
               {/* conditional render all the page if not authorized to see */}
               <Route exact path="/">
-                {userState.isManager ? <Dashboard /> : <Unauthorized />}
+                {/* {userState.isManager ? <Dashboard /> : <Unauthorized />} */}
+                {isManager ? <Dashboard /> : <Unauthorized />}   
               </Route>
               <Route path="/display-users" component={DisplayUsers} />
               <Route path="/display-vehicles" component={DisplayVehicles} />
@@ -81,10 +86,12 @@ function App() {
               <Route path="/create-repairWorkorder" />
 
               <Route path="/create-user">
-                {userState.isManager ? <CreateUser /> : <Unauthorized />}
+                {/* {userState.isManager ? <CreateUser /> : <Unauthorized />} */}
+                {isManager ? <CreateUser /> : <Unauthorized />}
               </Route>
               <Route path="/create-vehicle">
-                {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
+                {/* {userState.isManager ? <CreateVehicle /> : <Unauthorized />} */}
+                {isManager ? <CreateVehicle /> : <Unauthorized />}
               </Route>
 
 
