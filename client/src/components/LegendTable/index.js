@@ -14,7 +14,7 @@ function createData(name, calories, fat, carbs, protein) {
 
 const rows = [
   createData('Request Open', <div style={{backgroundColor: "red"}}>. </div>),
-  createData('Request In Progress', <div style={{backgroundColor: "yellow"}}>. </div>),
+  createData('Request In Progress', <div style={{backgroundColor: "khaki"}}>. </div>),
   createData('Request Finished', <div style={{backgroundColor: "green"}}>. </div>)
 ];
 
