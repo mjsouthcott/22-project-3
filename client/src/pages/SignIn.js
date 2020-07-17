@@ -1,12 +1,12 @@
 import React from "react";
 import API from '../utils/API'
 import {Avatar, Button, CssBaseline, TextField, Link, Box, Typography, Container} from "@material-ui/core";
+
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormGroup } from "@material-ui/core";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 const to = require("to-case");
-
 
 function Copyright() {
   return (
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function Login(props) {
   const classes = useStyles();
 
   return (
@@ -57,28 +57,21 @@ export default function SignIn() {
         <Formik
           initialValues={{
             username: "maxguo",
-            password: "1",
+            password: "password",
           }}
           onSubmit={(values) => {
             const user = {
               username: to.lower(values.username),
               password: values.password,
             };
-            console.log("Sign In -----------", user);
-
-
-            API.getUsername(user) 
-            .then(function(res) {
-              // window.location.replace("/");
-              console.log(res)
-
-              console.log("sigin page")
-            })
-            .catch(function(err) {
-              console.log(err);
-            });
-
-            
+            API.login(user)
+              .then(function (res) {
+                props.handleLogin(res.data);
+              })
+              .catch(function (err) {
+                console.log("credentials are incrorrect");
+                
+              });
           }}
         >
           {({ errors, touched, values }) => (

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // bring in all the pages
 
 
-import SignIn from './pages/SignIn'
+import Login from "./pages/Login";
 
 // import CreateRepairRequest from './pages/CreateRepairRequest'
 // import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
@@ -27,16 +27,22 @@ function App() {
   // TODO: the default state value is suppose be grapped from useEffect
   const [userState, setUserState] = useState({
     isManager: true,
-    role: "Operations Manager",
+    role: "",
     rank: "",
     firstName: "",
     lastName: "",
     occupation: "",
     available: false,
     mounted: true,
-    username: "",
-    password: "",
+    _id: "",
   });
+
+  console.log(userState)
+
+  // Handles updating component state when the user types into the input field
+  function handleLogin(data) {
+    setUserState(data);
+  }
 
   // // TODO: Logic of Passport JS goes in here
   //   useEffect(() => {setUserState()}, []);
@@ -45,6 +51,8 @@ function App() {
     <Router>
       <UserContext.Provider value={userState}>
       <LayoutCanvas>
+      {!userState._id && <Login handleLogin={handleLogin} />}
+
       <Switch>
     {/* conditional render all the page if not authorized to see */}
 
