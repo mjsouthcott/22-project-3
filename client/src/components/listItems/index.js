@@ -4,6 +4,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import AirportShuttleIcon from '@material-ui/icons/AirportShuttle';
 import PeopleIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PageviewIcon from '@material-ui/icons/Pageview';
@@ -24,36 +25,20 @@ export const firstListItems = (
       <ListItemText primary="View Dashboard" />
     </ListItem>
     </Link>
-    <Link href="/create-operator">
+    <Link href="/create-user">
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Create Operator" />
+      <ListItemText primary="Create User" />
     </ListItem>
     </Link>
-    <Link href="/create-technician">
+    <Link href="/create-vehicle">
     <ListItem button>
       <ListItemIcon>
-        <PeopleIcon />
+        <AirportShuttleIcon />
       </ListItemIcon>
-      <ListItemText primary="Create Technician" />
-    </ListItem>
-    </Link>
-    <Link href="/create-operatorVehicle">
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Create Operator Vehicle" />
-    </ListItem>
-    </Link>
-    <Link href="/create-technicianVehicle">
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Create Technician Vehicle" />
+      <ListItemText primary="Create Vehicle" />
     </ListItem>
     </Link>
   </div>
@@ -61,7 +46,7 @@ export const firstListItems = (
 
 export const secondListItems = (
   <div>
-    <Link href="/repair-request">
+    <Link href="/create-repairRequest">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
@@ -69,7 +54,7 @@ export const secondListItems = (
       <ListItemText primary="New Repair Request" />
     </ListItem>
     </Link>
-    <Link href="/repair-workorder">
+    <Link href="/create-repairWorkorder">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
@@ -77,57 +62,41 @@ export const secondListItems = (
       <ListItemText primary="New Repair Work Order" />
     </ListItem>
     </Link>
-    <Link href="/create-operatorVehicle">
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="New Operator Vehicle" />
-    </ListItem>
-    </Link>
-    <Link href="/create-technicianVehicle">
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="New Technician Vehicle" />
-    </ListItem>
-    </Link>
   </div>
 );
 
 export const thirdListItems = (
   <div>
-    <Link href="/display-operator">
+    <Link href="/display-users">
     <ListItem button>
       <ListItemIcon>
         <PageviewIcon />
       </ListItemIcon>
-      <ListItemText primary="Display Operator" />
+      <ListItemText primary="Display User" />
     </ListItem>
     </Link>
-    <Link href="/display-operatorVehicles">
+    <Link href="/display-vehicles">
     <ListItem button>
       <ListItemIcon>
         <PageviewIcon />
       </ListItemIcon>
-      <ListItemText primary="Display Operator Vehicles" />
+      <ListItemText primary="Display Vehicles" />
     </ListItem>
     </Link>
-    <Link href="/display-technicians">
+    <Link href="/display-repairRequests">
     <ListItem button>
       <ListItemIcon>
         <PageviewIcon />
       </ListItemIcon>
-      <ListItemText primary="Display Technician" />
+      <ListItemText primary="Display Repair Requests" />
     </ListItem>
     </Link>
-    <Link href="/display-technicianVehiclese">
+    <Link href="/display-repairWorkorders">
     <ListItem button>
       <ListItemIcon>
         <PageviewIcon />
       </ListItemIcon>
-      <ListItemText primary="Display Technician Vehicle" />
+      <ListItemText primary="Display Repair Workorders" />
     </ListItem>
     </Link>
   </div>

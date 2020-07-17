@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo, useState  } from 'react';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
 import { loadModules } from 'esri-loader';
 import API from '../../utils/API'
 
@@ -6,56 +6,16 @@ import API from '../../utils/API'
 export const WebMapView = () => {
     const mapRef = useRef();
 
-    const [vehicles, setVehicles] = useState([])
+    const [mapSymbols, setMapSymbols] = useState([])
+
+
 
     useEffect(() => {
       API.getVehicles()
         .then(res => {
-          setVehicles(res.data)
+          setMapSymbols(res.data)
         })
     }, [])
-    
-
-    const mockupJson = {
-      "requests" :[
-        {
-          operatorName : 'Matthew Southcott',
-          type: 'Medium Logistic Vehicle, Command Post',
-          registrationNumber: '19000',
-          callSign: '88A',
-          icon: 'assets/images/medium-logistic-vehicle-command-post.png',
-          location:{
-            latitude: 45.4801785,
-            longitude: -75.472925
-          }
-        },
-        {
-          operatorName : 'Max Guo',
-          type: 'Medium Logistic Vehicle, Gun Tractor',
-          registrationNumber: '19000',
-          callSign: '88A',
-          icon: 'assets/images/medium-logistic-vehicle-gun-tractor.png',
-          location:{
-            latitude: 45.482142,
-            longitude: -75.475700
-          }
-        },
-        {
-          operatorName : 'Mila Mamata',
-          type: 'Armoured Patrol Vehicle',
-          registrationNumber: '19000',
-          callSign: '88A',
-          icon: 'assets/images/armoured-patrol-vehicle.png',
-          location:{
-            latitude: 45.489154,
-            longitude: -75.477379
-          }
-        }
-      ]
-
-    }
-
-
 
     useMemo(
       () => {
@@ -81,34 +41,59 @@ export const WebMapView = () => {
           });
 
           let pointGraphics = []
-          pointGraphics = mockupJson['requests'].map(element => {
+            
+            mapSymbols.forEach(symbolObj => {
 
-            let point = {
-              type: "point", // autocasts as new Point()
-              longitude: element.location.longitude,
-              latitude: element.location.latitude
-            };
-  
-            let iconSymbol = {
-              type: "picture-marker",  // autocasts as new PictureMarkerSymbol()
-              url: element.icon,
-              width: "40px",
-              height: "32px"
+            if (symbolObj.repairRequests!= 0){
+              let callSign = symbolObj.callSign
+              let registrationNumber = symbolObj.registrationNumber
+              let userName = `${symbolObj.occupant.firstName} ${symbolObj.occupant.lastName}`
+              let occupation = symbolObj.occupant.occupation
+              let rank = symbolObj.occupant.rank
+
+              symbolObj.repairRequests.forEach(element =>{
+                
+                let point = {
+                  type: "point", // autocasts as new Point()
+                  longitude: element.location.longitude,
+                  latitude: element.location.latitude
+                };
+                
+
+                let color = 'green'
+                if (element.status == 'Work In Progress') color = 'yellow'
+                else if (element.status = 'Open') color = 'red'
+
+
+                let symbol = {
+                  type: "simple-marker",  // autocasts as new PictureMarkerSymbol()
+                  color: color,
+                  size: "15px"
+                }
+                
+                element.localTacticalSituation === 'Safe' ? symbol.style = 'circle' : symbol.style = 'square'
+
+                let graphic = new Graphic({
+                  geometry: point,
+                  symbol: symbol});
+
+                
+
+                graphic.popupTemplate = {
+                title : "Repair Request Details",
+                content:`<ul><li>Vehicle Registration Number: ${registrationNumber}</li>` +
+                        `<li>Vehicle CallSign: ${callSign}</li>` +
+                        `<li>Operator Name: ${userName}</li>` +
+                        `<li>Operator Occupation: ${occupation}</li>` +
+                        `<li>Operator Rank: ${rank}</li>` +
+                        `<li>Estimated Condition Class: ${element.estimatedConditionClass}</li>` +
+                        `<li>Can Be Moved By: ${element.vehicleCanBeMovedBy}</li>` +
+                        `<li>Local Tactical Situation: ${element.localTacticalSituation}</li>` +
+                        `<li>Crew Remained With Vehicle: ${element.crewRemainedWithVehicle}</li><ul>`}
+    
+                pointGraphics.push(graphic)
+              })
             }
-  
-            let pointGraphic = new Graphic({
-              geometry: point,
-              symbol: iconSymbol,
-              popupTemplate : {
-                title : "Armoured-recovery-vehicle",
-                content:`<ul><li>Operator Name: ${element.operatorName}</li>` +
-                        `<li>Vehicle Type: ${element.type}</li>` +
-                        `<li>Registration Number: ${element.registrationNumber}</li>` +
-                        `<li>CallSign: ${element.callSign}</li><ul>`
-              }
-            });
-
-            return pointGraphic
             
           });
 
@@ -119,8 +104,8 @@ export const WebMapView = () => {
 
           let toggle = new BasemapToggle({
             // 2 - Set properties
-            view: view, // view that provides access to the map's 'topo' basemap
-            nextBasemap: "topo-vector" // allows for toggling to the 'hybrid' basemap
+            view: view, // view that provides access to the map's 'hybrid' basemap
+            nextBasemap: "topo-vector" // allows for toggling to the 'topo' basemap
           });
 
           view.ui.add(toggle, "top-left");
@@ -141,12 +126,6 @@ export const WebMapView = () => {
       }
     );
 
-    return <div className="webmap" ref={mapRef} style={{height:"427px", width:"1250px"}}/>;
-    // return (
-    //   <div>
-    //     {vehicles.map(element=>(
-    //       <h1>{element.callSign}</h1>
-    //     ))}
-    //   </div>
-    // )
+    return <div className="webmap" ref={mapRef} style={{height:"400px", width:"1000px"}}/>;
+
 };
