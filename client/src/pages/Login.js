@@ -1,5 +1,5 @@
 import React from "react";
-import API from '../utils/API'
+import API from "../utils/API";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,7 +13,6 @@ import Container from "@material-ui/core/Container";
 import { FormGroup } from "@material-ui/core";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 const to = require("to-case");
-
 
 function Copyright() {
   return (
@@ -48,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function Login(props) {
   const classes = useStyles();
 
   return (
@@ -64,28 +63,21 @@ export default function SignIn() {
         <Formik
           initialValues={{
             username: "maxguo",
-            password: "1",
+            password: "password",
           }}
           onSubmit={(values) => {
             const user = {
               username: to.lower(values.username),
               password: values.password,
             };
-            console.log("Sign In -----------", user);
-
-
-            API.getUsername(user) 
-            .then(function(res) {
-              // window.location.replace("/");
-              console.log(res)
-
-              console.log("sigin page")
-            })
-            .catch(function(err) {
-              console.log(err);
-            });
-
-            
+            API.login(user)
+              .then(function (res) {
+                props.handleLogin(res.data);
+              })
+              .catch(function (err) {
+                console.log("credentials are incrorrect");
+                
+              });
           }}
         >
           {({ errors, touched, values }) => (
