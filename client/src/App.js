@@ -59,7 +59,9 @@ function App() {
   return (
     <Router>
       <UserContext.Provider value={userState}>
+        {/* render login form if not logged in  */}
       {!userState._id && <Login handleLogin={handleLogin} />}
+      {/* render the dashbord and other pages if logged in  */}
       {userState._id && (
         <LayoutCanvas>
             <Switch>
@@ -82,11 +84,11 @@ function App() {
               <Route path="/create-vehicle">
                 {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
               </Route>
+
               <Route path="/">
                 {userState.isManager ? <Dashboard /> : <Unauthorized />}
               </Route>
             </Switch>
-         
         </LayoutCanvas>
          )}
       </UserContext.Provider>
