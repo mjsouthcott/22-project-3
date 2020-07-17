@@ -2,10 +2,8 @@ import axios from "axios";
 
 export default {
   // Login method
-  login: function (username, password) {
-    return axios.post(`/api/login?username=${username}`, {
-      password: password
-    })
+  login: function (user) {
+    return axios.post(`/api/login/${user.username}`, user)
   },
 
   // User methods
