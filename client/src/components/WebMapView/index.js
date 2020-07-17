@@ -6,58 +6,16 @@ import API from '../../utils/API'
 export const WebMapView = () => {
     const mapRef = useRef();
 
-    const [repairRequests, setRepairRequests] = useState([])
+    const [mapSymbols, setMapSymbols] = useState([])
 
 
 
     useEffect(() => {
-      API.getRepairRequests()
+      API.getVehicles()
         .then(res => {
-          setRepairRequests(res.data)
+          setMapSymbols(res.data)
         })
     }, [])
-    
-
-    const mockupJson = {
-      "requests" :[
-        {
-          operatorName : 'Matthew Southcott',
-          type: 'Medium Logistic Vehicle, Command Post',
-          registrationNumber: '19000',
-          callSign: '88A',
-          icon: 'assets/images/vehicleicons/medium-logistic-vehicle-command-post.png',
-          location:{
-            latitude: 45.4801785,
-            longitude: -75.472925
-          }
-        },
-        {
-          operatorName : 'Max Guo',
-          type: 'Medium Logistic Vehicle, Gun Tractor',
-          registrationNumber: '19000',
-          callSign: '88A',
-          icon: 'assets/images/vehicleicons/medium-logistic-vehicle-gun-tractor.png',
-          location:{
-            latitude: 45.482142,
-            longitude: -75.475700
-          }
-        },
-        {
-          operatorName : 'Mila Mamata',
-          type: 'Armoured Patrol Vehicle',
-          registrationNumber: '19000',
-          callSign: '88A',
-          icon: 'assets/images/vehicleicons/armoured-patrol-vehicle.png',
-          location:{
-            latitude: 45.489154,
-            longitude: -75.477379
-          }
-        }
-      ]
-
-    }
-
-
 
     useMemo(
       () => {
@@ -83,31 +41,48 @@ export const WebMapView = () => {
           });
 
           let pointGraphics = []
-          pointGraphics = repairRequests.map(element => {
+            
+            mapSymbols.forEach(symbolObj => {
 
-            let point = {
-              type: "point", // autocasts as new Point()
-              longitude: element.location.longitude,
-              latitude: element.location.latitude
-            };
-  
-            let pointSymbol = {
-              type: "simple-marker",  // autocasts as new PictureMarkerSymbol()
-              color: "red",
-              size: "10px"
+            if (symbolObj.repairRequests!= 0){
+              let callSign = symbolObj.callSign
+              let registrationNumber = symbolObj.registrationNumber
+              let userName = `${symbolObj.occupant.firstName} ${symbolObj.occupant.lastName}`
+              let occupation = symbolObj.occupant.occupation
+              let rank = symbolObj.occupant.rank
+
+              symbolObj.repairRequests.forEach(element =>{
+                
+                let point = {
+                  type: "point", // autocasts as new Point()
+                  longitude: element.location.longitude,
+                  latitude: element.location.latitude
+                };
+      
+                let pointSymbol = {
+                  type: "simple-marker",  // autocasts as new PictureMarkerSymbol()
+                  color: "red",
+                  size: "10px"
+                }
+      
+                let pointGraphic = new Graphic({
+                  geometry: point,
+                  symbol: pointSymbol,
+                  popupTemplate : {
+                    title : "Repair Request Details",
+                    content:`<ul><li>Vehicle Registration Number: ${registrationNumber}</li>` +
+                            `<li>Vehicle CallSign: ${callSign}</li>` +
+                            `<li>Operator Name: ${userName}</li>` +
+                            `<li>Operator Occupation: ${occupation}</li>` +
+                            `<li>Operator Rank: ${rank}</li>` +
+                            `<li>Estimated Condition Class: ${element.estimatedConditionClass}</li>` +
+                            `<li>Can Be Moved By: ${element.vehicleCanBeMovedBy}</li>` +
+                            `<li>Local Tactical Situation: ${element.localTacticalSituation}</li>` +
+                            `<li>Crew Remained With Vehicle: ${element.crewRemainedWithVehicle}</li><ul>`}});
+    
+                pointGraphics.push(pointGraphic)
+              })
             }
-  
-            let pointGraphic = new Graphic({
-              geometry: point,
-              symbol: pointSymbol,
-              popupTemplate : {
-                title : "Repair Request Details",
-                content:`<ul><li>Estimated Condition Class: ${element.estimatedConditionClass}</li>` +
-                        `<li>Can Be Moved By: ${element.vehicleCanBeMovedBy}</li>` +
-                        `<li>Local Tactical Situation: ${element.localTacticalSituation}</li>` +
-                        `<li>Crew Remained With Vehicle: ${element.crewRemainedWithVehicle}</li><ul>`}});
-
-            return pointGraphic
             
           });
 
@@ -140,12 +115,6 @@ export const WebMapView = () => {
       }
     );
 
-    return <div className="webmap" ref={mapRef} style={{height:"427px", width:"1250px"}}/>;
-    // return (
-    //   <div>
-    //     {vehicles.map(element=>(
-    //       <h1>{element.callSign}</h1>
-    //     ))}
-    //   </div>
-    // )
+    return <div className="webmap" ref={mapRef} style={{height:"400px", width:"1000px"}}/>;
+
 };

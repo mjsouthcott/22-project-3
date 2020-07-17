@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // bring in all the pages
 
+
+import SignIn from './pages/SignIn'
+
 // import CreateRepairRequest from './pages/CreateRepairRequest'
 // import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
 // bring in all the components
@@ -17,6 +20,8 @@ import CreateUser from "./pages/CreateUser";
 import CreateVehicle from "./pages/CreateVehicle";
 import DisplayUsers from "./pages/DisplayUsers";
 import DisplayVehicles from "./pages/DisplayVehicles";
+import DisplayRepairRequests from "./pages/DisplayRepairRequests";
+// import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
 
 function App() {
   // TODO: the default state value is suppose be grapped from useEffect
@@ -37,15 +42,6 @@ function App() {
   //   useEffect(() => {setUserState()}, []);
 
   return (
-    // <>
-    //   <DisplayUsers />
-    //   <br></br>
-    //   <DisplayVehicles />
-    //   <br></br>
-    //   <CreateUser />
-    //   <br></br>
-    //   <CreateVehicle />
-    // </>
     <Router>
       <UserContext.Provider value={userState}>
       <LayoutCanvas>
@@ -54,8 +50,11 @@ function App() {
 
         <Route path="/display-users" component={DisplayUsers} />
         <Route path="/display-vehicles" component={DisplayVehicles} />
-        <Route path="/repair-request"/>
-        <Route path="/repair-workorder"/>
+        <Route path="/display-repairRequests" component={DisplayRepairRequests} />
+        <Route path="/display-repairWorkorders"  />
+        {/* create the repairRequest and repaireWorkorders */}
+        <Route path="/create-repairRequest" />
+        <Route path="/create-repairWorkorder"/>
 
         <Route path="/create-user">
           {userState.isManager ? <CreateUser/> : <Unauthorized/>}
@@ -70,6 +69,7 @@ function App() {
       </LayoutCanvas>
       </UserContext.Provider>
     </Router>
+
   );
 }
 

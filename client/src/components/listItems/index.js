@@ -46,7 +46,7 @@ export const firstListItems = (
 
 export const secondListItems = (
   <div>
-    <Link href="/repair-request">
+    <Link href="/create-repairRequest">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
@@ -54,7 +54,7 @@ export const secondListItems = (
       <ListItemText primary="New Repair Request" />
     </ListItem>
     </Link>
-    <Link href="/repair-workorder">
+    <Link href="/create-repairWorkorder">
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
@@ -81,6 +81,22 @@ export const thirdListItems = (
         <PageviewIcon />
       </ListItemIcon>
       <ListItemText primary="Display Vehicles" />
+    </ListItem>
+    </Link>
+    <Link href="/display-repairRequests">
+    <ListItem button>
+      <ListItemIcon>
+        <PageviewIcon />
+      </ListItemIcon>
+      <ListItemText primary="Display Repair Requests" />
+    </ListItem>
+    </Link>
+    <Link href="/display-repairWorkorders">
+    <ListItem button>
+      <ListItemIcon>
+        <PageviewIcon />
+      </ListItemIcon>
+      <ListItemText primary="Display Repair Workorders" />
     </ListItem>
     </Link>
   </div>

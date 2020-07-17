@@ -87,7 +87,7 @@ function UserForm(props) {
             validationSchema={UserFormSchema}
             onSubmit={(values) => {
               const user = {
-                role: values.role,
+                role: props.role,
                 rank: values.rank,
                 firstName: to.title(values.firstName).trim(),
                 lastName: to.title(values.lastName).trim(),
@@ -95,7 +95,6 @@ function UserForm(props) {
                 username: to.lower(values.username),
                 password: values.password,
               };
-
               API.saveUser(user);
 
               // TODO: Add page redirect after save

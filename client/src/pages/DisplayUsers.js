@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DisplayUserTable from "../components/DisplayUserTable/index";
+import UserTable from "../components/UserTable/index";
 import API from "../utils/API";
 
 // const ROLE = "Operations Manager";
@@ -34,7 +34,7 @@ function DisplayUsers() {
     }
   }, []);
 
-  return <DisplayUserTable users={users} pageTitle={pageTitle} />;
+  return <UserTable users={users} pageTitle={pageTitle} />;
 }
 
 export default DisplayUsers;

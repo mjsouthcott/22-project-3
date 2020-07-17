@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import "./style.css";
 import API from "../../utils/API";
 
-function AssignVehicleOccupantInput(props) {
+function AssignUserInput(props) {
   const useStyles = makeStyles({
     typography: {
       marginBottom: 15,
@@ -47,10 +47,10 @@ function AssignVehicleOccupantInput(props) {
               const targetUser = props.dismountedUsers.find((user) => {
                 return user._id === values.occupant;
               });
-              props.updateOperatorVehicles(values.vehicle, targetUser);
+              props.updateVehicles(values.vehicle, targetUser);
             })
             .then(() => {
-              props.updateDismountedOperators(values.occupant);
+              props.updateDismountedUsers(values.occupant);
             });
         }}
       >
@@ -81,4 +81,4 @@ function AssignVehicleOccupantInput(props) {
   );
 }
 
-export default AssignVehicleOccupantInput;
+export default AssignUserInput;

@@ -1,29 +1,29 @@
-const db = require("../models")
+const db = require("../models");
+const Bcrypt = require("bcryptjs");
 
 module.exports = {
-  findAll: function(req, res) {
-    db.User
-      .find(req.query)
+  findAll: function (req, res) {
+    db.User.find(req.query)
       .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
   },
-  findById: function(req, res) {
-    db.User
-      .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err))
+  findById: function (req, res) {
+    db.User.findById(req.params.id)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
   },
-  create: function(req, res) {
-    db.User
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+  create: function (req, res) {
+    req.body.password = Bcrypt.hashSync(req.body.password, 10);
+    db.User.create(req.body)
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
   },
-  updateById: function(req, res) {
-    db.User
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+  updateById: function (req, res) {
+    db.User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+      returnOriginal: false,
+    })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
   },
-}
+};

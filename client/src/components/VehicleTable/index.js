@@ -15,7 +15,7 @@ import {
   Chip,
 } from "@material-ui/core";
 import VehicleAvatar from "../VehicleAvatar/index";
-import AssignVehicleOccupantInput from "../AssignVehicleOccupantInput";
+import AssignUserInput from "../AssignUserInput";
 
 const useStyles = makeStyles({
   table: {
@@ -77,13 +77,11 @@ function VehicleTable(props) {
                       {vehicle.occupant ? (
                         `${vehicle.occupant.rank} ${vehicle.occupant.firstName} ${vehicle.occupant.lastName}`
                       ) : (
-                        <AssignVehicleOccupantInput
+                        <AssignUserInput
                           dismountedUsers={props.dismountedUsers}
                           vehicle={vehicle}
-                          updateOperatorVehicles={props.updateOperatorVehicles}
-                          updateDismountedOperators={
-                            props.updateDismountedOperators
-                          }
+                          updateVehicles={props.updateVehicles}
+                          updateDismountedUsers={props.updateDismountedUsers}
                         />
                       )}
                     </TableCell>
