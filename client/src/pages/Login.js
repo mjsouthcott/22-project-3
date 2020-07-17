@@ -1,6 +1,15 @@
 import React from "react";
-import API from '../utils/API'
-import {Avatar, Button, CssBaseline, TextField, Link, Box, Typography, Container} from "@material-ui/core";
+import API from "../utils/API";
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  Link,
+  Box,
+  Typography,
+  Container,
+} from "@material-ui/core";
 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
@@ -55,6 +64,7 @@ export default function Login(props) {
           Sign in
         </Typography>
         <Formik
+          //setting initial value to correct user info fro testing----------------------------------
           initialValues={{
             username: "maxguo",
             password: "password",
@@ -69,8 +79,7 @@ export default function Login(props) {
                 props.handleLogin(res.data);
               })
               .catch(function (err) {
-                console.log("credentials are incrorrect");
-                
+                console.log("credentials are incorrect");
               });
           }}
         >

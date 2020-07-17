@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // bring in all the pages
 
-
 import Login from "./pages/Login";
 
 // import CreateRepairRequest from './pages/CreateRepairRequest'
@@ -21,63 +20,68 @@ import CreateVehicle from "./pages/CreateVehicle";
 import DisplayUsers from "./pages/DisplayUsers";
 import DisplayVehicles from "./pages/DisplayVehicles";
 import DisplayRepairRequests from "./pages/DisplayRepairRequests";
+import API from "./utils/API";
 // import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
 
 function App() {
   // TODO: the default state value is suppose be grapped from useEffect
-  const [userState, setUserState] = useState({
-    isManager: true,
-    role: "",
-    rank: "",
-    firstName: "",
-    lastName: "",
-    occupation: "",
-    available: false,
-    mounted: true,
-    _id: "",
-  });
+  const [userState, setUserState] = useState({});
 
-  console.log(userState)
+  // check server session for user info when page is opened
+  // login the user if logged in before
+  useEffect(() => {
+    API.isLoggedIn()
+      .then((res) => {
+        if (res.data.user) {
+          setUserState(res.data.user);
+        } else
+          // if not logged in, lead to log in page
+          //waiting for conditional render decision
+          console.log("should go to login page-----------------------------------");
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  }, []);
 
-  // Handles updating component state when the user types into the input field
+  // Handles updating component state when the user types into the login form
   function handleLogin(data) {
     setUserState(data);
   }
 
-  // // TODO: Logic of Passport JS goes in here
-  //   useEffect(() => {setUserState()}, []);
-
   return (
     <Router>
       <UserContext.Provider value={userState}>
-      <LayoutCanvas>
-      {!userState._id && <Login handleLogin={handleLogin} />}
+        <LayoutCanvas>
+          {!userState._id && <Login handleLogin={handleLogin} />}
 
-      <Switch>
-    {/* conditional render all the page if not authorized to see */}
+          <Switch>
+            {/* conditional render all the page if not authorized to see */}
 
-        <Route path="/display-users" component={DisplayUsers} />
-        <Route path="/display-vehicles" component={DisplayVehicles} />
-        <Route path="/display-repairRequests" component={DisplayRepairRequests} />
-        <Route path="/display-repairWorkorders"  />
-        {/* create the repairRequest and repaireWorkorders */}
-        <Route path="/create-repairRequest" />
-        <Route path="/create-repairWorkorder"/>
+            <Route path="/display-users" component={DisplayUsers} />
+            <Route path="/display-vehicles" component={DisplayVehicles} />
+            <Route
+              path="/display-repairRequests"
+              component={DisplayRepairRequests}
+            />
+            <Route path="/display-repairWorkorders" />
+            {/* create the repairRequest and repaireWorkorders */}
+            <Route path="/create-repairRequest" />
+            <Route path="/create-repairWorkorder" />
 
-        <Route path="/create-user">
-          {userState.isManager ? <CreateUser/> : <Unauthorized/>}
-        </Route>
-        <Route path="/create-vehicle">
-        {userState.isManager ? <CreateVehicle/> : <Unauthorized/>}
-        </Route>
-        <Route path="/" >
-        {userState.isManager ? <Dashboard/> : <Unauthorized/>}
-        </Route>
-      </Switch>
-      </LayoutCanvas>
+            <Route path="/create-user">
+              {userState.isManager ? <CreateUser /> : <Unauthorized />}
+            </Route>
+            <Route path="/create-vehicle">
+              {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
+            </Route>
+            <Route path="/">
+              {userState.isManager ? <Dashboard /> : <Unauthorized />}
+            </Route>
+          </Switch>
+        </LayoutCanvas>
       </UserContext.Provider>
     </Router>
-
   );
 }
 

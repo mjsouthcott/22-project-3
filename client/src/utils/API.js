@@ -2,6 +2,10 @@ import axios from "axios";
 
 export default {
   // Login method
+  isLoggedIn: function () {
+    return axios.get("/api/login/")
+  },
+
   login: function (user) {
     return axios.post(`/api/login/${user.username}`, user)
   },
