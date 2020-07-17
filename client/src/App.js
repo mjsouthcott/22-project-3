@@ -76,7 +76,7 @@ function App() {
               {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
             </Route>
             <Route path="/">
-              {userState.isManager ? <Dashboard /> : <Unauthorized />}
+              {true ? <Dashboard /> : <Unauthorized />}
             </Route>
           </Switch>
         </LayoutCanvas>
