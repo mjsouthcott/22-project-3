@@ -126,6 +126,6 @@ export const WebMapView = () => {
       }
     );
 
-    return <div className="webmap" ref={mapRef} style={{height:"400px", width:"1000px"}}/>;
+    return <div className="webmap" ref={mapRef} style={{height:"100%", width:"100%"}}/>;
 
 };
