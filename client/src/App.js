@@ -47,10 +47,6 @@ function App() {
   }
 
 
-  // setting isManager manually for testing purposes ------------------------------------
-  const isManager = true;
-
-
   return (
     <Router>
       <UserContext.Provider value={userState}>
@@ -60,36 +56,33 @@ function App() {
         {userState._id && (
           <LayoutCanvas>
             <Switch>
-              {/* conditional render all the page if not authorized to see */}
               <Route exact path="/">
-                {/* {userState.isManager ? <Dashboard /> : <Unauthorized />} */}
-                {true ? <Dashboard /> : <Unauthorized />}
+                {userState.role==='Maintenance Manager' ? <Dashboard /> : <Unauthorized />}
               </Route>
-              <Route
-                path="/create-repair-request"
-                component={CreateRepairRequest}
-              />
-              <Route path="/display-users" component={DisplayUsers} />
-              <Route path="/display-vehicles" component={DisplayVehicles} />
-              <Route
-                path="/display-repairRequests"
-                component={DisplayRepairRequests}
-              />
-              <Route path="/display-repairWorkorders" />
-              {/* create the repairRequest and repaireWorkorders */}
-              <Route path="/create-repairRequest" />
-              <Route path="/create-repairWorkorder" />
-
+              <Route path="/display-users">
+                {(userState.role ==='Operations Manager' || userState.role==='Maintenance Manager') ? <DisplayUsers /> : <Unauthorized />}
+              </Route>
+              <Route path="/display-vehicles">
+                {(userState.role ==='Operations Manager' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
+              </Route>
+              <Route path="/display-repairRequests" component={DisplayRepairRequests}>
+                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
+              </Route>
+              <Route path="/display-repairWorkorders" >
+                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
+              </Route>
+              <Route path="/create-repair-request">
+                {userState.role==='Operator' ? <CreateRepairRequest /> : <Unauthorized />}
+              </Route>
+              <Route path="/create-repairWorkorder">
+                {userState.role==='Technician' ? <CreateRepairRequest /> : <Unauthorized />}
+              </Route>
               <Route path="/create-user">
-                {/* {userState.isManager ? <CreateUser /> : <Unauthorized />} */}
-                {true ? <CreateUser /> : <Unauthorized />}
+                {(userState.role ==='Operations Manager' || userState.role==='Maintenance Manager') ? <CreateUser /> : <Unauthorized />}
               </Route>
               <Route path="/create-vehicle">
-                {/* {userState.isManager ? <CreateVehicle /> : <Unauthorized />} */}
-                {true ? <CreateVehicle /> : <Unauthorized />}
+                {(userState.role ==='Operations Manager' || userState.role==='Maintenance Manager') ? <CreateVehicle /> : <Unauthorized />}
               </Route>
-
-              {/* added by mila, trying out profile page  */}
               <Route path="/profile" component={Profile} />
             </Switch>
           </LayoutCanvas>
