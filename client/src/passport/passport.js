@@ -28,23 +28,14 @@ passport.use(
             });
           } else {
             // Match password
-            // bcrypt.compare(password, user.password, (err, isMatch) => {
-            //   if (err) throw err;
-            //   if (isMatch) {
-            //     return done(null, user);
-            //   } else {
-            //     return done(null, false, { message: "Wrong password" });
-            //   }
-            // });
-
-
-            //just for now
-            if(password == user.password){
-              return done(null, user);
-            } else {
-              return done(null, false, { message: "Wrong password" })
-            }
-
+            bcrypt.compare(password, user.password, (err, isMatch) => {
+              if (err) throw err;
+              if (isMatch) {
+                return done(null, user);
+              } else {
+                return done(null, false, { message: "Wrong password" });
+              }
+            });
           }
         })
         .catch((err) => {
