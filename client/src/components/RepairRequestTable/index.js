@@ -13,6 +13,7 @@ import {
   CardContent,
   Chip,
 } from "@material-ui/core";
+import AssignTechnicianInput from "../AssignTechnicianInput";
 
 const useStyles = makeStyles({
   table: {
@@ -46,74 +47,112 @@ function RepairRequestTable(props) {
                   <TableCell align="right">
                     Crew Remained With Vehicle
                   </TableCell>
-                  {/* <TableCell align="right">Latitude</TableCell>
-                  <TableCell align="right">Longitude</TableCell> */}
                   <TableCell align="right">Status</TableCell>
                   <TableCell align="right">Technician</TableCell>
                   <TableCell align="right">Repair Work Order</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {props.vehicles.map((vehicle) => (
-                  <TableRow key={vehicle._id}>
-                    <TableCell component="th" scope="row">
-                      {vehicle.repairRequests[0]
-                        ? vehicle.repairRequests[0].number
-                        : null}
-                    </TableCell>
-                    <TableCell align="right">{vehicle.callSign}</TableCell>
-                    <TableCell align="right">{vehicle.type}</TableCell>
-                    <TableCell align="right">
-                      {vehicle.repairRequests[0]
-                        ? vehicle.repairRequests[0].estimatedConditionClass
-                        : null}
-                    </TableCell>
-                    <TableCell align="right">
-                      {vehicle.repairRequests[0]
-                        ? vehicle.repairRequests[0].vehicleCanBeMovedBy
-                        : null}
-                    </TableCell>
-                    <TableCell align="right">
-                      {vehicle.repairRequests[0]
-                        ? vehicle.repairRequests[0].localTacticalSituation
-                        : null}
-                    </TableCell>
-                    <TableCell align="right">
-                      {vehicle.repairRequests[0] &&
-                      vehicle.repairRequests[0].crewRemainedWithVehicle
-                        ? "Yes"
-                        : "No"}
-                    </TableCell>
-                    {/* <TableCell align="right">
-                      {vehicle.repairRequests[0]
-                        ? vehicle.repairRequests[0].location.latitude
-                        : null}
-                    </TableCell>
-                    <TableCell align="right">
-                      {vehicle.repairRequests[0]
-                        ? vehicle.repairRequests[0].location.longitude
-                        : null}
-                    </TableCell> */}
-                    <TableCell align="right">
-                      {vehicle.repairRequests[0]
-                        ? vehicle.repairRequests[0].status
-                        : null}
-                    </TableCell>
-                    <TableCell align="right">
-                      {vehicle.repairRequests[0] &&
-                      vehicle.repairRequests[0].assignedTo
-                        ? "Assigned"
-                        : // ? `${vehicle.repairRequests[0].assignedTo.rank} ${vehicle.repairRequests[0].assignedTo.firstName} ${vehicle.repairRequests[0].assignedTo.lastName}`
-                          "Not Assigned"}
-                    </TableCell>
-                    <TableCell align="right">
-                      {vehicle.repairRequests[0] &&
-                      vehicle.repairRequests[0].repairWorkOrder
-                        ? vehicle.repairRequests[0].repairWorkOrder._id
-                        : null}
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {props.vehicles.map((vehicle) =>
+                  vehicle.repairRequests.map((repairRequest) => (
+                    <TableRow key={repairRequest._id}>
+                      <TableCell component="th" scope="row">
+                        {repairRequest.number}
+                      </TableCell>
+                      <TableCell align="right">{vehicle.callSign}</TableCell>
+                      <TableCell align="right">{vehicle.type}</TableCell>
+                      <TableCell align="right">
+                        {repairRequest.estimatedConditionClass}
+                      </TableCell>
+                      <TableCell align="right">
+                        {repairRequest.vehicleCanBeMovedBy}
+                      </TableCell>
+                      <TableCell align="right">
+                        {repairRequest.localTacticalSituation === "Safe" ? (
+                          <Chip
+                            label="Safe"
+                            style={{ color: "white", backgroundColor: "green" }}
+                          />
+                        ) : (
+                          <Chip
+                            label="Hostile"
+                            style={{ color: "white", backgroundColor: "red" }}
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell align="right">
+                        {repairRequest.crewRemainedWithVehicle ? (
+                          <Chip
+                            label="Yes"
+                            style={{ color: "white", backgroundColor: "green" }}
+                          />
+                        ) : (
+                          <Chip
+                            label="No"
+                            style={{ color: "white", backgroundColor: "red" }}
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell align="right">
+                        {repairRequest.status === "Open" ? (
+                          <Chip
+                            label="Open"
+                            style={{ color: "white", backgroundColor: "red" }}
+                          />
+                        ) : repairRequest.status === "Work In Progress" ? (
+                          <Chip
+                            label="Work In Progress"
+                            style={{ color: "black", backgroundColor: "gold" }}
+                          />
+                        ) : (
+                          <Chip
+                            label="Complete"
+                            style={{ color: "white", backgroundColor: "green" }}
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell align="right">
+                        {repairRequest.assignedTo ? (
+                          `${repairRequest.assignedTo.rank} ${repairRequest.assignedTo.firstName} ${repairRequest.assignedTo.lastName}`
+                        ) : (
+                          // "Not assigned"
+                          <AssignTechnicianInput
+                            repairRequest={repairRequest}
+                            availableTechnicians={props.availableTechnicians}
+                            updateVehicles={props.updateVehicles}
+                            updateAvailableTechnicians={
+                              props.updateAvailableTechnicians
+                            }
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell align="right">
+                        {repairRequest.repairWorkOrder === undefined ? (
+                          <Chip
+                            label="Not Created"
+                            style={{ color: "white", backgroundColor: "red" }}
+                          />
+                        ) : repairRequest.repairWorkOrder.status === "Open" ? (
+                          <Chip
+                            label="Open"
+                            style={{ color: "white", backgroundColor: "red" }}
+                          />
+                        ) : repairRequest.repairWorkOrder.status ===
+                          "Work In Progress" ? (
+                          <Chip
+                            label="Work In Progress"
+                            style={{ color: "black", backgroundColor: "gold" }}
+                          />
+                        ) : (
+                          <Chip
+                            label="Complete"
+                            style={{ color: "white", backgroundColor: "green" }}
+                          />
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
               </TableBody>
             </Table>
           </TableContainer>

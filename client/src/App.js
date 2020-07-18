@@ -34,10 +34,13 @@ function App() {
       .then((res) => {
         if (res.data.user) {
           setUserState(res.data.user);
-        } else
-          // if not logged in, lead to log in page
-          //waiting for conditional render decision
-          console.log("should go to login page-----------------------------------");
+        }
+        // if not logged in, lead to log in page
+        //waiting for conditional render decision
+        else
+          console.log(
+            "should go to login page-----------------------------------"
+          );
       })
       .catch((err) => {
         throw new Error(err);
@@ -75,9 +78,9 @@ function App() {
             <Route path="/create-vehicle">
               {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
             </Route>
-            <Route path="/">
+            {/* <Route path="/">
               {true ? <Dashboard /> : <Unauthorized />}
-            </Route>
+            </Route> */}
           </Switch>
         </LayoutCanvas>
       </UserContext.Provider>
