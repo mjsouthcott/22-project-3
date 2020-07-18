@@ -111,7 +111,7 @@ export const maintenanceManagerListItems = (
 
 export const operatorListItems = (
   <div>
-    <Link to="/create-repairRequest">
+    <Link to="/create-repair-request">
       <ListItem button>
         <ListItemIcon>
           <AssignmentIcon />

@@ -17,7 +17,7 @@ export const WebMapView = () => {
         })
     }, [])
 
-    useMemo(
+    useEffect(
       () => {
         // lazy load the required ArcGIS API for JavaScript modules and CSS
         loadModules(['esri/Map', 
@@ -71,7 +71,7 @@ export const WebMapView = () => {
                   size: "15px"
                 }
                 
-                element.localTacticalSituation === 'Safe' ? symbol.style = 'circle' : symbol.style = 'square'
+                element.localTacticalSituation === 'Safe' ? symbol.style = 'circle' : symbol.style = 'triangle'
 
                 let graphic = new Graphic({
                   geometry: point,
