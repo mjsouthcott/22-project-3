@@ -76,6 +76,7 @@ const vehicleSeed = [
     registrationNumber: "14000",
     callSign: "12D",
     iconSrc: "assets/images/vehicleIcons/infantry-fighting-vehicle.png",
+    serviceable: false,
     repairRequests: [],
   },
   {
@@ -121,7 +122,7 @@ const vehicleSeed = [
 db.User.find()
   .sort({ createdAt: 1 })
   .then((users) => {
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 9; i++) {
       vehicleSeed[i].occupant = users[i]._id;
     }
     return vehicleSeed;
