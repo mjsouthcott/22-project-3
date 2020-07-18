@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import CreateVehicleForm from "../components/CreateVehicleForm/index";
 import operatorVehicles from "../utils/operatorVehicles";
 import technicianVehicles from "../utils/technicianVehicles";
-
-// const ROLE = "Operations Manager";
-const ROLE = "Maintenance Manager";
+import UserContext from "../utils/UserContext";
 
 let formTitle, role, vehicles;
 
@@ -22,9 +20,11 @@ const getProps = function (currentRole) {
   }
 };
 
-getProps(ROLE);
-
 function CreateVehicle() {
+  const currentUser = useContext(UserContext);
+
+  getProps(currentUser.role);
+
   return (
     <CreateVehicleForm formTitle={formTitle} role={role} vehicles={vehicles} />
   );

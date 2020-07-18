@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import UserTable from "../components/UserTable/index";
 import API from "../utils/API";
-
-const ROLE = "Operations Manager";
-// const ROLE = "Maintenance Manager";
+import UserContext from "../utils/UserContext";
 
 let pageTitle;
 
@@ -17,17 +15,19 @@ const getProps = function (role) {
   }
 };
 
-getProps(ROLE);
-
 function DisplayUsers() {
   const [users, setUsers] = useState([]);
 
+  const currentUser = useContext(UserContext);
+
+  getProps(currentUser.role);
+
   useEffect(() => {
-    if (ROLE === "Operations Manager") {
+    if (currentUser.role === "Operations Manager") {
       API.getOperators().then((res) => {
         setUsers(res.data);
       });
-    } else if (ROLE === "Maintenance Manager") {
+    } else if (currentUser.role === "Maintenance Manager") {
       API.getTechnicians().then((res) => {
         setUsers(res.data);
       });
