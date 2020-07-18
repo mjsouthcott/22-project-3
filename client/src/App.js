@@ -95,11 +95,13 @@ function App() {
                 {isManager ? <CreateVehicle /> : <Unauthorized />}
               </Route>
 
+
               {/* added by mila, trying out profile page  */}
               <Route path="/profile" component={Profile} />
 
 
-            </Switch>
+
+          </Switch>
         </LayoutCanvas>
          )}
       </UserContext.Provider>

@@ -57,8 +57,8 @@ function DisplayVehicles() {
   }
 
   function updateDismountedUsers(userId) {
-    const newDismountedUsers = dismountedUsers.filter((operator) => {
-      return operator._id !== userId;
+    const newDismountedUsers = dismountedUsers.filter((user) => {
+      return user._id !== userId;
     });
     setDismountedUsers(newDismountedUsers);
   }
