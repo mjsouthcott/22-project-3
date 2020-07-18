@@ -1,16 +1,12 @@
 // bring in all the react related
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // bring in all the pages
 
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 
-// import CreateRepairRequest from './pages/CreateRepairRequest'
+import CreateRepairRequest from "./pages/CreateRepairRequest";
 // import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
 // bring in all the components
 import LayoutCanvas from "./components/LayoutCanvas";
@@ -51,23 +47,28 @@ function App() {
   }
 
 
-// setting isManager manually for testing purposes ------------------------------------
-  const isManager = false
+  // setting isManager manually for testing purposes ------------------------------------
+  const isManager = true;
+
 
   return (
     <Router>
       <UserContext.Provider value={userState}>
         {/* render login form if not logged in  */}
-      {!userState._id && <Login handleLogin={handleLogin} />}
-      {/* render the dashbord and other pages if logged in  */}
-      {userState._id && (
-        <LayoutCanvas>
+        {!userState._id && <Login handleLogin={handleLogin} />}
+        {/* render the dashbord and other pages if logged in  */}
+        {userState._id && (
+          <LayoutCanvas>
             <Switch>
               {/* conditional render all the page if not authorized to see */}
               <Route exact path="/">
                 {/* {userState.isManager ? <Dashboard /> : <Unauthorized />} */}
-                {isManager ? <Dashboard /> : <Unauthorized />}   
+                {isManager ? <Dashboard /> : <Unauthorized />}
               </Route>
+              <Route
+                path="/create-repair-request"
+                component={CreateRepairRequest}
+              />
               <Route path="/display-users" component={DisplayUsers} />
               <Route path="/display-vehicles" component={DisplayVehicles} />
               <Route
@@ -90,11 +91,9 @@ function App() {
 
               {/* added by mila, trying out profile page  */}
               <Route path="/profile" component={Profile} />
-
-
             </Switch>
-        </LayoutCanvas>
-         )}
+          </LayoutCanvas>
+        )}
       </UserContext.Provider>
     </Router>
   );
