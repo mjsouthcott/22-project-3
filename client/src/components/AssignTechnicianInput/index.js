@@ -12,7 +12,7 @@ import * as Yup from "yup";
 import "./style.css";
 import API from "../../utils/API";
 
-function AssignUserInput(props) {
+function AssignTechnicianInput(props) {
   const useStyles = makeStyles({
     typography: {
       marginBottom: 15,
@@ -27,47 +27,52 @@ function AssignUserInput(props) {
   const classes = useStyles();
 
   const UserFormSchema = Yup.object().shape({
-    occupant: Yup.string().required("Required"),
+    technician: Yup.string().required("Required"),
   });
 
   return (
     <Container maxWidth="xs">
       <Formik
         initialValues={{
-          vehicle: props.vehicle._id,
-          occupant: "",
+          repairRequest: props.repairRequest._id,
+          technician: "",
         }}
         validationSchema={UserFormSchema}
         onSubmit={(values) => {
-          API.updateVehicleOccupant(values.vehicle, values.occupant)
+          API.updateRepairRequestAssignedTo(
+            values.repairRequest,
+            values.technician
+          )
             .then(() => {
-              API.updateUserDismountedStatus(values.occupant, true);
+              API.updateUserAvailableStatus(values.technician, false);
             })
             .then(() => {
-              const targetUser = props.dismountedUsers.find((user) => {
-                return user._id === values.occupant;
+              props.availableTechnicians.map((technician) => {
+                if (technician._id === values.technician) {
+                  console.log(technician, values.technician);
+                  props.updateVehicles(values.repairRequest, technician);
+                }
               });
-              props.updateVehicles(values.vehicle, targetUser);
             })
             .then(() => {
-              props.updateDismountedUsers(values.occupant);
+              props.updateAvailableTechnicians(values.technician);
             });
         }}
       >
         {({ errors, touched, values }) => (
           <Form>
             <FormGroup className={classes.formGroup}>
-              <Field name="occupant" as={TextField} select label="Assign">
-                {props.dismountedUsers.map((user) => (
+              <Field name="technician" as={TextField} select label="Assign">
+                {props.availableTechnicians.map((user) => (
                   <MenuItem
                     key={user._id}
                     value={user._id}
                   >{`${user.rank} ${user.firstName} ${user.lastName}`}</MenuItem>
                 ))}
               </Field>
-              {errors.occupant && touched.occupant ? (
+              {errors.technician && touched.technician ? (
                 <span className={classes.errorMessage}>
-                  <ErrorMessage name="occupant" />
+                  <ErrorMessage name="technician" />
                 </span>
               ) : null}
             </FormGroup>
@@ -81,4 +86,4 @@ function AssignUserInput(props) {
   );
 }
 
-export default AssignUserInput;
+export default AssignTechnicianInput;

@@ -93,9 +93,17 @@ function App() {
                 {/* {userState.isManager ? <CreateVehicle /> : <Unauthorized />} */}
                 {isManager ? <CreateVehicle /> : <Unauthorized />}
               </Route>
-
-
             </Switch>
+            <Route path="/create-user">
+              {userState.isManager ? <CreateUser /> : <Unauthorized />}
+            </Route>
+            <Route path="/create-vehicle">
+              {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
+            </Route>
+            <Route path="/">
+              {true ? <Dashboard /> : <Unauthorized />}
+            </Route>
+          </Switch>
         </LayoutCanvas>
          )}
       </UserContext.Provider>
