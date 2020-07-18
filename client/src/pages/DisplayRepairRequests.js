@@ -26,12 +26,14 @@ function DisplayRepairRequests() {
 
   function updateVehicles(repairRequestId, userObject) {
     let newVehicles = [...vehicles];
-    const targetRepairRequest = newVehicles.find((vehicle) => {
-      vehicle.repairRequests.find((repairRequest) => {
-        return repairRequest._id === repairRequestId;
-      });
+    newVehicles.map((vehicle) => {
+      if (vehicle.repairRequests) {
+        vehicle.repairRequests.map((repairRequest) => {
+          if (repairRequest._id === repairRequestId)
+            repairRequest.assignedTo = userObject;
+        });
+      }
     });
-    targetRepairRequest.assignedTo = userObject;
     setVehicles(newVehicles);
   }
 

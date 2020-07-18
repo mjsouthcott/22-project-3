@@ -46,20 +46,17 @@ function AssignTechnicianInput(props) {
             .then(() => {
               API.updateUserAvailableStatus(values.technician, false);
             })
-            .then(() => {});
-          // API.updateVehicleOccupant(values.vehicle, values.occupant)
-          //   .then(() => {
-          //     API.updateUserDismountedStatus(values.occupant, true);
-          //   })
-          //   .then(() => {
-          //     const targetUser = props.dismountedUsers.find((user) => {
-          //       return user._id === values.occupant;
-          //     });
-          //     props.updateVehicles(values.vehicle, targetUser);
-          //   })
-          //   .then(() => {
-          //     props.updateDismountedUsers(values.occupant);
-          //   });
+            .then(() => {
+              props.availableTechnicians.map((technician) => {
+                if (technician._id === values.technician) {
+                  console.log(technician, values.technician);
+                  props.updateVehicles(values.repairRequest, technician);
+                }
+              });
+            })
+            .then(() => {
+              props.updateAvailableTechnicians(values.technician);
+            });
         }}
       >
         {({ errors, touched, values }) => (
