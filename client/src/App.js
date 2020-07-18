@@ -8,6 +8,7 @@ import {
 // bring in all the pages
 
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 // import CreateRepairRequest from './pages/CreateRepairRequest'
 // import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
@@ -93,16 +94,13 @@ function App() {
                 {/* {userState.isManager ? <CreateVehicle /> : <Unauthorized />} */}
                 {isManager ? <CreateVehicle /> : <Unauthorized />}
               </Route>
-            </Switch>
-            <Route path="/create-user">
-              {userState.isManager ? <CreateUser /> : <Unauthorized />}
-            </Route>
-            <Route path="/create-vehicle">
-              {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
-            </Route>
-            <Route path="/">
-              {true ? <Dashboard /> : <Unauthorized />}
-            </Route>
+
+
+              {/* added by mila, trying out profile page  */}
+              <Route path="/profile" component={Profile} />
+
+
+
           </Switch>
         </LayoutCanvas>
          )}
