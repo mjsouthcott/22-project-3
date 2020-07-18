@@ -10,26 +10,15 @@ import { Link } from "react-router-dom";
 import "./Style.css";
 
 
-import UserContext from "../../utils/UserContext";
 
-// const { role } = useContext(UserContext);
-
-export const firstListItems = (
+export const opsManagerListItems = (
   <div>
-    <Link to="/">
-      <ListItem button>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="View Dashboard" />
-      </ListItem>
-    </Link>
     <Link to="/create-user">
       <ListItem button>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Create User" />
+        <ListItemText primary="Create Operator" />
       </ListItem>
     </Link>
     <Link to="/create-vehicle">
@@ -37,41 +26,15 @@ export const firstListItems = (
         <ListItemIcon>
           <AirportShuttleIcon />
         </ListItemIcon>
-        <ListItemText primary="Create Vehicle" />
+        <ListItemText primary="Create Operator Vehicle" />
       </ListItem>
     </Link>
-  </div>
-);
-
-export const secondListItems = (
-  <div>
-    <Link to="/create-repairRequest">
-      <ListItem button>
-        <ListItemIcon>
-          <AssignmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="New Repair Request" />
-      </ListItem>
-    </Link>
-    <Link to="/create-repairWorkorder">
-      <ListItem button>
-        <ListItemIcon>
-          <AssignmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="New Repair Work Order" />
-      </ListItem>
-    </Link>
-  </div>
-);
-
-export const thirdListItems = (
-  <div>
     <Link to="/display-users">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
-        <ListItemText primary="Display User" />
+        <ListItemText primary="Display Operators" />
       </ListItem>
     </Link>
     <Link to="/display-vehicles">
@@ -79,7 +42,44 @@ export const thirdListItems = (
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
-        <ListItemText primary="Display Vehicles" />
+        <ListItemText primary="Display Operator Vehicles" />
+      </ListItem>
+    </Link>
+  </div>
+);
+
+export const maintenanceManagerListItems = (
+  <div>
+    <Link to="/create-user">
+      <ListItem button>
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Create Technician" />
+      </ListItem>
+    </Link>
+    <Link to="/create-vehicle">
+      <ListItem button>
+        <ListItemIcon>
+          <AirportShuttleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Create Technician Vehicle" />
+      </ListItem>
+    </Link>
+    <Link to="/display-users">
+      <ListItem button>
+        <ListItemIcon>
+          <PageviewIcon />
+        </ListItemIcon>
+        <ListItemText primary="Display Technicians" />
+      </ListItem>
+    </Link>
+    <Link to="/display-vehicles">
+      <ListItem button>
+        <ListItemIcon>
+          <PageviewIcon />
+        </ListItemIcon>
+        <ListItemText primary="Display Technician Vehicles" />
       </ListItem>
     </Link>
     <Link to="/display-repairRequests">
@@ -95,22 +95,50 @@ export const thirdListItems = (
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
-        <ListItemText primary="Display Repair Workorders" />
+        <ListItemText primary="Display Repair Work Orders" />
       </ListItem>
     </Link>
+    <Link to="/">
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Display Dashboard" />
+      </ListItem>
+    </Link>
+  </div>
+);
 
-    {/* trying out profile page -------------------------s */}
-    <Link to="/profile">
+export const operatorListItems = (
+  <div>
+    <Link to="/create-repairRequest">
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Create Repair Request" />
+      </ListItem>
+    </Link>
+  </div>
+);
+
+export const technicianListItems = (
+  <div>
+    <Link to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
-        <ListItemText primary="Profile" />
+        <ListItemText primary="Display Repair Requests" />
       </ListItem>
     </Link>
-
-
-
-
+    <Link to="/display-repairWorkorders">
+      <ListItem button>
+        <ListItemIcon>
+          <PageviewIcon />
+        </ListItemIcon>
+        <ListItemText primary="Display Repair Work Orders" />
+      </ListItem>
+    </Link>
   </div>
 );
