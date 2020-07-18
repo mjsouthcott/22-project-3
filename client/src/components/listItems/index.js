@@ -98,7 +98,7 @@ export const maintenanceManagerListItems = (
         <ListItemText primary="Display Repair Work Orders" />
       </ListItem>
     </Link>
-    <Link to="/">
+    <Link to="/dashboard">
       <ListItem button>
         <ListItemIcon>
           <DashboardIcon />

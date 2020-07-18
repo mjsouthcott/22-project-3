@@ -11,6 +11,7 @@ import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
 // bring in all the components
 import LayoutCanvas from "./components/LayoutCanvas";
 import Unauthorized from "./components/Unauthorized";
+import WelcomePage from "./components/WelcomePage"
 // bring in all the global css
 import "./App.css";
 // bring in all the contexts
@@ -56,7 +57,8 @@ function App() {
         {userState._id && (
           <LayoutCanvas>
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/" component={WelcomePage}/>
+              <Route exact path="/dashboard">
                 {userState.role==='Maintenance Manager' ? <Dashboard /> : <Unauthorized />}
               </Route>
               <Route path="/display-users">
