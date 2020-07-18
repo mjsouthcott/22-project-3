@@ -1,6 +1,10 @@
 // bring in all the react related
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 // bring in all the pages
 
 import Login from "./pages/Login";
@@ -52,37 +56,56 @@ function App() {
     setUserState(data);
   }
 
+
+// setting isManager manually for testing purposes ------------------------------------
+  const isManager = true
+
   return (
     <Router>
       <UserContext.Provider value={userState}>
+        {/* render login form if not logged in  */}
+      {!userState._id && <Login handleLogin={handleLogin} />}
+      {/* render the dashbord and other pages if logged in  */}
+      {userState._id && (
         <LayoutCanvas>
-          {!userState._id && <Login handleLogin={handleLogin} />}
+            <Switch>
+              {/* conditional render all the page if not authorized to see */}
+              <Route exact path="/">
+                {/* {userState.isManager ? <Dashboard /> : <Unauthorized />} */}
+                {isManager ? <Dashboard /> : <Unauthorized />}   
+              </Route>
+              <Route path="/display-users" component={DisplayUsers} />
+              <Route path="/display-vehicles" component={DisplayVehicles} />
+              <Route
+                path="/display-repairRequests"
+                component={DisplayRepairRequests}
+              />
+              <Route path="/display-repairWorkorders" />
+              {/* create the repairRequest and repaireWorkorders */}
+              <Route path="/create-repairRequest" />
+              <Route path="/create-repairWorkorder" />
 
-          <Switch>
-            {/* conditional render all the page if not authorized to see */}
-
-            <Route path="/display-users" component={DisplayUsers} />
-            <Route path="/display-vehicles" component={DisplayVehicles} />
-            <Route
-              path="/display-repairRequests"
-              component={DisplayRepairRequests}
-            />
-            <Route path="/display-repairWorkorders" />
-            {/* create the repairRequest and repaireWorkorders */}
-            <Route path="/create-repairRequest" />
-            <Route path="/create-repairWorkorder" />
-
+              <Route path="/create-user">
+                {/* {userState.isManager ? <CreateUser /> : <Unauthorized />} */}
+                {isManager ? <CreateUser /> : <Unauthorized />}
+              </Route>
+              <Route path="/create-vehicle">
+                {/* {userState.isManager ? <CreateVehicle /> : <Unauthorized />} */}
+                {isManager ? <CreateVehicle /> : <Unauthorized />}
+              </Route>
+            </Switch>
             <Route path="/create-user">
               {userState.isManager ? <CreateUser /> : <Unauthorized />}
             </Route>
             <Route path="/create-vehicle">
               {userState.isManager ? <CreateVehicle /> : <Unauthorized />}
             </Route>
-            {/* <Route path="/">
+            <Route path="/">
               {true ? <Dashboard /> : <Unauthorized />}
-            </Route> */}
+            </Route>
           </Switch>
         </LayoutCanvas>
+         )}
       </UserContext.Provider>
     </Router>
   );

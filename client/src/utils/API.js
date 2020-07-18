@@ -9,6 +9,9 @@ export default {
   login: function (user) {
     return axios.post(`/api/login/${user.username}`, user)
   },
+  logout: function () {
+    return axios.get(`/api/login/logout`)
+  },
 
   // User methods
   getUsers: function () {
