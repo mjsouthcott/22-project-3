@@ -18,7 +18,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { firstListItems, secondListItems, thirdListItems } from "../listItems";
+import { opsManagerListItems, maintenanceManagerListItems, operatorListItems, technicianListItems } from "../listItems";
 import UserContext from "../../utils/UserContext";
 
 import InputIcon from "@material-ui/icons/Input";
@@ -120,9 +120,24 @@ export default function Navigation(props) {
     API.logout().then(() => (window.location.href = "/"));
   };
 
-  const { isManager } = useContext(UserContext);
-  // let isManager = false
-  // if (role === 'Operations Manager') isManager = true
+  const { role } = useContext(UserContext);
+  let menuListItems = opsManagerListItems;
+  switch(role) {
+    case 'Technician':
+      menuListItems = technicianListItems
+      break;
+    case 'Operator':
+      menuListItems = operatorListItems
+      break;
+    case 'Operations Manager':
+      menuListItems = opsManagerListItems
+      break;
+    case 'Maintenance Manager':
+      menuListItems = maintenanceManagerListItems
+      break;
+  }
+
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -184,18 +199,7 @@ export default function Navigation(props) {
           </IconButton>
         </div>
         <Divider />
-        {isManager ? (
-          <div>
-            {" "}
-            <List>{firstListItems}</List>
-          </div>
-        ) : (
-          <div></div>
-        )}
-        <Divider />
-        <List>{secondListItems}</List>
-        <Divider />
-        <List>{thirdListItems}</List>
+        <List>{menuListItems}</List>
       </Drawer>
 
       <main className={classes.content}>
