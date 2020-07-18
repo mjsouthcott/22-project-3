@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import CreateUserForm from "../components/CreateUserForm/index";
 import operatorRanks from "../utils/operatorRanks";
 import technicianRanks from "../utils/technicianRanks";
 import operatorOccupations from "../utils/operatorOccupations";
 import technicianOccupations from "../utils/technicianOccupations";
-
-// const ROLE = "Operations Manager";
-const ROLE = "Maintenance Manager";
+import UserContext from "../utils/UserContext";
 
 let formTitle, role, ranks, occupations;
 
@@ -26,9 +24,11 @@ const getProps = function (currentRole) {
   }
 };
 
-getProps(ROLE);
-
 function CreateUser() {
+  const currentUser = useContext(UserContext);
+
+  getProps(currentUser.role);
+
   return (
     <CreateUserForm
       formTitle={formTitle}

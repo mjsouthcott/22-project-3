@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import RepairRequestTable from "../components/RepairRequestTable/index";
 import API from "../utils/API";
-
-// const ROLE = "Maintenance Manager";
-const ROLE = "Technician";
+import UserContext from "../utils/UserContext";
 
 function DisplayRepairRequests() {
   const [vehicles, setVehicles] = useState([]);
   const [availableTechnicians, setAvailableTechnicians] = useState([]);
+
+  const currentUser = useContext(UserContext);
 
   useEffect(() => {
     API.getVehicles()
@@ -48,7 +48,7 @@ function DisplayRepairRequests() {
 
   return (
     <RepairRequestTable
-      role={ROLE}
+      role={currentUser.role}
       vehicles={vehicles}
       availableTechnicians={availableTechnicians}
       updateVehicles={updateVehicles}
