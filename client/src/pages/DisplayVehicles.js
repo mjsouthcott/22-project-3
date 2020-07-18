@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import VehicleTable from "../components/VehicleTable/index";
 import API from "../utils/API";
-
-const ROLE = "Operations Manager";
-// const ROLE = "Maintenance Manager";
+import UserContext from "../utils/UserContext";
 
 let pageTitle;
 
@@ -17,14 +15,16 @@ const getProps = function (role) {
   }
 };
 
-getProps(ROLE);
-
 function DisplayVehicles() {
   const [vehicles, setVehicles] = useState([]);
   const [dismountedUsers, setDismountedUsers] = useState([]);
 
+  const currentUser = useContext(UserContext);
+
+  getProps(currentUser.role);
+
   useEffect(() => {
-    if (ROLE === "Operations Manager") {
+    if (currentUser.role === "Operations Manager") {
       API.getOperatorVehicles()
         .then((res) => {
           setVehicles(res.data);
@@ -34,7 +34,7 @@ function DisplayVehicles() {
             setDismountedUsers(res.data);
           });
         });
-    } else if (ROLE === "Maintenance Manager") {
+    } else if (currentUser.role === "Maintenance Manager") {
       API.getTechnicianVehicles()
         .then((res) => {
           setVehicles(res.data);
