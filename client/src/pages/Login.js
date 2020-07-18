@@ -1,17 +1,14 @@
 import React from "react";
 import API from "../utils/API";
 import {
-  Avatar,
   Button,
   CssBaseline,
   TextField,
-  Link,
   Box,
   Typography,
   Container,
 } from "@material-ui/core";
 
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormGroup } from "@material-ui/core";
 import { Formik, Form, Field } from "formik";
@@ -21,9 +18,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        eTrippleR
-      </Link>{" "}
+      eTripleR &nbsp;
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -33,6 +28,7 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
+    paddingTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -57,18 +53,43 @@ export default function Login(props) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
         <Formik
           //setting initial value to correct user info fro testing----------------------------------
+          // Maintenance Manager
           initialValues={{
-            username: "maxguo",
+            username: "matthewsouthcott",
             password: "password",
           }}
+
+          // // Operations Manager
+          // initialValues={{
+          //   username: "maxguo",
+          //   password: "password",
+          // }}
+
+          // // Operator
+          // initialValues={{
+          //   username: "mathieuleblanc",
+          //   password: "password",
+          // }}
+
+          // // Tech
+          // initialValues={{
+          //   username: "danieltremblay",
+          //   password: "password",
+          // }}
+
+          // End of test -----------------------------------------------------
+
+
+
+          // initialValues={{
+          //   username: "",
+          //   password: "",
+          // }}
           onSubmit={(values) => {
             const user = {
               username: to.lower(values.username),

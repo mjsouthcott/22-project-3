@@ -168,13 +168,11 @@ export default function Navigation(props) {
             eTripleR
           </Typography>
 
-          <Link to="/profile" style={{color: "white"}}>
-          <IconButton color="inherit">
-            <Badge color="secondary">
+          <IconButton color="inherit" className={classes.signOutButton}>
+            <Link to="/profile" style={{ color: "white" }}>
               <AccountCircleIcon />
-            </Badge>
+            </Link>
           </IconButton>
-          </Link>
 
           <IconButton
             className={classes.signOutButton}

@@ -25,7 +25,6 @@ import API from "./utils/API";
 // import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
 
 function App() {
-  // TODO: the default state value is suppose be grapped from useEffect
   const [userState, setUserState] = useState({});
 
   // check server session for user info when page is opened
@@ -36,12 +35,6 @@ function App() {
         if (res.data.user) {
           setUserState(res.data.user);
         }
-        // if not logged in, lead to log in page
-        //waiting for conditional render decision
-        else
-          console.log(
-            "should go to login page-----------------------------------"
-          );
       })
       .catch((err) => {
         throw new Error(err);
@@ -53,8 +46,10 @@ function App() {
     setUserState(data);
   }
 
+
   // setting isManager manually for testing purposes ------------------------------------
   const isManager = true;
+
 
   return (
     <Router>
