@@ -140,6 +140,8 @@ function RepairRequestTable(props) {
                         <TableCell align="right">
                           {repairRequest.assignedTo ? (
                             `${repairRequest.assignedTo.rank} ${repairRequest.assignedTo.firstName} ${repairRequest.assignedTo.lastName}`
+                          ) : props.availableTechnicians.length === 0 ? (
+                            "No available Technicians"
                           ) : (
                             <AssignTechnicianInput
                               repairRequest={repairRequest}
