@@ -3,14 +3,14 @@ import axios from "axios";
 export default {
   // Login method
   isLoggedIn: function () {
-    return axios.get("/api/login/")
+    return axios.get("/api/login/");
   },
 
   login: function (user) {
-    return axios.post(`/api/login/${user.username}`, user)
+    return axios.post(`/api/login/${user.username}`, user);
   },
   logout: function () {
-    return axios.get(`/api/login/logout`)
+    return axios.get(`/api/login/logout`);
   },
 
   // User methods
@@ -23,7 +23,7 @@ export default {
   },
 
   getOperators: function () {
-    return axios.get('/api/users?role=Operator');
+    return axios.get("/api/users?role=Operator");
   },
 
   getTechnicians: function () {
@@ -31,7 +31,7 @@ export default {
   },
 
   getDismountedOperators: function () {
-    return axios.get('/api/users?role=Operator&mounted=false');
+    return axios.get("/api/users?role=Operator&mounted=false");
   },
 
   getDismountedTechnicians: function () {
@@ -62,11 +62,11 @@ export default {
   getVehicles: function () {
     return axios.get("/api/vehicles");
   },
-  
+
   getVehicle: function (vehicleId) {
     return axios.get(`/api/vehicles/${vehicleId}`);
   },
-  
+
   getOperatorVehicles: function () {
     return axios.get("/api/vehicles?role=Operator");
   },
@@ -111,7 +111,7 @@ export default {
   },
 
   getRepairRequestByTechnician: function (userId) {
-    return axios.get(`/api/repair-requests?assignedTo=${userId}`)
+    return axios.get(`/api/repair-requests?assignedTo=${userId}`);
   },
 
   updateRepairRequestStatus: function (repairRequestId, newStatus) {
