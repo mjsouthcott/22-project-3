@@ -11,13 +11,14 @@ function CreateRepairRequest() {
   useEffect(() => {
     API.getVehicles().then((res) => {
       const targetVehicle = res.data.find(
-        (vehicle) => vehicle.occupant._id === currentUser._id
+        (vehicle) =>
+          vehicle.occupant && vehicle.occupant._id === currentUser._id
       );
       setVehicle(targetVehicle);
     });
   });
 
-  return <CreateRepairRequestForm vehicle={vehicle} />;
+  return <CreateRepairRequestForm user={currentUser} vehicle={vehicle} />;
 }
 
 export default CreateRepairRequest;

@@ -49,13 +49,22 @@ function AssignTechnicianInput(props) {
             .then(() => {
               props.availableTechnicians.map((technician) => {
                 if (technician._id === values.technician) {
-                  console.log(technician, values.technician);
-                  props.updateVehicles(values.repairRequest, technician);
+                  props.updateVehicles(
+                    values.repairRequest,
+                    technician,
+                    "Work In Progress"
+                  );
                 }
               });
             })
             .then(() => {
               props.updateAvailableTechnicians(values.technician);
+            })
+            .then(() => {
+              API.updateRepairRequestStatus(
+                values.repairRequest,
+                "Work In Progress"
+              );
             });
         }}
       >
