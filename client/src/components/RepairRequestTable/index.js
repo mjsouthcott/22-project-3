@@ -41,7 +41,7 @@ function RepairRequestTable(props) {
               className={classes.typography}
               style={{ marginBottom: 0 }}
             >
-              No Repair Requests to display
+              No Repair Requests to display.
             </Typography>
           ) : (
             <TableContainer>
