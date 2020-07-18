@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 
 // import React from 'react';
 import clsx from "clsx";
@@ -154,9 +155,9 @@ export default function Navigation(props) {
           </Typography>
 
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Link to="/profile" style={{ color: "white" }}>
               <AccountCircleIcon />
-            </Badge>
+            </Link>
           </IconButton>
 
           <IconButton
