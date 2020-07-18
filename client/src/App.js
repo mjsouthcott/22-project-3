@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 
 import CreateRepairRequest from "./pages/CreateRepairRequest";
-// import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
+import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
 // bring in all the components
 import LayoutCanvas from "./components/LayoutCanvas";
 import Unauthorized from "./components/Unauthorized";
@@ -75,7 +75,7 @@ function App() {
                 {userState.role==='Operator' ? <CreateRepairRequest /> : <Unauthorized />}
               </Route>
               <Route path="/create-repairWorkorder">
-                {userState.role==='Technician' ? <CreateRepairRequest /> : <Unauthorized />}
+                {userState.role==='Technician' ? <CreateRepairWorkOrder /> : <Unauthorized />}
               </Route>
               <Route path="/create-user">
                 {(userState.role ==='Operations Manager' || userState.role==='Maintenance Manager') ? <CreateUser /> : <Unauthorized />}
