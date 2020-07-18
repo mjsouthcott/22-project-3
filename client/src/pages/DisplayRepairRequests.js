@@ -38,13 +38,15 @@ function DisplayRepairRequests() {
       });
   }, []);
 
-  function updateVehicles(repairRequestId, userObject) {
+  function updateVehicles(repairRequestId, userObject, status) {
     let newVehicles = [...vehicles];
     newVehicles.map((vehicle) => {
       if (vehicle.repairRequests) {
         vehicle.repairRequests.map((repairRequest) => {
-          if (repairRequest._id === repairRequestId)
+          if (repairRequest._id === repairRequestId) {
             repairRequest.assignedTo = userObject;
+            repairRequest.status = status;
+          }
         });
       }
     });
