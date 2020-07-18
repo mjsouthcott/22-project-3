@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import RepairRequestTable from "../components/RepairRequestTable/index";
 import API from "../utils/API";
 
-const ROLE = "Maintenance Manager";
-// const ROLE = "Technician"
+// const ROLE = "Maintenance Manager";
+const ROLE = "Technician";
 
 function DisplayRepairRequests() {
   const [vehicles, setVehicles] = useState([]);
