@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Button, CssBaseline, Box, Typography, Container} from '@material-ui/core';
+import {Avatar, CssBaseline, Box, Typography, Container} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -37,14 +37,6 @@ export default function Unauthorized() {
             You are not allowed to see this page! 
         </Typography>
         <form className={classes.form} noValidate>
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Go Back to Welcome Page
-          </Button>
         </form>
       </div>
       <Box mt={8}>
