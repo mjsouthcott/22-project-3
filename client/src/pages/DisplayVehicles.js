@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import VehicleTable from "../components/VehicleTable/index";
 import API from "../utils/API";
 
-// const ROLE = "Operations Manager";
-const ROLE = "Maintenance Manager";
+const ROLE = "Operations Manager";
+// const ROLE = "Maintenance Manager";
 
 let pageTitle;
 
