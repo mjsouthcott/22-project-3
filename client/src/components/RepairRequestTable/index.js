@@ -12,6 +12,7 @@ import {
   Card,
   CardContent,
   Chip,
+  Button,
 } from "@material-ui/core";
 import AssignTechnicianInput from "../AssignTechnicianInput";
 
@@ -48,7 +49,7 @@ function RepairRequestTable(props) {
                     Crew Remained With Vehicle
                   </TableCell>
                   <TableCell align="right">Status</TableCell>
-                  <TableCell align="right">Technician</TableCell>
+                  <TableCell align="right">Assigned To</TableCell>
                   <TableCell align="right">Repair Work Order</TableCell>
                 </TableRow>
               </TableHead>
@@ -115,7 +116,6 @@ function RepairRequestTable(props) {
                         {repairRequest.assignedTo ? (
                           `${repairRequest.assignedTo.rank} ${repairRequest.assignedTo.firstName} ${repairRequest.assignedTo.lastName}`
                         ) : (
-                          // "Not assigned"
                           <AssignTechnicianInput
                             repairRequest={repairRequest}
                             availableTechnicians={props.availableTechnicians}
@@ -127,11 +127,26 @@ function RepairRequestTable(props) {
                         )}
                       </TableCell>
                       <TableCell align="right">
-                        {repairRequest.repairWorkOrder === undefined ? (
+                        {repairRequest.repairWorkOrder === undefined &&
+                        props.role === "Maintenance Manager" ? (
                           <Chip
                             label="Not Created"
                             style={{ color: "white", backgroundColor: "red" }}
                           />
+                        ) : repairRequest.repairWorkOrder === undefined &&
+                          props.role === "Technician" ? (
+                          <Button
+                            variant="contained"
+                            // style={{ color: "white", backgroundColor: "green" }}
+                            onClick={() => {
+                              console.log(
+                                repairRequest._id,
+                                repairRequest.number
+                              );
+                            }}
+                          >
+                            Create
+                          </Button>
                         ) : repairRequest.repairWorkOrder.status === "Open" ? (
                           <Chip
                             label="Open"
