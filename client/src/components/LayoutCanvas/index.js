@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import { Link } from "react-router-dom";
 // import React from 'react';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -153,11 +153,13 @@ export default function Navigation(props) {
             eTripleR
           </Typography>
 
+          <Link to="/profile" style={{color: "white"}}>
           <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            <Badge color="secondary">
               <AccountCircleIcon />
             </Badge>
           </IconButton>
+          </Link>
 
           <IconButton
             className={classes.signOutButton}

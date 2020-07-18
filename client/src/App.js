@@ -68,7 +68,7 @@ function App() {
               {/* conditional render all the page if not authorized to see */}
               <Route exact path="/">
                 {/* {userState.isManager ? <Dashboard /> : <Unauthorized />} */}
-                {isManager ? <Dashboard /> : <Unauthorized />}
+                {true ? <Dashboard /> : <Unauthorized />}
               </Route>
               <Route
                 path="/create-repair-request"
@@ -87,11 +87,11 @@ function App() {
 
               <Route path="/create-user">
                 {/* {userState.isManager ? <CreateUser /> : <Unauthorized />} */}
-                {isManager ? <CreateUser /> : <Unauthorized />}
+                {true ? <CreateUser /> : <Unauthorized />}
               </Route>
               <Route path="/create-vehicle">
                 {/* {userState.isManager ? <CreateVehicle /> : <Unauthorized />} */}
-                {isManager ? <CreateVehicle /> : <Unauthorized />}
+                {true ? <CreateVehicle /> : <Unauthorized />}
               </Route>
 
               {/* added by mila, trying out profile page  */}

@@ -96,19 +96,5 @@ export const thirdListItems = (
         <ListItemText primary="Display Repair Workorders" />
       </ListItem>
     </Link>
-
-    {/* trying out profile page -------------------------s */}
-    <Link to="/profile">
-      <ListItem button>
-        <ListItemIcon>
-          <PageviewIcon />
-        </ListItemIcon>
-        <ListItemText primary="Profile" />
-      </ListItem>
-    </Link>
-
-
-
-
   </div>
 );
