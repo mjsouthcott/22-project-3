@@ -22,14 +22,10 @@ const usersController = require("../../controllers/usersController");
 
 router.route("/").get(usersController.findAll).post(usersController.create);
 
-
-
 router
   .route("/:id")
   .get(usersController.findById)
   .patch(usersController.updateById);
-
-
 
 router.route("/:role").get(usersController.findAll);
 

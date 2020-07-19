@@ -10,6 +10,8 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import CheckIcon from "@material-ui/icons/Check";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import API from "../../utils/API";
@@ -29,6 +31,13 @@ function VehicleForm(props) {
     },
   });
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(() => setOpen(false), 1500);
+  };
 
   const VehicleFormSchema = Yup.object().shape({
     type: Yup.string().required("Required"),
@@ -59,7 +68,7 @@ function VehicleForm(props) {
               callSign: "",
             }}
             validationSchema={VehicleFormSchema}
-            onSubmit={(values) => {
+            onSubmit={(values, { resetForm }) => {
               const selectedVehicle = props.vehicles.find((vehicle) => {
                 return vehicle.type === values.type;
               });
@@ -70,11 +79,13 @@ function VehicleForm(props) {
                 callSign: to.upper(values.callSign),
                 iconSrc: selectedVehicle.icon,
               };
-              console.log(vehicle);
-
               API.saveVehicle(vehicle);
 
-              // TODO: Add page redirect after save
+              // Show alert with form submission feedback
+              handleClick();
+
+              // Reset form
+              resetForm();
             }}
           >
             {({ errors, touched, values }) => (
@@ -121,6 +132,17 @@ function VehicleForm(props) {
           </Formik>
         </CardContent>
       </Card>
+      {open && (
+        <Alert
+          icon={<CheckIcon fontSize="inherit" />}
+          variant="filled"
+          severity="success"
+          hidden={true}
+          style={{ marginTop: 20 }}
+        >
+          {props.role} vehicle created
+        </Alert>
+      )}
     </Container>
   );
 }
