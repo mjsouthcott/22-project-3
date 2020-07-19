@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { loadModules } from 'esri-loader';
 import API from '../../utils/API'
 
@@ -42,6 +42,46 @@ export const WebMapView = () => {
             
             mapSymbols.forEach(symbolObj => {
 
+            if (symbolObj.role === "Maintenance Manager" && symbolObj.location != undefined)
+            {
+
+              let registrationNumber = symbolObj.registrationNumber
+              let callSign = symbolObj.callSign
+              let userName = `${symbolObj.occupant.firstName} ${symbolObj.occupant.lastName}`
+              let occupation = symbolObj.occupant.occupation
+              let rank = symbolObj.occupant.rank
+              let vehicleType = symbolObj.type
+
+              let point = {
+                type: "point", // autocasts as new Point()
+                longitude: symbolObj.location.longitude,
+                latitude: symbolObj.location.latitude
+              };
+
+              let symbol = {
+                type: "simple-marker",  // autocasts as new PictureMarkerSymbol()
+                color: 'orange',
+                size: "15px",
+                style: 'square'
+              }
+
+              let graphic = new Graphic({
+                geometry: point,
+                symbol: symbol});
+
+              graphic.popupTemplate = {
+                title : "Maintenance Manager Location",
+                content:`<ul><li>Vehicle Registration Number: ${registrationNumber}</li>` +
+                        `<li>Vehicle CallSign: ${callSign}</li>` +
+                        `<li>Manager Name: ${userName}</li>` +
+                        `<li>Manager Rank: ${rank}</li>` +
+                        `<li>Vehicle Type: ${vehicleType}</li><ul>`}
+                      
+              pointGraphics.push(graphic)    
+            }
+
+
+
             if (symbolObj.repairRequests!= 0){
               let callSign = symbolObj.callSign
               let registrationNumber = symbolObj.registrationNumber
@@ -69,7 +109,7 @@ export const WebMapView = () => {
                   size: "15px"
                 }
                 
-                element.localTacticalSituation === 'Safe' ? symbol.style = 'circle' : symbol.style = 'square'
+                element.localTacticalSituation === 'Safe' ? symbol.style = 'circle' : symbol.style = 'triangle'
 
                 let graphic = new Graphic({
                   geometry: point,
