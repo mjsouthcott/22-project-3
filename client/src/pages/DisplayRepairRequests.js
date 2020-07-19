@@ -27,6 +27,10 @@ function DisplayRepairRequests() {
                 filteredVehicles.push(vehicle);
             });
           });
+        } else if (currentUser.role === "Operator") {
+          filteredVehicles = res.data.find((vehicle) => {
+            return vehicle.occupant === currentUser._id;
+          });
         }
         console.log(filteredVehicles);
         setVehicles(filteredVehicles);
