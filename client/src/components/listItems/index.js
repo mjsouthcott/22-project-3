@@ -119,6 +119,14 @@ export const operatorListItems = (
         <ListItemText primary="Create Repair Request" />
       </ListItem>
     </Link>
+    <Link to="/display-repairRequests">
+      <ListItem button>
+        <ListItemIcon>
+          <PageviewIcon />
+        </ListItemIcon>
+        <ListItemText primary="Display Repair Requests" />
+      </ListItem>
+    </Link>
   </div>
 );
 
