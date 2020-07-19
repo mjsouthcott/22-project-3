@@ -28,8 +28,9 @@ function DisplayRepairRequests() {
             });
           });
         } else if (currentUser.role === "Operator") {
-          filteredVehicles = res.data.find((vehicle) => {
-            return vehicle.occupant === currentUser._id;
+          res.data.forEach((vehicle) => {
+            if (vehicle.occupant && vehicle.occupant._id === currentUser._id)
+              filteredVehicles.push(vehicle);
           });
         }
         console.log(filteredVehicles);
