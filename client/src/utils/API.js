@@ -12,6 +12,10 @@ export default {
   logout: function () {
     return axios.get(`/api/login/logout`);
   },
+  
+  updateUserPassword: function (password) {
+    return axios.patch("/api/login/password", password);
+  },
 
   // User methods
   getUsers: function () {
@@ -53,6 +57,7 @@ export default {
       available: newAvailableStatus,
     });
   },
+
 
   saveUser: function (userData) {
     return axios.post("/api/users", userData);

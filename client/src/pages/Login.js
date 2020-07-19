@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import API from "../utils/API";
 import {
   Button,
@@ -7,10 +7,13 @@ import {
   Box,
   Typography,
   Container,
+  FormGroup
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { FormGroup } from "@material-ui/core";
+// import {  } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+
 import { Formik, Form, Field } from "formik";
 const to = require("to-case");
 
@@ -48,6 +51,21 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login(props) {
   const classes = useStyles();
+  const [error, setError] = useState("");
+
+  const handleFormSubmit = (values) => {
+    const user = {
+      username: to.lower(values.username),
+      password: values.password,
+    };
+    API.login(user)
+      .then(function (res) {
+        props.handleLogin(res.data);
+      })
+      .catch(function (err) {
+        setError("Credentials are incorrect");
+      });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -63,7 +81,6 @@ export default function Login(props) {
             username: "matthewsouthcott",
             password: "password",
           }}
-
           // // Operations Manager
           // initialValues={{
           //   username: "maxguo",
@@ -84,25 +101,11 @@ export default function Login(props) {
 
           // End of test -----------------------------------------------------
 
-
-
           // initialValues={{
           //   username: "",
           //   password: "",
           // }}
-          onSubmit={(values) => {
-            const user = {
-              username: to.lower(values.username),
-              password: values.password,
-            };
-            API.login(user)
-              .then(function (res) {
-                props.handleLogin(res.data);
-              })
-              .catch(function (err) {
-                console.log("credentials are incorrect");
-              });
-          }}
+          onSubmit={handleFormSubmit}
         >
           {({ errors, touched, values }) => (
             <Form className={classes.form}>
@@ -145,8 +148,16 @@ export default function Login(props) {
             </Form>
           )}
         </Formik>
+        <Alert
+          variant="outlined"
+          severity="error"
+          style={{ opacity: error ? 1 : 0 , width:"100%"}}
+          onClose={() => setError("")}
+        >
+          {error}
+        </Alert>
       </div>
-      <Box mt={8}>
+      <Box mt={4}>
         <Copyright />
       </Box>
     </Container>
