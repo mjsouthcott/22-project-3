@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../utils/UserContext";
-
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -15,21 +14,33 @@ import {
   Button,
   TextField,
   Typography,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+
+import KeyboardCapslockIcon from "@material-ui/icons/KeyboardCapslock";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import DriveEtaIcon from "@material-ui/icons/DriveEta";
+import API from "../utils/API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    padding: theme.spacing(2),
+  },
+  card: {
     padding: theme.spacing(4),
+  },
+  items: {
+    margin: theme.spacing(2),
   },
   details: {
     display: "flex",
   },
-
-  progress: {
-    marginTop: theme.spacing(2),
-  },
-  uploadButton: {
-    marginLeft: theme.spacing(2),
+  button: {
+    marginLeft: theme.spacing(1),
   },
 }));
 
@@ -42,27 +53,20 @@ export default function Profile(props) {
   const classes = useStyles();
 
   //get the logged user's info passed in
-  const user = useContext(UserContext);
-  console.log(user);
-
-  // set the userInfo for editing
-  const [userInfo, setUserInfo] = useState(user);
+  const userInfo = useContext(UserContext);
 
   // get new password for updating
   const [password, setPassword] = useState({
-    oldPassword:"",
+    oldPassword: "",
     newPassword: "",
     confirm: "",
   });
 
-  const handleUserInfoChange = (event) => {
-    setUserInfo({
-      ...userInfo,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const [error, setError] = useState({
+    message: "",
+    severity: "",
+  });
 
-  //TODO: aoi call to update the password in the database 
   const handlePasswordChange = (event) => {
     setPassword({
       ...password,
@@ -70,24 +74,59 @@ export default function Profile(props) {
     });
   };
 
+  //TODO: aoi call to update the password in the database
+  const handleFormSubmit = (event) => {
+    //check if any input is empty
+    if (!(password.oldPassword && password.newPassword && password.confirm)) {
+      setError({ message: "Inputs shouldn't be blank.", severity: "error" });
+    } else if (password.newPassword !== password.confirm) {
+      setError({
+        message: "New password entered doesn't match.",
+        severity: "error",
+      });
+    } else {
+      const data = {
+        id: userInfo._id,
+        oldPassword: password.oldPassword,
+        newPassword: password.newPassword,
+      };
+
+      API.updateUserPassword(data).then((res) => {
+        if (res.data) {
+          setError({
+            message: "Password is changed successfully",
+            severity: "success",
+          });
+          setPassword({
+            oldPassword: "",
+            newPassword: "",
+            confirm: "",
+          })
+        } else {
+          setError({
+            message: "Password entered is incorrect.",
+            severity: "error",
+          });
+        }
+      });
+    }
+  };
+
   return (
     <div className={classes.root}>
-      <Grid container spacing={4}>
-        <Grid item md={6} xl={8} sm={12}>
+      <Grid container spacing={6}>
+        <Grid item xl={8} md={6} sm={12}>
           {/* edit user profile  */}
-          <Card {...rest} className={clsx(classes.root, className)}>
+          <Card {...rest} className={clsx(classes.card, className)}>
             <form autoComplete="off" noValidate>
               <CardContent>
                 <div className={classes.details}>
                   <div>
-                    <Typography gutterBottom variant="h2">
+                    <Typography gutterBottom variant="h3">
                       {userInfo.firstName} {userInfo.lastName}
                     </Typography>
 
-                    <Typography
-                      className={classes.locationText}
-                      variant="body1"
-                    >
+                    <Typography className={classes.locationText} variant="h5">
                       {userInfo.role}
                     </Typography>
                   </div>
@@ -95,98 +134,43 @@ export default function Profile(props) {
               </CardContent>
               <Divider />
 
-              <CardContent>
-                <Grid container spacing={3}>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Rank"
-                      margin="dense"
-                      name="rank"
-                      onChange={handleUserInfoChange}
-                      disabled
-                      value={userInfo.rank}
-                      variant="outlined"
-                    />
-                  </Grid>
+              <List>
+                <ListItem className={classes.items}>
+                  <ListItemAvatar>
+                    <KeyboardCapslockIcon />
+                  </ListItemAvatar>
+                  <ListItemText>
+                    <b>Rank: </b> {userInfo.rank}
+                  </ListItemText>
+                </ListItem>
+                <Divider variant="inset" component="li" />
 
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Occupation"
-                      margin="dense"
-                      name="occupation"
-                      onChange={handleUserInfoChange}
-                      disabled
-                      value={userInfo.occupation}
-                      variant="outlined"
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="First name"
-                      margin="dense"
-                      name="firstName"
-                      onChange={handleUserInfoChange}
-                      required
-                      value={userInfo.firstName}
-                      variant="outlined"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Last name"
-                      margin="dense"
-                      name="lastName"
-                      onChange={handleUserInfoChange}
-                      required
-                      value={userInfo.lastName}
-                      variant="outlined"
-                    />
-                  </Grid>
-
-                  {/* <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Email Address"
-                      margin="dense"
-                      name="email"
-                      onChange={handleUserInfoChange}
-                      required
-                      value={userInfo.email}
-                      variant="outlined"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Contact Number"
-                      margin="dense"
-                      name="contactNumber"
-                      onChange={handleUserInfoChange}
-                      required
-                      value={userInfo.contactNumber}
-                      variant="outlined"
-                    />
-                  </Grid> */}
-                </Grid>
-              </CardContent>
-              <Divider />
-              <CardActions>
-                <Button color="primary" variant="contained">
-                  Save details
-                </Button>
-              </CardActions>
+                <ListItem className={classes.items}>
+                  <ListItemAvatar>
+                    <AccountBoxIcon />
+                  </ListItemAvatar>
+                  <ListItemText>
+                    <b>Occupation: </b> {userInfo.occupation}
+                  </ListItemText>
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem className={classes.items}>
+                  <ListItemAvatar>
+                    <DriveEtaIcon />
+                  </ListItemAvatar>
+                  <ListItemText>
+                    <b>Tehicle Information: </b>
+                  </ListItemText>
+                </ListItem>
+                <Divider variant="inset" component="li" />
+              </List>
             </form>
           </Card>
         </Grid>
 
-        <Grid item md={6} xl={4} sm={12}>
+        <Grid item xl={4} md={6} sm={12}>
           {/* user basic info  */}
-          <Card {...rest} className={clsx(classes.root, className)}>
+          <Card {...rest} className={clsx(classes.card, className)}>
             <form>
               <CardHeader subheader="Update password" title="Password" />
               <Divider />
@@ -196,7 +180,6 @@ export default function Profile(props) {
                   label="Old Password"
                   name="oldPassword"
                   onChange={handlePasswordChange}
-                  type="password"
                   value={password.oldPassword}
                   variant="outlined"
                 />
@@ -223,10 +206,24 @@ export default function Profile(props) {
               </CardContent>
               <Divider />
               <CardActions>
-                <Button color="primary" variant="outlined">
+                <Button
+                  color="primary"
+                  variant="outlined"
+                  className={classes.button}
+                  onClick={handleFormSubmit}
+                >
                   Update
                 </Button>
               </CardActions>
+
+              <Alert
+                variant="outlined"
+                severity={error.severity}
+                style={{ opacity: error.message ? 1 : 0 }}
+                onClose={() => setError({})}
+              >
+                {error.message}
+              </Alert>
             </form>
           </Card>
         </Grid>
