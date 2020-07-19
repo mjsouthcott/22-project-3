@@ -82,8 +82,7 @@ function App() {
                 )}
               </Route>
               <Route path="/display-repairRequests">
-                {userState.role === "Technician" ||
-                userState.role === "Maintenance Manager" ? (
+                {userState.role !== "Operations Manager" ? (
                   <DisplayRepairRequests />
                 ) : (
                   <Unauthorized />
