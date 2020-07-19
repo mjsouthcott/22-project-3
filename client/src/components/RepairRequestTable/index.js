@@ -138,7 +138,10 @@ function RepairRequestTable(props) {
                           )}
                         </TableCell>
                         <TableCell align="right">
-                          {repairRequest.assignedTo ? (
+                          {repairRequest.assignedTo === undefined &&
+                          props.user.role === "Operator" ? (
+                            "Technician not yet assigned"
+                          ) : repairRequest.assignedTo ? (
                             `${repairRequest.assignedTo.rank} ${repairRequest.assignedTo.firstName} ${repairRequest.assignedTo.lastName}`
                           ) : props.availableTechnicians.length === 0 ? (
                             "No available Technicians"
@@ -155,11 +158,13 @@ function RepairRequestTable(props) {
                         </TableCell>
                         <TableCell align="right">
                           {repairRequest.repairWorkOrder === undefined &&
-                          props.user.role === "Maintenance Manager" ? (
-                            <Chip
-                              label="Not Created"
-                              style={{ color: "white", backgroundColor: "red" }}
-                            />
+                          (props.user.role === "Maintenance Manager" ||
+                            props.user.role === "Operator") ? (
+                            // <Chip
+                            //   label="Not Created"
+                            //   style={{ color: "white", backgroundColor: "red" }}
+                            // />
+                            "Repair Work Order not yet created"
                           ) : repairRequest.repairWorkOrder === undefined &&
                             props.user.role === "Technician" ? (
                             <Button

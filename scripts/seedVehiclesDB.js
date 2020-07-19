@@ -11,6 +11,10 @@ const vehicleSeed = [
     callSign: "88A",
     iconSrc:
       "assets/images/vehicleIcons/medium-logistic-vehicle-command-post.png",
+    location: {
+      latitude: 45.417049,
+      longitude: -75.599637,
+    },
   },
   {
     role: "Operations Manager",
