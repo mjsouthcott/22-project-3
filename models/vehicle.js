@@ -75,6 +75,16 @@ const vehicleSchema = new Schema(
         ref: "RepairRequest",
       },
     ],
+    location: {
+      type: {
+        latitude: {
+          type: Number,
+        },
+        longitude: {
+          type: Number,
+        },
+      },
+    },
   },
   {
     timestamps: true,
