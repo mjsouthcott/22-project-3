@@ -22,6 +22,7 @@ import CreateVehicle from "./pages/CreateVehicle";
 import DisplayUsers from "./pages/DisplayUsers";
 import DisplayVehicles from "./pages/DisplayVehicles";
 import DisplayRepairRequests from "./pages/DisplayRepairRequests";
+// import DisplayRepairRequests from "./pages/DisplayRepairWorkOrders";
 import API from "./utils/API";
 // import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
 
@@ -67,11 +68,11 @@ function App() {
               <Route path="/display-vehicles">
                 {(userState.role ==='Operations Manager' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
               </Route>
-              <Route path="/display-repairRequests" component={DisplayRepairRequests}>
-                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
+              <Route path="/display-repairRequests">
+                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <DisplayRepairRequests /> : <Unauthorized />}
               </Route>
               <Route path="/display-repairWorkorders" >
-                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
+                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <></> : <Unauthorized />}
               </Route>
               <Route path="/create-repair-request">
                 {userState.role==='Operator' ? <CreateRepairRequest /> : <Unauthorized />}
