@@ -29,7 +29,7 @@ export default function LegendTable() {
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell style={{fontWeight: 800}}>Ticket Status</TableCell>
+            <TableCell style={{fontWeight: 800}}>Requests Status</TableCell>
             <TableCell align="right" style={{fontWeight: 800}}>Color</TableCell>
           </TableRow>
         </TableHead>
