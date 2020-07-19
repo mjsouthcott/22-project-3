@@ -13,9 +13,12 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData('Request Open', <div style={{backgroundColor: "red"}}>. </div>),
-  createData('Request In Progress', <div style={{backgroundColor: "khaki"}}>. </div>),
-  createData('Request Finished', <div style={{backgroundColor: "green"}}>. </div>)
+  createData('Request Open', <div style={{height: "25px", width: "50px",backgroundColor: "red"}}/>),
+  createData('Request In Progress', <div style={{height: "25px", width: "50px",backgroundColor: "khaki"}}/>),
+  createData('Request Finished', <div style={{height: "25px", width: "50px",backgroundColor: "green"}}/>),
+  createData('Manager Location', <div style={{height: "25px", width: "25px", backgroundColor: "orange"}}/>),
+  createData('Situation: Safe', <div style={{height: "25px", width: "25px", backgroundColor: "#555", borderRadius: "50px"}}/>),
+  createData('Situation: Hostile', <div style={{height: "0", width: "0", borderLeft: '13px solid transparent', borderRight: '13px solid transparent', borderBottom: '26px solid #555'}}/>)
 ];
 
 export default function LegendTable() {
