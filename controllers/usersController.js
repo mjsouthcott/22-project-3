@@ -19,6 +19,7 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
+
   updateById: function (req, res) {
     db.User.findOneAndUpdate({ _id: req.params.id }, req.body, {
       returnOriginal: false,
@@ -26,4 +27,18 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-};
+
+  updatePassword: function (req, res) {
+    const newPassword = Bcrypt.hashSync(req.body.newPassword, 10);
+    db.User.findById({ _id: req.body.id })
+      .then((dbModel) => {
+        Bcrypt.compare(req.body.oldPassword, dbModel.password,(err, isMatch) => {
+            if (err) throw new Error(err);
+            if (isMatch) {
+              db.User.updateOne({ _id: req.body.id }, {password:newPassword})
+              .then((dbModel) => res.json(dbModel));
+            };
+          });
+      })
+      .catch((err) => res.status(422).json(err));
+  }};

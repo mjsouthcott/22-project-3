@@ -13,7 +13,7 @@ const userSeed = [
     available: false,
     mounted: true,
     username: "matthewsouthcott",
-    password: "password",
+    password: "$2a$10$2qA52ddQdlFTASWwUQJAQ.gPZxv.BrxjQFvP17ODvXe9hQmxv6D9u",
   },
   {
     role: "Operations Manager",
@@ -24,7 +24,7 @@ const userSeed = [
     available: false,
     mounted: true,
     username: "maxguo",
-    password: "password",
+    password: "$2a$10$zAZhQrT./B5P2eacqKdK5OD8xWD4G4145PBGwIe8HUbXjG0sX8S/S",
   },
   {
     role: "Operator",
@@ -35,7 +35,7 @@ const userSeed = [
     available: false,
     mounted: true,
     username: "mathieuleblanc",
-    password: "password",
+    password: "$2a$10$CifTm8GeyHNYIIduHy9Ps.cbeD1WwJcanh9bPqJp4LvlWFn6Dk8vC",
   },
   {
     role: "Operator",
@@ -46,7 +46,7 @@ const userSeed = [
     available: false,
     mounted: true,
     username: "jamessmith",
-    password: "password",
+    password: "$2a$10$zrIE3Fd7surVZNLDhwyAl.VTc50Yp0FmEE9jwDiKitoetVZsq2Yc.",
   },
   {
     role: "Operator",
@@ -57,7 +57,7 @@ const userSeed = [
     available: false,
     mounted: true,
     username: "johnbrown",
-    password: "password",
+    password: "$2a$10$2qA52ddQdlFTASWwUQJAQ.gPZxv.BrxjQFvP17ODvXe9hQmxv6D9u",
   },
   {
     role: "Technician",
@@ -68,7 +68,7 @@ const userSeed = [
     available: false,
     mounted: true,
     username: "danieltremblay",
-    password: "password",
+    password: "$2a$10$CifTm8GeyHNYIIduHy9Ps.cbeD1WwJcanh9bPqJp4LvlWFn6Dk8vC",
   },
   {
     role: "Technician",
@@ -79,7 +79,7 @@ const userSeed = [
     available: false,
     mounted: true,
     username: "christinemartin",
-    password: "password",
+    password: "$2a$10$zrIE3Fd7surVZNLDhwyAl.VTc50Yp0FmEE9jwDiKitoetVZsq2Yc.",
   },
   {
     role: "Technician",
@@ -89,7 +89,7 @@ const userSeed = [
     occupation: "Vehicle Technician",
     mounted: true,
     username: "stephaneroy",
-    password: "password",
+    password: "$2a$10$CifTm8GeyHNYIIduHy9Ps.cbeD1WwJcanh9bPqJp4LvlWFn6Dk8vC",
   },
   {
     role: "Operator",
@@ -100,7 +100,7 @@ const userSeed = [
     available: false,
     mounted: true,
     username: "robertwilson",
-    password: "password",
+    password: "$2a$10$zAZhQrT./B5P2eacqKdK5OD8xWD4G4145PBGwIe8HUbXjG0sX8S/S",
   },
   {
     role: "Operator",
@@ -109,7 +109,7 @@ const userSeed = [
     lastName: "MacDonald",
     occupation: "Mobile Support Equipment Operator",
     username: "davidmacdonald",
-    password: "password",
+    password: "$2a$10$CifTm8GeyHNYIIduHy9Ps.cbeD1WwJcanh9bPqJp4LvlWFn6Dk8vC",
   },
   {
     role: "Operator",
@@ -118,7 +118,7 @@ const userSeed = [
     lastName: "Gagnon",
     occupation: "Supply Technician",
     username: "francoisgagnon",
-    password: "password",
+    password: "$2a$10$2qA52ddQdlFTASWwUQJAQ.gPZxv.BrxjQFvP17ODvXe9hQmxv6D9u",
   },
   {
     role: "Technician",
@@ -127,7 +127,7 @@ const userSeed = [
     lastName: "Johnson",
     occupation: "Materials Technician",
     username: "sarahjohnson",
-    password: "password",
+    password: "$2a$10$CifTm8GeyHNYIIduHy9Ps.cbeD1WwJcanh9bPqJp4LvlWFn6Dk8vC",
   },
   {
     role: "Technician",
@@ -136,7 +136,7 @@ const userSeed = [
     lastName: "Taylor",
     occupation: "Vehicle Technician",
     username: "marktaylor",
-    password: "password",
+    password: "$2a$10$zrIE3Fd7surVZNLDhwyAl.VTc50Yp0FmEE9jwDiKitoetVZsq2Yc.",
   },
   {
     role: "Technician",
@@ -145,7 +145,7 @@ const userSeed = [
     lastName: "Cote",
     occupation: "Weapons Technician",
     username: "guycote",
-    password: "password",
+    password: "$2a$10$CifTm8GeyHNYIIduHy9Ps.cbeD1WwJcanh9bPqJp4LvlWFn6Dk8vC",
   },
 ];
 

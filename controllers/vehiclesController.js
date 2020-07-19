@@ -5,10 +5,10 @@ module.exports = {
     db.Vehicle.find(req.query)
       .populate("occupant")
       .populate({
-        path: 'repairRequests',
+        path: "repairRequests",
         populate: {
-          path: 'assignedTo'
-        }
+          path: "assignedTo",
+        },
       })
       .sort({ date: -1 })
       .then((dbModel) => res.json(dbModel))
@@ -18,10 +18,10 @@ module.exports = {
     db.Vehicle.findById(req.params.id)
       .populate("occupant")
       .populate({
-        path: 'repairRequests',
+        path: "repairRequests",
         populate: {
-          path: 'assignedTo'
-        }
+          path: "assignedTo",
+        },
       })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));

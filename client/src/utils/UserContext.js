@@ -10,7 +10,6 @@ const UserContext = React.createContext({
   available: false,
   mounted: false,
   username: "",
-  password: "",
 });
 
 export default UserContext;
