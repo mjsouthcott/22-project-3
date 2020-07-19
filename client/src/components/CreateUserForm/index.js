@@ -10,6 +10,8 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import CheckIcon from "@material-ui/icons/Check";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import API from "../../utils/API";
@@ -29,6 +31,13 @@ function UserForm(props) {
     },
   });
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(() => setOpen(false), 1500);
+  };
 
   const UserFormSchema = Yup.object().shape({
     rank: Yup.string().required("Required"),
@@ -85,7 +94,7 @@ function UserForm(props) {
               password: "",
             }}
             validationSchema={UserFormSchema}
-            onSubmit={(values) => {
+            onSubmit={(values, { resetForm }) => {
               const user = {
                 role: props.role,
                 rank: values.rank,
@@ -97,7 +106,11 @@ function UserForm(props) {
               };
               API.saveUser(user);
 
-              // TODO: Add page redirect after save
+              // Show alert with form submission feedback
+              handleClick();
+
+              // Reset form
+              resetForm();
             }}
           >
             {({ errors, touched, values }) => (
@@ -175,6 +188,17 @@ function UserForm(props) {
           </Formik>
         </CardContent>
       </Card>
+      {open && (
+        <Alert
+          icon={<CheckIcon fontSize="inherit" />}
+          variant="filled"
+          severity="success"
+          hidden={true}
+          style={{ marginTop: 20 }}
+        >
+          {props.role} created
+        </Alert>
+      )}
     </Container>
   );
 }

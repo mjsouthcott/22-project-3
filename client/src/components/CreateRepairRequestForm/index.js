@@ -10,6 +10,8 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import CheckIcon from "@material-ui/icons/Check";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import API from "../../utils/API";
 import * as Yup from "yup";
@@ -53,6 +55,13 @@ function RepairRequestForm(props) {
   });
   const classes = useStyles();
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(() => setOpen(false), 1500);
+  };
+
   const RepairRequestFormSchema = Yup.object().shape({
     estimatedConditionClass: Yup.string().required("Required"),
     vehicleCanBeMovedBy: Yup.string().required("Required"),
@@ -85,7 +94,7 @@ function RepairRequestForm(props) {
                 crewRemainedWithVehicle: "",
               }}
               validationSchema={RepairRequestFormSchema}
-              onSubmit={(values) => {
+              onSubmit={(values, { resetForm }) => {
                 const repairRequest = {
                   estimatedConditionClass: values.estimatedConditionClass,
                   vehicleCanBeMovedBy: values.vehicleCanBeMovedBy,
@@ -109,6 +118,12 @@ function RepairRequestForm(props) {
                   .then(() =>
                     API.updateVehicleServiceableStatus(props.vehicle._id, false)
                   );
+
+                // Show alert with form submission feedback
+                handleClick();
+
+                // Reset form
+                resetForm();
               }}
             >
               {({ errors, touched, values }) => (
@@ -203,6 +218,17 @@ function RepairRequestForm(props) {
           )}
         </CardContent>
       </Card>
+      {open && (
+        <Alert
+          icon={<CheckIcon fontSize="inherit" />}
+          variant="filled"
+          severity="success"
+          hidden={true}
+          style={{ marginTop: 20 }}
+        >
+          Repair Request created
+        </Alert>
+      )}
     </Container>
   );
 }

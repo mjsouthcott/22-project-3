@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  // Login method
+  // Login methods
   isLoggedIn: function () {
     return axios.get("/api/login/");
   },
@@ -12,7 +12,7 @@ export default {
   logout: function () {
     return axios.get(`/api/login/logout`);
   },
-  
+
   updateUserPassword: function (password) {
     return axios.patch("/api/login/password", password);
   },
@@ -57,7 +57,6 @@ export default {
       available: newAvailableStatus,
     });
   },
-
 
   saveUser: function (userData) {
     return axios.post("/api/users", userData);

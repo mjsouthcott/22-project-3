@@ -3,7 +3,6 @@ const router = express.Router();
 const passport = require("../../client/src/passport/passport");
 const usersController = require("../../controllers/usersController");
 
-
 /*  Login
     /
         GET
