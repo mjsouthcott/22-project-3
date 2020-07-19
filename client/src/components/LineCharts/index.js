@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import Title from '../Title';
+import API from '../../utils/API'
 
 const data = [
   {time: 'Day 1', Open: 4, Progress: 2, Done:0},
@@ -14,6 +15,16 @@ const data = [
 
 export default function LineCharts() {
   const theme = useTheme();
+
+  // const [requests, setRequests] = useState([])
+
+  // useEffect(() => {
+  //   API.getRepairRequests()
+  //     .then(res => {
+  //       setRequests(res.data)
+  //     })
+  // }, [])
+
 
   return (
     <React.Fragment>
@@ -28,7 +39,7 @@ export default function LineCharts() {
             left: 24,
           }}
         >
-          <XAxis dataKey="time" stroke={theme.palette.text.secondary} />
+          <XAxis dataKey="createdAt" stroke={theme.palette.text.secondary} />
           <YAxis stroke={theme.palette.text.secondary}/>
           <Tooltip />
           <Legend />

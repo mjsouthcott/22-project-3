@@ -11,6 +11,7 @@ import CreateRepairWorkOrder from './pages/CreateRepairWorkOrder'
 // bring in all the components
 import LayoutCanvas from "./components/LayoutCanvas";
 import Unauthorized from "./components/Unauthorized";
+import WelcomePage from "./components/WelcomePage"
 // bring in all the global css
 import "./App.css";
 // bring in all the contexts
@@ -21,6 +22,7 @@ import CreateVehicle from "./pages/CreateVehicle";
 import DisplayUsers from "./pages/DisplayUsers";
 import DisplayVehicles from "./pages/DisplayVehicles";
 import DisplayRepairRequests from "./pages/DisplayRepairRequests";
+// import DisplayRepairRequests from "./pages/DisplayRepairWorkOrders";
 import API from "./utils/API";
 // import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
 
@@ -56,7 +58,8 @@ function App() {
         {userState._id && (
           <LayoutCanvas>
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/" component={WelcomePage}/>
+              <Route exact path="/dashboard">
                 {userState.role==='Maintenance Manager' ? <Dashboard /> : <Unauthorized />}
               </Route>
               <Route path="/display-users">
@@ -65,11 +68,11 @@ function App() {
               <Route path="/display-vehicles">
                 {(userState.role ==='Operations Manager' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
               </Route>
-              <Route path="/display-repairRequests" component={DisplayRepairRequests}>
-                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
+              <Route path="/display-repairRequests">
+                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <DisplayRepairRequests /> : <Unauthorized />}
               </Route>
               <Route path="/display-repairWorkorders" >
-                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <DisplayVehicles /> : <Unauthorized />}
+                {(userState.role ==='Technician' || userState.role==='Maintenance Manager') ? <></> : <Unauthorized />}
               </Route>
               <Route path="/create-repair-request">
                 {userState.role==='Operator' ? <CreateRepairRequest /> : <Unauthorized />}

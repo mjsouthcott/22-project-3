@@ -8,8 +8,6 @@ export const WebMapView = () => {
 
     const [mapSymbols, setMapSymbols] = useState([])
 
-
-
     useEffect(() => {
       API.getVehicles()
         .then(res => {
@@ -71,7 +69,7 @@ export const WebMapView = () => {
                   size: "15px"
                 }
                 
-                element.localTacticalSituation === 'Safe' ? symbol.style = 'circle' : symbol.style = 'triangle'
+                element.localTacticalSituation === 'Safe' ? symbol.style = 'circle' : symbol.style = 'square'
 
                 let graphic = new Graphic({
                   geometry: point,
