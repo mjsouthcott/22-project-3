@@ -3,12 +3,6 @@ import {PieChart, Pie, Cell} from 'recharts';
 import API from "../../utils/API";
 
 
-// const data = [
-//   { name: 'Open', value: 10 },
-//   { name: 'Progress', value: 12 },
-//   { name: 'Done', value: 8 },
-// ];
-
 const COLORS = ['red', 'khaki', 'green'];
 
 const RADIAN = Math.PI / 180;
