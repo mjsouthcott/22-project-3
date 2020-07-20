@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {PieChart, Pie, Cell} from 'recharts';
+import React, { useEffect, useState } from 'react';
+import {PieChart, Pie, Cell,ResponsiveContainer } from 'recharts';
 import API from "../../utils/API";
+import Title from '../Title';
 
 
 const COLORS = ['red', 'khaki', 'green'];
@@ -50,6 +51,9 @@ export default function PieCharts() {
 
 
   return (
+    <React.Fragment>
+    <Title>Requests By Status</Title>
+    <ResponsiveContainer>
     <PieChart width={200} height={200}>
       <Pie
         data={chartData}
@@ -57,12 +61,13 @@ export default function PieCharts() {
         label={renderCustomizedLabel}
         outerRadius={80}
         fill="#8884d8"
-        dataKey="value"
-      >
+        dataKey="value">
         {
           chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
         }
       </Pie>
     </PieChart>
+    </ResponsiveContainer>
+    </React.Fragment>
   );
 }
