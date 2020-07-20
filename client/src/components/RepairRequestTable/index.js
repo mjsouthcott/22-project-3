@@ -51,6 +51,8 @@ function RepairRequestTable(props) {
                     <TableCell>Number</TableCell>
                     <TableCell align="right">Vehicle Call Sign</TableCell>
                     <TableCell align="right">Vehicle Type</TableCell>
+                    <TableCell align="right">Occupant</TableCell>
+                    <TableCell align="right">Description</TableCell>
                     <TableCell align="right">
                       Estimated Condition Class
                     </TableCell>
@@ -61,6 +63,7 @@ function RepairRequestTable(props) {
                     <TableCell align="right">
                       Crew Remained With Vehicle
                     </TableCell>
+                    <TableCell align="right">Location</TableCell>
                     <TableCell align="right">Status</TableCell>
                     <TableCell align="right">Assigned To</TableCell>
                     <TableCell align="right">Repair Work Order</TableCell>
@@ -75,6 +78,13 @@ function RepairRequestTable(props) {
                         </TableCell>
                         <TableCell align="right">{vehicle.callSign}</TableCell>
                         <TableCell align="right">{vehicle.type}</TableCell>
+                        <TableCell align="right">
+                          {vehicle.occupant.rank} {vehicle.occupant.firstName}{" "}
+                          {vehicle.occupant.lastName}
+                        </TableCell>
+                        <TableCell align="right">
+                          {repairRequest.description}
+                        </TableCell>
                         <TableCell align="right">
                           {repairRequest.estimatedConditionClass}
                         </TableCell>
@@ -112,6 +122,10 @@ function RepairRequestTable(props) {
                               style={{ color: "white", backgroundColor: "red" }}
                             />
                           )}
+                        </TableCell>
+                        <TableCell>
+                          {repairRequest.location.latitude},{" "}
+                          {repairRequest.location.longitude}
                         </TableCell>
                         <TableCell align="right">
                           {repairRequest.status === "Open" ? (
@@ -157,28 +171,8 @@ function RepairRequestTable(props) {
                           )}
                         </TableCell>
                         <TableCell align="right">
-                          {repairRequest.repairWorkOrder === undefined &&
-                          (props.user.role === "Maintenance Manager" ||
-                            props.user.role === "Operator") ? (
-                            // <Chip
-                            //   label="Not Created"
-                            //   style={{ color: "white", backgroundColor: "red" }}
-                            // />
+                          {repairRequest.repairWorkOrder === undefined ? (
                             "Repair Work Order not yet created"
-                          ) : repairRequest.repairWorkOrder === undefined &&
-                            props.user.role === "Technician" ? (
-                            <Button
-                              variant="contained"
-                              // style={{ color: "white", backgroundColor: "green" }}
-                              onClick={() => {
-                                console.log(
-                                  repairRequest._id,
-                                  repairRequest.number
-                                );
-                              }}
-                            >
-                              Create
-                            </Button>
                           ) : repairRequest.repairWorkOrder.status ===
                             "Open" ? (
                             <Chip
