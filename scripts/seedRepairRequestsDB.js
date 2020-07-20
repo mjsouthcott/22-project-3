@@ -7,6 +7,7 @@ let repairRequestSeed = [
   {
     // Medium Logistic Vehicle, Gun Tractor
     number: 1,
+    description: "Low engine oil pressure",
     estimatedConditionClass: "Close Support",
     vehicleCanBeMovedBy: "Suspended Tow",
     localTacticalSituation: "Hostile",
@@ -20,6 +21,7 @@ let repairRequestSeed = [
   {
     // Armoured Patrol Vehicle
     number: 2,
+    description: "Front curb-side headlight not turning on",
     estimatedConditionClass: "Integral",
     vehicleCanBeMovedBy: "Drivable",
     localTacticalSituation: "Safe",
@@ -33,6 +35,7 @@ let repairRequestSeed = [
   {
     // Armoured Engineering Vehicle
     number: 3,
+    description: "Engine won't start",
     estimatedConditionClass: "Depot",
     vehicleCanBeMovedBy: "Straight Pull",
     localTacticalSituation: "Hostile",
@@ -46,6 +49,7 @@ let repairRequestSeed = [
   {
     // Infantry Fighting Vehicle
     number: 4,
+    description: "Road-side tire (third from front) is flat",
     estimatedConditionClass: "Integral",
     vehicleCanBeMovedBy: "Drivable",
     localTacticalSituation: "Hostile",
