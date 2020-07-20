@@ -63,6 +63,10 @@ function RepairRequestForm(props) {
   };
 
   const RepairRequestFormSchema = Yup.object().shape({
+    description: Yup.string()
+      .min(2, "Minimum 2 letters")
+      .max(30, "Maximum 30 letters")
+      .required("Required"),
     estimatedConditionClass: Yup.string().required("Required"),
     vehicleCanBeMovedBy: Yup.string().required("Required"),
     localTacticalSituation: Yup.string().required("Required"),
@@ -88,6 +92,7 @@ function RepairRequestForm(props) {
           ) : (
             <Formik
               initialValues={{
+                description: "",
                 estimatedConditionClass: "",
                 vehicleCanBeMovedBy: "",
                 localTacticalSituation: "",
@@ -96,6 +101,7 @@ function RepairRequestForm(props) {
               validationSchema={RepairRequestFormSchema}
               onSubmit={(values, { resetForm }) => {
                 const repairRequest = {
+                  description: values.description,
                   estimatedConditionClass: values.estimatedConditionClass,
                   vehicleCanBeMovedBy: values.vehicleCanBeMovedBy,
                   localTacticalSituation: values.localTacticalSituation,
@@ -128,6 +134,18 @@ function RepairRequestForm(props) {
             >
               {({ errors, touched, values }) => (
                 <Form>
+                  <FormGroup className={classes.formGroup}>
+                    <Field
+                      name="description"
+                      as={TextField}
+                      label="Description"
+                    />
+                    {errors.description && touched.description ? (
+                      <span className={classes.errorMessage}>
+                        <ErrorMessage name="description" />
+                      </span>
+                    ) : null}
+                  </FormGroup>
                   <FormGroup className={classes.formGroup}>
                     <Field
                       name="estimatedConditionClass"

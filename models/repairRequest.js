@@ -8,6 +8,13 @@ const repairRequestSchema = new Schema(
     number: {
       type: Number,
     },
+    description: {
+      type: String,
+      minlength: 2,
+      maxlength: 255,
+      trim: true,
+      required: true,
+    },
     estimatedConditionClass: {
       type: String,
       enum: [
