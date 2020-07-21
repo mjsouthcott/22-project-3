@@ -28,6 +28,10 @@ import API from "./utils/API";
 
 function App() {
   const [userState, setUserState] = useState({});
+  const [displayState, setDisplayState] = useState({
+    Login: "no",
+    Routs: "no",
+  });
 
   // check server session for user info when page is opened
   // login the user if logged in before
@@ -36,7 +40,17 @@ function App() {
       .then((res) => {
         if (res.data.user) {
           setUserState(res.data.user);
+          setDisplayState({
+            Login: "no",
+            Routs: "yes",
+          });
+        } else{
+          setDisplayState({
+            Login: "yes",
+            Routs: "no",
+          });
         }
+        
       })
       .catch((err) => {
         throw new Error(err);
@@ -52,9 +66,9 @@ function App() {
     <Router>
       <UserContext.Provider value={userState}>
         {/* render login form if not logged in  */}
-        {!userState._id && <Login handleLogin={handleLogin} />}
+        {displayState.Login == "yes" && <Login handleLogin={handleLogin} />}
         {/* render the dashbord and other pages if logged in  */}
-        {userState._id && (
+        {displayState.Routs == "yes"&& (
           <LayoutCanvas>
             <Switch>
               <Route exact path="/" component={WelcomeAlbum} />

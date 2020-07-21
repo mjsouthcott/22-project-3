@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -20,6 +22,7 @@ import UserContext from "../../utils/UserContext";
 
 import InputIcon from "@material-ui/icons/Input";
 import API from "../../utils/API";
+
 
 export default function Navigation(props) {
   const drawerWidth = 300;
@@ -169,8 +172,10 @@ export default function Navigation(props) {
             eTripleR
           </Typography>
 
-          <IconButton color="inherit" onClick={personalProfile}>
-              <AccountCircleIcon />
+          <IconButton color="inherit" className={classes.signOutButton}>
+            <Link to="/profile" >
+              <AccountCircleIcon  style={{ color: "white" }}/>
+            </Link>
           </IconButton>
 
           <IconButton
