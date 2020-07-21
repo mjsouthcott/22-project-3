@@ -2,9 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid, Paper} from '@material-ui/core';
-
-import LineCharts from '../LineCharts';
-import BarCharts from '../BarCharts';
+import BarChartsRequestByTechnician from '../BarChartsRequestByTechnician';
 import BarChartsTacticalSituation from '../BarChartsTacticalSituation'
 import PieCharts from '../PieCharts';
 import {WebMapView} from '../WebMapView'
@@ -41,19 +39,19 @@ export default function Dashboard() {
   return (
     <Grid container spacing={3}>
       {/* Line Chart */}
-      <Grid item xs={12} md={4} lg={4}>
+      <Grid item xs={12} md={4} lg={3}>
         <Paper className={fixedHeightPaper}>
           <BarChartsTacticalSituation />
         </Paper>
       </Grid>
       {/* Bar Charts */}
-      <Grid item xs={12} md={4} lg={4}>
+      <Grid item xs={12} md={5} lg={6}>
         <Paper className={fixedHeightPaper}>
-          <BarCharts/>
+          <BarChartsRequestByTechnician/>
         </Paper>
       </Grid>
       {/* Bar Charts */}
-      <Grid item xs={12} md={4} lg={4}>
+      <Grid item xs={12} md={3} lg={3}>
         <Paper className={fixedHeightPaper}>
           <PieCharts/>
         </Paper>
