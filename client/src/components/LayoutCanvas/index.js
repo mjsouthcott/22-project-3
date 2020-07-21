@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -17,7 +16,12 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import { opsManagerListItems, maintenanceManagerListItems, operatorListItems, technicianListItems } from "../listItems";
+import {
+  opsManagerListItems,
+  maintenanceManagerListItems,
+  operatorListItems,
+  technicianListItems,
+} from "../listItems";
 import UserContext from "../../utils/UserContext";
 
 import InputIcon from "@material-ui/icons/Input";
@@ -120,27 +124,24 @@ export default function Navigation(props) {
     API.logout().then(() => (window.location.href = "/"));
   };
 
-  const personalProfile = () =>{
-    window.location.href = "/profile"
-  }
+
 
   const { role } = useContext(UserContext);
   let menuListItems = opsManagerListItems;
-  switch(role) {
-    case 'Technician':
-      menuListItems = technicianListItems
+  switch (role) {
+    case "Technician":
+      menuListItems = technicianListItems;
       break;
-    case 'Operator':
-      menuListItems = operatorListItems
+    case "Operator":
+      menuListItems = operatorListItems;
       break;
-    case 'Operations Manager':
-      menuListItems = opsManagerListItems
+    case "Operations Manager":
+      menuListItems = opsManagerListItems;
       break;
-    case 'Maintenance Manager':
-      menuListItems = maintenanceManagerListItems
+    case "Maintenance Manager":
+      menuListItems = maintenanceManagerListItems;
       break;
   }
-
 
   return (
     <div className={classes.root}>
@@ -172,16 +173,17 @@ export default function Navigation(props) {
             eTripleR
           </Typography>
 
-          <IconButton color="inherit" className={classes.signOutButton}>
-            <Link to="/profile" >
-              <AccountCircleIcon  style={{ color: "white" }}/>
+          <IconButton color="inherit" >
+            <Link to="/profile" style={{ height:24}}>
+              <AccountCircleIcon style={{ color: "white" }} />
             </Link>
           </IconButton>
 
           <IconButton
             className={classes.signOutButton}
             color="inherit"
-            onClick={handleLogout}>
+            onClick={handleLogout}
+          >
             <InputIcon />
           </IconButton>
         </Toolbar>
