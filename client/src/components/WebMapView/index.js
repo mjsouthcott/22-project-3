@@ -42,13 +42,12 @@ export const WebMapView = () => {
             
             mapSymbols.forEach(symbolObj => {
 
-            if (symbolObj.role === "Maintenance Manager" && symbolObj.location != undefined)
+            if (symbolObj.role === "Maintenance Manager" && symbolObj.location !== undefined)
             {
 
               let registrationNumber = symbolObj.registrationNumber
               let callSign = symbolObj.callSign
               let userName = `${symbolObj.occupant.firstName} ${symbolObj.occupant.lastName}`
-              let occupation = symbolObj.occupant.occupation
               let rank = symbolObj.occupant.rank
               let vehicleType = symbolObj.type
 
@@ -82,12 +81,19 @@ export const WebMapView = () => {
 
 
 
-            if (symbolObj.repairRequests!= 0){
+            if (symbolObj.repairRequests!== 0){
               let callSign = symbolObj.callSign
               let registrationNumber = symbolObj.registrationNumber
-              let userName = `${symbolObj.occupant.firstName} ${symbolObj.occupant.lastName}`
-              let occupation = symbolObj.occupant.occupation
-              let rank = symbolObj.occupant.rank
+              let userName = ''
+              let occupation = ''
+              let rank = ''
+
+              if (symbolObj.occupant)
+              {
+                userName = `${symbolObj.occupant.firstName} ${symbolObj.occupant.lastName}`
+                occupation = symbolObj.occupant.occupation
+                rank = symbolObj.occupant.rank
+              }
 
               symbolObj.repairRequests.forEach(element =>{
                 
@@ -99,8 +105,8 @@ export const WebMapView = () => {
                 
 
                 let color = 'green'
-                if (element.status == 'Work In Progress') color = 'yellow'
-                else if (element.status = 'Open') color = 'red'
+                if (element.status === 'Work In Progress') color = 'yellow'
+                else if (element.status === 'Open') color = 'red'
 
 
                 let symbol = {

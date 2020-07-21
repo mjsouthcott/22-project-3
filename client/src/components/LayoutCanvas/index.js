@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-// import React from 'react';
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -12,7 +10,6 @@ import {
   Typography,
   Divider,
   IconButton,
-  Badge,
   Container,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -32,7 +29,7 @@ export default function Navigation(props) {
       display: "flex",
     },
     toolbar: {
-      paddingRight: 24, // keep right padding when drawer closed
+      paddingRight: 24,
     },
     toolbarIcon: {
       display: "flex",
@@ -120,6 +117,10 @@ export default function Navigation(props) {
     API.logout().then(() => (window.location.href = "/"));
   };
 
+  const personalProfile = () =>{
+    window.location.href = "/profile"
+  }
+
   const { role } = useContext(UserContext);
   let menuListItems = opsManagerListItems;
   switch(role) {
@@ -168,17 +169,14 @@ export default function Navigation(props) {
             eTripleR
           </Typography>
 
-          <IconButton color="inherit" className={classes.signOutButton}>
-            <Link to="/profile" style={{ color: "white" }}>
+          <IconButton color="inherit" onClick={personalProfile}>
               <AccountCircleIcon />
-            </Link>
           </IconButton>
 
           <IconButton
             className={classes.signOutButton}
             color="inherit"
-            onClick={handleLogout}
-          >
+            onClick={handleLogout}>
             <InputIcon />
           </IconButton>
         </Toolbar>
