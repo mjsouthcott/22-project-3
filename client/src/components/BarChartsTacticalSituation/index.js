@@ -19,32 +19,11 @@ export default function BarCharts() {
   useEffect(() => {
     API.getRepairRequests()
       .then(res => {
-        let dataArray = [{name: 'unAssigned', requests: 0}]
-        let techNameArray = ['unAssigned']
-        let techName = ''
+        let dataArray = [{Name: 'Local Tactical Situation', Hostile : 0, Safe : 0}]
         res.data.forEach(element => {
-          if (element.assignedTo){
-            techName = element.assignedTo
-          }
-          else techName = 'unAssigned'
-
-          if (!techNameArray.includes(techName))
-          {
-            dataArray.push({name: techName, requests: 1})
-            techNameArray.push(techName)
-          }
-          else
-          {
-            dataArray = dataArray.map(ele => {
-              if (ele.name === techName)
-              {
-                ele.requests +=1
-              }
-              return ele
-            })
-          }
+          if (element.localTacticalSituation === 'Hostile') dataArray[0].Hostile +=1
+          else dataArray[0].Safe +=1
         });
-
         setChartData(dataArray)
       })
   }, [])
@@ -52,7 +31,7 @@ export default function BarCharts() {
 
   return (
     <React.Fragment>
-    <Title>Requests # By Technician</Title>
+    <Title>Requests # By Local Tactical Situation</Title>
     <ResponsiveContainer>
     <BarChart
       width={250}
@@ -63,7 +42,8 @@ export default function BarCharts() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="requests" fill={'blue'}/>
+      <Bar dataKey="Hostile" fill={'red'}/>
+      <Bar dataKey="Safe" fill={'green'}/>
     </BarChart>
     </ResponsiveContainer>
     </React.Fragment>

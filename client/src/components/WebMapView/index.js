@@ -34,8 +34,8 @@ export const WebMapView = () => {
           const view = new MapView({
             container: mapRef.current,
             map: map,
-            center: [-75.48, 45.46],
-            zoom: 12
+            center: [-75.54, 45.45],
+            zoom: 11
           });
 
           let pointGraphics = []

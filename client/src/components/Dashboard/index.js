@@ -5,7 +5,8 @@ import {Grid, Paper} from '@material-ui/core';
 
 import LineCharts from '../LineCharts';
 import BarCharts from '../BarCharts';
-import PieCharts from '../PieCharts'
+import BarChartsTacticalSituation from '../BarChartsTacticalSituation'
+import PieCharts from '../PieCharts';
 import {WebMapView} from '../WebMapView'
 import LegendTable from '../LegendTable'
 
@@ -40,19 +41,19 @@ export default function Dashboard() {
   return (
     <Grid container spacing={3}>
       {/* Line Chart */}
-      <Grid item xs={12} md={6} lg={6}>
+      <Grid item xs={12} md={4} lg={4}>
         <Paper className={fixedHeightPaper}>
-          <LineCharts />
+          <BarChartsTacticalSituation />
         </Paper>
       </Grid>
       {/* Bar Charts */}
-      <Grid item xs={12} md={3} lg={3}>
+      <Grid item xs={12} md={4} lg={4}>
         <Paper className={fixedHeightPaper}>
           <BarCharts/>
         </Paper>
       </Grid>
       {/* Bar Charts */}
-      <Grid item xs={12} md={3} lg={3}>
+      <Grid item xs={12} md={4} lg={4}>
         <Paper className={fixedHeightPaper}>
           <PieCharts/>
         </Paper>
