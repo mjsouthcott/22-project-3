@@ -27,11 +27,14 @@ import API from "./utils/API";
 // import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
 
 function App() {
-  const [userState, setUserState] = useState({});
-  const [displayState, setDisplayState] = useState({
-    Login: "no",
-    Routs: "no",
+  const [userState, setUserState] = useState({
+    user:{},
+    display:{ 
+      Login: "no",
+      Routs: "no" 
+    }
   });
+
 
   // check server session for user info when page is opened
   // login the user if logged in before
@@ -39,16 +42,21 @@ function App() {
     API.isLoggedIn()
       .then((res) => {
         if (res.data.user) {
-          setUserState(res.data.user);
-          setDisplayState({
-            Login: "no",
-            Routs: "yes",
-          });
+          setUserState({
+            user: res.data.user,
+            display: {
+              Login: "no",
+              Routs: "yes"
+            }
+          })
         } else{
-          setDisplayState({
-            Login: "yes",
-            Routs: "no",
-          });
+          setUserState({
+            user: {},
+            display: {
+              Login: "yes",
+              Routs: "no"
+            }
+          })
         }
         
       })
@@ -59,82 +67,88 @@ function App() {
 
   // Handles updating component state when the user types into the login form
   function handleLogin(data) {
-    setUserState(data);
+    setUserState({
+      user: data,
+      display: {
+        Login: "no",
+        Routs: "yes"
+      }
+    })
   }
 
   return (
     <Router>
-      <UserContext.Provider value={userState}>
+      <UserContext.Provider value={userState.user}>
         {/* render login form if not logged in  */}
-        {displayState.Login == "yes" && <Login handleLogin={handleLogin} />}
+        {userState.display.Login == "yes" && <Login handleLogin={handleLogin} />}
         {/* render the dashbord and other pages if logged in  */}
-        {displayState.Routs == "yes"&& (
+        {userState.display.Routs == "yes"&& (
           <LayoutCanvas>
             <Switch>
               <Route exact path="/" component={WelcomeAlbum} />
               <Route exact path="/dashboard">
-                {userState.role === "Maintenance Manager" ? (
+                {userState.user.role === "Maintenance Manager" ? (
                   <Dashboard />
                 ) : (
                   <Unauthorized />
                 )}
               </Route>
               <Route path="/display-users">
-                {userState.role === "Operations Manager" ||
-                userState.role === "Maintenance Manager" ? (
+                {userState.user.role === "Operations Manager" ||
+                userState.user.role === "Maintenance Manager" ? (
                   <DisplayUsers />
                 ) : (
                   <Unauthorized />
                 )}
               </Route>
               <Route path="/display-vehicles">
-                {userState.role === "Operations Manager" ||
-                userState.role === "Maintenance Manager" ? (
+                {userState.user.role === "Operations Manager" ||
+                userState.user.role === "Maintenance Manager" ? (
                   <DisplayVehicles />
                 ) : (
                   <Unauthorized />
                 )}
               </Route>
               <Route path="/display-repairRequests">
-                {userState.role !== "Operations Manager" ? (
+                {userState.user.role !== "Operations Manager" ? (
                   <DisplayRepairRequests />
                 ) : (
                   <Unauthorized />
                 )}
               </Route>
               <Route path="/display-repairWorkorders">
-                {userState.role === "Technician" ||
-                userState.role === "Maintenance Manager" ? (
+                {userState.user.role === "Technician" ||
+                userState.user.role === "Maintenance Manager" ? (
                   <></>
                 ) : (
                   <Unauthorized />
                 )}
               </Route>
               <Route path="/create-repair-request">
-                {userState.role === "Operator" ? (
+                {userState.user.role === "Operator" ? (
                   <CreateRepairRequest />
                 ) : (
                   <Unauthorized />
                 )}
               </Route>
               <Route path="/create-repairWorkorder">
-                {userState.role === "Technician" ? (
+                {userState.user.role === "Technician" ? (
                   <CreateRepairWorkOrder />
                 ) : (
                   <Unauthorized />
                 )}
               </Route>
               <Route path="/create-user">
-                {userState.role === "Operations Manager" ||
-                userState.role === "Maintenance Manager" ? (
+                {userState.user.role === "Operations Manager" ||
+                userState.user.role === "Maintenance Manager" ? (
                   <CreateUser />
                 ) : (
                   <Unauthorized />
                 )}
               </Route>
               <Route path="/create-vehicle">
-                {userState.role === "Operations Manager" ||
-                userState.role === "Maintenance Manager" ? (
+                {userState.user.role === "Operations Manager" ||
+                userState.user.role === "Maintenance Manager" ? (
                   <CreateVehicle />
                 ) : (
                   <Unauthorized />
