@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import Title from '../Title';
 
 
-const COLORS = ['red', 'khaki', 'green'];
+const COLORS = ['#e53935', 'gold', 'green'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -44,8 +44,9 @@ export default function PieCharts() {
           { name: 'Done', value: finishedOrderNum },
         ];
 
+        let filterData = data.filter(obj => obj.value > 0);
 
-        setChartData(data)
+        setChartData(filterData)
       })
   }, [])
 

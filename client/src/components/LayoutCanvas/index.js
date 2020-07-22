@@ -11,6 +11,8 @@ import {
   Divider,
   IconButton,
   Container,
+  Avatar,
+  Img
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -87,6 +89,7 @@ export default function Navigation(props) {
       flexGrow: 1,
       height: "100vh",
       overflow: "auto",
+      backgroundColor : '#81613c'
     },
     container: {
       paddingTop: theme.spacing(4),
@@ -145,6 +148,7 @@ export default function Navigation(props) {
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, open && classes.appBarShift)}
+        style={{backgroundColor:'rgb(140 0 0)'}}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -164,9 +168,9 @@ export default function Navigation(props) {
             variant="h6"
             color="inherit"
             noWrap
-            className={classes.title}
-          >
-            eTripleR
+            className={classes.title}>
+            {/* <Avatar alt="logo" src="/assets/logo.png" / rgb(140 0 0)> */}
+            <img src="/assets/logo.png" alt="logo" width="75px" height="75px"/>
           </Typography>
 
           <IconButton color="inherit" onClick={personalProfile}>
@@ -200,7 +204,7 @@ export default function Navigation(props) {
 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <Container maxWidth="lg" className={classes.container} style={{maxWidth:"max-content"}}>
           {props.children}
         </Container>
       </main>
