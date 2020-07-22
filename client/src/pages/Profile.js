@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import UserContext from "../utils/UserContext";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
@@ -56,6 +56,7 @@ export default function Profile(props) {
   const userInfo = useContext(UserContext);
 
   // get new password for updating
+  const [vehicle, setVehicle] = useState({});
   const [password, setPassword] = useState({
     oldPassword: "",
     newPassword: "",
@@ -101,7 +102,7 @@ export default function Profile(props) {
             oldPassword: "",
             newPassword: "",
             confirm: "",
-          })
+          });
         } else {
           setError({
             message: "Password entered is incorrect.",
@@ -111,6 +112,15 @@ export default function Profile(props) {
       });
     }
   };
+
+  useEffect(() => {
+    API.getVehicles().then((res) => {
+      let userVehicle = res.data.filter((vehicle) => {
+        return vehicle.occupant && vehicle.occupant._id == userInfo._id;
+      });
+      if (userVehicle[0]) setVehicle(userVehicle[0]);
+    });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -159,7 +169,22 @@ export default function Profile(props) {
                     <DriveEtaIcon />
                   </ListItemAvatar>
                   <ListItemText>
-                    <b>Tehicle Information: </b>
+                    <b>Vehicle Information: </b>
+
+                    {vehicle.type ? (
+                      <List component="div" disablePadding>
+                        <ListItem button className={classes.nested}>
+                        Type: {vehicle.type}
+                        </ListItem>
+                        
+                        <ListItem button className={classes.nested}>
+                        serviceable: {vehicle.serviceable? "Yes" : "No"}
+                        </ListItem>
+                        
+                      </List>
+                    ) : (
+                      "None"
+                    )}
                   </ListItemText>
                 </ListItem>
                 <Divider variant="inset" component="li" />
