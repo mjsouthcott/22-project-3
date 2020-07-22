@@ -44,7 +44,7 @@ export default function LineCharts() {
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="Open" stroke={'red'} />
-          <Line type="monotone" dataKey="Progress" stroke={'khaki'} />
+          <Line type="monotone" dataKey="Progress" stroke={'gold'} />
           <Line type="monotone" dataKey="Done" stroke={'green'} />
         </LineChart>
       </ResponsiveContainer>

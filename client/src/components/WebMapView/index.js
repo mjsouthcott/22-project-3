@@ -59,7 +59,7 @@ export const WebMapView = () => {
 
               let symbol = {
                 type: "simple-marker",  // autocasts as new PictureMarkerSymbol()
-                color: 'orange',
+                color: 'blue',
                 size: "15px",
                 style: 'square'
               }
@@ -87,6 +87,7 @@ export const WebMapView = () => {
               let userName = ''
               let occupation = ''
               let rank = ''
+              let vehicleType = symbolObj.type
 
               if (symbolObj.occupant)
               {
@@ -105,7 +106,7 @@ export const WebMapView = () => {
                 
 
                 let color = 'green'
-                if (element.status === 'Work In Progress') color = 'yellow'
+                if (element.status === 'Work In Progress') color = 'gold'
                 else if (element.status === 'Open') color = 'red'
 
 
@@ -127,6 +128,7 @@ export const WebMapView = () => {
                 title : "Repair Request Details",
                 content:`<ul><li>Vehicle Registration Number: ${registrationNumber}</li>` +
                         `<li>Vehicle CallSign: ${callSign}</li>` +
+                        `<li>Vehicle Type: ${vehicleType}</li>` +
                         `<li>Operator Name: ${userName}</li>` +
                         `<li>Operator Occupation: ${occupation}</li>` +
                         `<li>Operator Rank: ${rank}</li>` +
