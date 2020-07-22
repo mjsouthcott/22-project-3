@@ -5,148 +5,148 @@ import AirportShuttleIcon from "@material-ui/icons/AirportShuttle";
 import PeopleIcon from "@material-ui/icons/People";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import PageviewIcon from "@material-ui/icons/Pageview";
-// import Link from '@material-ui/core/Link';
-import { Link } from "react-router-dom";
+// import NavLink from '@material-ui/core/NavLink';
+import { NavLink } from "react-router-dom";
 import "./Style.css";
 
 
 
 export const opsManagerListItems = (
   <div>
-    <Link to="/create-user">
+    <NavLink to="/create-user" >
       <ListItem button>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Create Operator" />
       </ListItem>
-    </Link>
-    <Link to="/create-vehicle">
+    </NavLink>
+    <NavLink to="/create-vehicle">
       <ListItem button>
         <ListItemIcon>
           <AirportShuttleIcon />
         </ListItemIcon>
         <ListItemText primary="Create Operator Vehicle" />
       </ListItem>
-    </Link>
-    <Link to="/display-users">
+    </NavLink>
+    <NavLink to="/display-users">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Operators" />
       </ListItem>
-    </Link>
-    <Link to="/display-vehicles">
+    </NavLink>
+    <NavLink to="/display-vehicles">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Operator Vehicles" />
       </ListItem>
-    </Link>
+    </NavLink>
   </div>
 );
 
 export const maintenanceManagerListItems = (
   <div>
-    <Link to="/create-user">
+    <NavLink to="/create-user">
       <ListItem button>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Create Technician" />
       </ListItem>
-    </Link>
-    <Link to="/create-vehicle">
+    </NavLink>
+    <NavLink to="/create-vehicle">
       <ListItem button>
         <ListItemIcon>
           <AirportShuttleIcon />
         </ListItemIcon>
         <ListItemText primary="Create Technician Vehicle" />
       </ListItem>
-    </Link>
-    <Link to="/display-users">
+    </NavLink>
+    <NavLink to="/display-users">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Technicians" />
       </ListItem>
-    </Link>
-    <Link to="/display-vehicles">
+    </NavLink>
+    <NavLink to="/display-vehicles">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Technician Vehicles" />
       </ListItem>
-    </Link>
-    <Link to="/display-repairRequests">
+    </NavLink>
+    <NavLink to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Requests" />
       </ListItem>
-    </Link>
-    <Link to="/display-repairWorkorders">
+    </NavLink>
+    <NavLink to="/display-repairWorkorders">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Work Orders" />
       </ListItem>
-    </Link>
-    <Link to="/dashboard">
+    </NavLink>
+    <NavLink to="/dashboard">
       <ListItem button>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Display Dashboard" />
       </ListItem>
-    </Link>
+    </NavLink>
   </div>
 );
 
 export const operatorListItems = (
   <div>
-    <Link to="/create-repair-request">
+    <NavLink to="/create-repair-request">
       <ListItem button>
         <ListItemIcon>
           <AssignmentIcon />
         </ListItemIcon>
         <ListItemText primary="Create Repair Request" />
       </ListItem>
-    </Link>
-    <Link to="/display-repairRequests">
+    </NavLink>
+    <NavLink to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Requests" />
       </ListItem>
-    </Link>
+    </NavLink>
   </div>
 );
 
 export const technicianListItems = (
   <div>
-    <Link to="/display-repairRequests">
+    <NavLink to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Requests" />
       </ListItem>
-    </Link>
-    <Link to="/display-repairWorkorders">
+    </NavLink>
+    <NavLink to="/display-repairWorkorders">
       <ListItem button>
         <ListItemIcon>
           <PageviewIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Work Orders" />
       </ListItem>
-    </Link>
+    </NavLink>
   </div>
 );
