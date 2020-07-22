@@ -4,7 +4,11 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import AirportShuttleIcon from "@material-ui/icons/AirportShuttle";
 import PeopleIcon from "@material-ui/icons/People";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import PageviewIcon from "@material-ui/icons/Pageview";
+import CommuteIcon from '@material-ui/icons/Commute';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
+
+
 // import NavLink from '@material-ui/core/NavLink';
 import { NavLink } from "react-router-dom";
 import "./Style.css";
@@ -16,7 +20,7 @@ export const opsManagerListItems = (
     <NavLink to="/create-user" >
       <ListItem button>
         <ListItemIcon>
-          <PeopleIcon />
+          <PersonAddIcon />
         </ListItemIcon>
         <ListItemText primary="Create Operator" />
       </ListItem>
@@ -32,7 +36,7 @@ export const opsManagerListItems = (
     <NavLink to="/display-users">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Display Operators" />
       </ListItem>
@@ -40,7 +44,7 @@ export const opsManagerListItems = (
     <NavLink to="/display-vehicles">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <CommuteIcon />
         </ListItemIcon>
         <ListItemText primary="Display Operator Vehicles" />
       </ListItem>
@@ -53,7 +57,7 @@ export const maintenanceManagerListItems = (
     <NavLink to="/create-user">
       <ListItem button>
         <ListItemIcon>
-          <PeopleIcon />
+          <PersonAddIcon />
         </ListItemIcon>
         <ListItemText primary="Create Technician" />
       </ListItem>
@@ -69,7 +73,7 @@ export const maintenanceManagerListItems = (
     <NavLink to="/display-users">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Display Technicians" />
       </ListItem>
@@ -77,7 +81,7 @@ export const maintenanceManagerListItems = (
     <NavLink to="/display-vehicles">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <CommuteIcon />
         </ListItemIcon>
         <ListItemText primary="Display Technician Vehicles" />
       </ListItem>
@@ -85,7 +89,7 @@ export const maintenanceManagerListItems = (
     <NavLink to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <AssignmentLateIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Requests" />
       </ListItem>
@@ -93,7 +97,7 @@ export const maintenanceManagerListItems = (
     <NavLink to="/display-repairWorkorders">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <AssignmentIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Work Orders" />
       </ListItem>
@@ -122,7 +126,7 @@ export const operatorListItems = (
     <NavLink to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <AssignmentLateIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Requests" />
       </ListItem>
@@ -135,7 +139,7 @@ export const technicianListItems = (
     <NavLink to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <AssignmentLateIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Requests" />
       </ListItem>
@@ -143,7 +147,7 @@ export const technicianListItems = (
     <NavLink to="/display-repairWorkorders">
       <ListItem button>
         <ListItemIcon>
-          <PageviewIcon />
+          <AssignmentIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Work Orders" />
       </ListItem>
