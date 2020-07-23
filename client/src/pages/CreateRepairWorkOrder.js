@@ -23,7 +23,7 @@ function CreateRepairWorkOrder() {
       });
       setVehicles(filteredVehicles);
     });
-  });
+  }, []);
 
   return <CreateRepairWorkOrderForm user={currentUser} vehicles={vehicles} />;
 }
