@@ -22,19 +22,17 @@ import CreateVehicle from "./pages/CreateVehicle";
 import DisplayUsers from "./pages/DisplayUsers";
 import DisplayVehicles from "./pages/DisplayVehicles";
 import DisplayRepairRequests from "./pages/DisplayRepairRequests";
-// import DisplayRepairRequests from "./pages/DisplayRepairWorkOrders";
 import API from "./utils/API";
-// import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
+import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
 
 function App() {
   const [userState, setUserState] = useState({
-    user:{},
-    display:{ 
+    user: {},
+    display: {
       Login: "no",
-      Routs: "no" 
-    }
+      Routs: "no",
+    },
   });
-
 
   // check server session for user info when page is opened
   // login the user if logged in before
@@ -46,19 +44,18 @@ function App() {
             user: res.data.user,
             display: {
               Login: "no",
-              Routs: "yes"
-            }
-          })
-        } else{
+              Routs: "yes",
+            },
+          });
+        } else {
           setUserState({
             user: {},
             display: {
               Login: "yes",
-              Routs: "no"
-            }
-          })
+              Routs: "no",
+            },
+          });
         }
-        
       })
       .catch((err) => {
         throw new Error(err);
@@ -71,18 +68,20 @@ function App() {
       user: data,
       display: {
         Login: "no",
-        Routs: "yes"
-      }
-    })
+        Routs: "yes",
+      },
+    });
   }
 
   return (
     <Router>
       <UserContext.Provider value={userState.user}>
         {/* render login form if not logged in  */}
-        {userState.display.Login == "yes" && <Login handleLogin={handleLogin} />}
+        {userState.display.Login == "yes" && (
+          <Login handleLogin={handleLogin} />
+        )}
         {/* render the dashbord and other pages if logged in  */}
-        {userState.display.Routs == "yes"&& (
+        {userState.display.Routs == "yes" && (
           <LayoutCanvas>
             <Switch>
               <Route exact path="/" component={WelcomeAlbum} />
@@ -119,7 +118,7 @@ function App() {
               <Route path="/display-repairWorkorders">
                 {userState.user.role === "Technician" ||
                 userState.user.role === "Maintenance Manager" ? (
-                  <></>
+                  <DisplayRepairWorkOrders />
                 ) : (
                   <Unauthorized />
                 )}
