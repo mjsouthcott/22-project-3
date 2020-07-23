@@ -5,15 +5,15 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/eTripleRDB");
 
 const repairWorkOrderSeed = [
   {
-    systems: [
+    automotiveSystems: [
       {
         serial: 1,
         description: "Engine",
-        subsystems: [
+        automotiveSubsystems: [
           {
             serial: "1A",
             description: "Engine oil",
-            status: "Maintenance Action Required",
+            status: "Maintenance action required",
             maintenanceActions: [
               {
                 actionTaken: "Changed engine oil and filter",

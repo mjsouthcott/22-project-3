@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Repair work order schema
 const repairWorkOrderSchema = new Schema(
   {
-    systems: {
+    automotiveSystems: {
       type: [
         {
           serial: {
@@ -15,7 +15,7 @@ const repairWorkOrderSchema = new Schema(
             type: String,
             required: true,
           },
-          subsystems: {
+          automotiveSubsystems: {
             type: [
               {
                 serial: {
@@ -30,9 +30,9 @@ const repairWorkOrderSchema = new Schema(
                   type: String,
                   enum: [
                     "Serviceable",
-                    "Not Applicable",
-                    "Operator Action Required",
-                    "Maintenance Action Required",
+                    "Not applicable",
+                    "Operator action required",
+                    "Maintenance action required",
                   ],
                   required: true,
                 },
@@ -81,14 +81,14 @@ const repairWorkOrderSchema = new Schema(
         },
       ],
     },
-    completedBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-    approvedBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
+    // completedBy: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "User",
+    // },
+    // approvedBy: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "User",
+    // },
   },
   {
     timestamps: true,
