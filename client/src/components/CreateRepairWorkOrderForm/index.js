@@ -94,10 +94,30 @@ function RepairWorkOrderForm(props) {
                 console.log(repairRequest);
                 console.log(repairWorkOrder);
 
-                // TODO: Add API call to save repair work order
-                API.saveRepairWorkOrder(repairWorkOrder).then(() => {});
-
-                // TODO: Add redirect to display repair request page
+                API.saveRepairWorkOrder(repairWorkOrder)
+                  .then((res) => {
+                    API.updateRepairRequestRepairWorkOrder(
+                      repairRequest,
+                      res.data._id
+                    );
+                  })
+                  .then(() => {
+                    API.updateRepairRequestStatus(repairRequest, "Complete");
+                  })
+                  .then(() =>
+                    API.updateUserAvailableStatus(props.user._id, true)
+                  )
+                  .then(() => {
+                    // TODO: update vehicle serviceable status to true
+                    let targetVehicle;
+                    props.vehicles.forEach((vehicle) => {
+                      vehicle.repairRequests.forEach((repairRequest) => {
+                        if (repairRequest._id === repairRequest)
+                          targetVehicle = vehicle._id;
+                      });
+                    });
+                    API.updateVehicleServiceableStatus(props.vehicle._id, true);
+                  });
               }}
             >
               {({ errors, touched, values }) => (
