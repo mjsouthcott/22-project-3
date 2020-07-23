@@ -39,12 +39,12 @@ function RepairWorkOrderForm(props) {
     automotiveSystems: Yup.array().of(
       // Automotive systems
       Yup.object().shape({
-        subsystems: Yup.array().of(
+        automotiveSubsystems: Yup.array().of(
           // Automotive subsystems
           Yup.object().shape({
             status: Yup.string().required("Required"),
             maintenanceActions: Yup.mixed().when("status", {
-              is: "M",
+              is: "Maintenance action required",
               then: Yup.array().of(
                 // Maintenance actions
                 Yup.object().shape({
@@ -90,10 +90,6 @@ function RepairWorkOrderForm(props) {
               validationSchema={RepairWorkOrderFormSchema}
               onSubmit={(values) => {
                 const { repairRequest, ...repairWorkOrder } = values;
-
-                console.log(repairRequest);
-                console.log(repairWorkOrder);
-
                 API.saveRepairWorkOrder(repairWorkOrder)
                   .then((res) => {
                     API.updateRepairRequestRepairWorkOrder(
@@ -110,11 +106,12 @@ function RepairWorkOrderForm(props) {
                   .then(() => {
                     let targetVehicle;
                     props.vehicles.forEach((vehicle) => {
-                      vehicle.repairRequests.forEach((repairRequest) => {
-                        if (repairRequest._id === repairRequest)
+                      vehicle.repairRequests.forEach((request) => {
+                        if (request._id === repairRequest)
                           targetVehicle = vehicle._id;
                       });
                     });
+                    console.log(targetVehicle);
                     API.updateVehicleServiceableStatus(targetVehicle, true);
                   });
               }}
@@ -150,7 +147,7 @@ function RepairWorkOrderForm(props) {
                       <Typography variant="h5" className={classes.typography}>
                         {system.serial}. {system.description}
                       </Typography>
-                      {system.subsystems.map((subsystem, index2) => (
+                      {system.automotiveSubsystems.map((subsystem, index2) => (
                         <div key={subsystem.serial}>
                           {/* Subsystem heading */}
                           <Typography
@@ -165,88 +162,92 @@ function RepairWorkOrderForm(props) {
                           {/* Subsystem status TextField */}
                           <FormGroup className={classes.formGroup}>
                             <Field
-                              name={`automotiveSystems.${index1}.subsystems.${index2}.status`}
+                              name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.status`}
                               as={TextField}
                               select
                               label="Status"
                             >
                               {automotiveSubsystemStatuses.map((status) => (
-                                <MenuItem key={status.code} value={status.code}>
-                                  {status.code}
+                                <MenuItem
+                                  key={status.status}
+                                  value={status.status}
+                                >
+                                  {status.status}
                                 </MenuItem>
                               ))}
                             </Field>
                             {/* {errors.automotiveSystems[index1].subsystems[index2].status && touched.automotiveSystems[index1].subsystems[index2].status ? ( */}
                             <span className={classes.errorMessage}>
                               <ErrorMessage
-                                name={`automotiveSystems.${index1}.subsystems.${index2}.status`}
+                                name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.status`}
                               />
                             </span>
                             {/* ) : null} */}
                           </FormGroup>
                           {/* Subsystem recommended action TextField */}
-                          {values.automotiveSystems[index1].subsystems[index2]
-                            .status === "M" && (
+                          {values.automotiveSystems[index1]
+                            .automotiveSubsystems[index2].status ===
+                            "Maintenance action required" && (
                             <div>
                               <FormGroup className={classes.formGroup}>
                                 <Field
-                                  name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].actionTaken`}
+                                  name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].actionTaken`}
                                   as={TextField}
                                   label="Action Taken"
                                 />
                                 {/* {errors.automotiveSystems[index1].subsystems[index2].recommendedAction && touched.automotiveSystems[index1].subsystems[index2].recommendedAction ? ( */}
                                 <span className={classes.errorMessage}>
                                   <ErrorMessage
-                                    name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].actionTaken`}
+                                    name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].actionTaken`}
                                   />
                                 </span>
                                 {/* ) : null} */}
                               </FormGroup>
                               <FormGroup className={classes.formGroup}>
                                 <Field
-                                  name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].labourHours`}
+                                  name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].labourHours`}
                                   as={TextField}
                                   label="Labour Hours"
                                 />
                                 {/* {errors.automotiveSystems[index1].subsystems[index2].recommendedAction && touched.automotiveSystems[index1].subsystems[index2].recommendedAction ? ( */}
                                 <span className={classes.errorMessage}>
                                   <ErrorMessage
-                                    name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].labourHours`}
+                                    name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].labourHours`}
                                   />
                                 </span>
                                 {/* ) : null} */}
                               </FormGroup>
                               <FormGroup className={classes.formGroup}>
                                 <Field
-                                  name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].repairParts[0].type`}
+                                  name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].repairParts[0].type`}
                                   as={TextField}
                                   label="Repair Part"
                                 />
                                 {/* {errors.automotiveSystems[index1].subsystems[index2].recommendedAction && touched.automotiveSystems[index1].subsystems[index2].recommendedAction ? ( */}
                                 <span className={classes.errorMessage}>
                                   <ErrorMessage
-                                    name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].repairParts[0].type`}
+                                    name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].repairParts[0].type`}
                                   />
                                 </span>
                                 {/* ) : null} */}
                               </FormGroup>
                               <FormGroup className={classes.formGroup}>
                                 <Field
-                                  name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].repairParts[0].quantity`}
+                                  name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].repairParts[0].quantity`}
                                   as={TextField}
                                   label="Quantity"
                                 />
                                 {/* {errors.automotiveSystems[index1].subsystems[index2].recommendedAction && touched.automotiveSystems[index1].subsystems[index2].recommendedAction ? ( */}
                                 <span className={classes.errorMessage}>
                                   <ErrorMessage
-                                    name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].repairParts[0].quantity`}
+                                    name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].repairParts[0].quantity`}
                                   />
                                 </span>
                                 {/* ) : null} */}
                               </FormGroup>
                               <FormGroup className={classes.formGroup}>
                                 <Field
-                                  name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].repairParts[0].unit`}
+                                  name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].repairParts[0].unit`}
                                   as={TextField}
                                   select
                                   label="Unit"
@@ -263,7 +264,7 @@ function RepairWorkOrderForm(props) {
                                 {/* {errors.automotiveSystems[index1].subsystems[index2].recommendedAction && touched.automotiveSystems[index1].subsystems[index2].recommendedAction ? ( */}
                                 <span className={classes.errorMessage}>
                                   <ErrorMessage
-                                    name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].repairParts[0].unit`}
+                                    name={`automotiveSystems.${index1}.automotiveSubsystems.${index2}.maintenanceActions[0].repairParts[0].unit`}
                                   />
                                 </span>
                                 {/* ) : null} */}
