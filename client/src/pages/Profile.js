@@ -98,7 +98,13 @@ export default function Profile(props) {
       };
 
       API.updateUserPassword(data).then((res) => {
-        if (res.data) {
+        if (res.data.error) {
+          setError({
+            message: "Password entered is incorrect.",
+            severity: "error",
+          });
+
+        } else {
           setError({
             message: "Password is changed successfully",
             severity: "success",
@@ -107,11 +113,6 @@ export default function Profile(props) {
             oldPassword: "",
             newPassword: "",
             confirm: "",
-          });
-        } else {
-          setError({
-            message: "Password entered is incorrect.",
-            severity: "error",
           });
         }
       });
