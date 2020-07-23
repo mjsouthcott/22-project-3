@@ -15,7 +15,8 @@ function CreateRepairWorkOrder() {
         vehicle.repairRequests.forEach((repairRequest) => {
           if (
             repairRequest.assignedTo &&
-            repairRequest.assignedTo._id === currentUser._id
+            repairRequest.assignedTo._id === currentUser._id &&
+            repairRequest.repairWorkOrder === undefined
           )
             filteredVehicles.push(vehicle);
         });
