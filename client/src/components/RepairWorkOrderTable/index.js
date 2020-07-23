@@ -23,6 +23,52 @@ const useStyles = makeStyles({
   },
 });
 
+function getRepairRequestColSpan(repairRequest) {
+  let count = 0;
+  repairRequest.repairWorkOrder.systems.forEach((system) => {
+    system.subsystems.forEach((subsystem) => {
+      subsystem.maintenanceActions.forEach((maintenanceAction) => {
+        maintenanceAction.repairParts.forEach((repairPart) => {
+          count++;
+        });
+      });
+    });
+  });
+  console.log(repairRequest);
+  return count;
+}
+
+function getSystemColSpan(system) {
+  let count = 0;
+  system.subsystems.forEach((subsystem) => {
+    subsystem.maintenanceActions.forEach((maintenanceAction) => {
+      maintenanceAction.repairParts.forEach((repairPart) => {
+        count++;
+      });
+    });
+  });
+  return count;
+}
+
+function getSubsystemColSpan(subsystem) {
+  let count = 0;
+  subsystem.maintenanceActions.forEach((maintenanceAction) => {
+    maintenanceAction.repairParts.forEach((repairPart) => {
+      count++;
+    });
+  });
+  return count;
+}
+
+function getMaintenanceActionColSpan(maintenanceAction) {
+  let count = 0;
+  maintenanceAction.repairParts.forEach((repairPart) => {
+    count++;
+  });
+
+  return count;
+}
+
 function RepairWorkOrderTable(props) {
   const classes = useStyles();
 
@@ -66,31 +112,35 @@ function RepairWorkOrderTable(props) {
                         <TableCell
                           component="th"
                           scope="row"
-                          // Get rowSpan
-                          rowSpan={
-                            repairRequest.systems.length *
-                            repairRequest.systems.subsystems.length *
-                            repairRequest.systems.subsystems.maintenanceActions
-                              .length
-                          }
+                          colSpan={getRepairRequestColSpan(repairRequest)}
                         >
                           {repairRequest.number}
                         </TableCell>
+                        <TableCell>
+                          <Fragment>
+                            {repairRequest.repairWorkOrder.systems.map(
+                              (system) => (
+                                <TableRow>
+                                  <TableCell>Test</TableCell>
+                                </TableRow>
+                              )
+                            )}
+                          </Fragment>
+                        </TableCell>
                       </TableRow>
                       {/* Automotive Systems */}
-                      {repairRequest.repairWorkOrder.systems.map((system) => (
+                      {/* {repairRequest.repairWorkOrder.systems.map((system) => (
                         <Fragment>
                           <TableRow key={system.serial}>
                             <TableCell
                               align="right"
-                              // Get rowSpan
-                              rowSpan={system.subsystems.length}
+                              colSpan={getSystemColSpan(system)}
                             >
                               {system.description}
                             </TableCell>
-                          </TableRow>
-                          {/* Automotive Sub-Systems */}
-                          {system.subsystems.map((subsystem) => (
+                          </TableRow> */}
+                      {/* Automotive Sub-Systems */}
+                      {/* {system.subsystems.map((subsystem) => (
                             <Fragment>
                               <TableRow key={subsystem.serial}>
                                 <TableCell align="right">
@@ -103,7 +153,7 @@ function RepairWorkOrderTable(props) {
                             </Fragment>
                           ))}
                         </Fragment>
-                      ))}
+                      ))} */}
 
                       {/* Statuses */}
                       {/* Maintenance Actions Taken */}
