@@ -17,6 +17,7 @@ import "./style.css";
 import automotiveSystems from "../../utils/automotiveSystems";
 import automotiveSubsystemStatuses from "../../utils/automotiveSubsystemStatuses";
 import repairPartUnits from "../../utils/repairPartUnits";
+import API from "../../utils/API";
 var to = require("to-case");
 
 function RepairWorkOrderForm(props) {
@@ -88,11 +89,13 @@ function RepairWorkOrderForm(props) {
               initialValues={{ automotiveSystems }}
               validationSchema={RepairWorkOrderFormSchema}
               onSubmit={(values) => {
-                const repairWorkOrder = values;
+                const { repairRequest, ...repairWorkOrder } = values;
 
+                console.log(repairRequest);
                 console.log(repairWorkOrder);
 
                 // TODO: Add API call to save repair work order
+                API.saveRepairWorkOrder(repairWorkOrder).then(() => {});
 
                 // TODO: Add redirect to display repair request page
               }}
@@ -176,6 +179,20 @@ function RepairWorkOrderForm(props) {
                                 <span className={classes.errorMessage}>
                                   <ErrorMessage
                                     name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].actionTaken`}
+                                  />
+                                </span>
+                                {/* ) : null} */}
+                              </FormGroup>
+                              <FormGroup className={classes.formGroup}>
+                                <Field
+                                  name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].labourHours`}
+                                  as={TextField}
+                                  label="Labour Hours"
+                                />
+                                {/* {errors.automotiveSystems[index1].subsystems[index2].recommendedAction && touched.automotiveSystems[index1].subsystems[index2].recommendedAction ? ( */}
+                                <span className={classes.errorMessage}>
+                                  <ErrorMessage
+                                    name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].labourHours`}
                                   />
                                 </span>
                                 {/* ) : null} */}
