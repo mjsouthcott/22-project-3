@@ -25,8 +25,8 @@ const useStyles = makeStyles({
 
 function getRepairRequestColSpan(repairRequest) {
   let count = 0;
-  repairRequest.repairWorkOrder.systems.forEach((system) => {
-    system.subsystems.forEach((subsystem) => {
+  repairRequest.repairWorkOrder.automotiveSystems.forEach((system) => {
+    system.automotiveSubsystems.forEach((subsystem) => {
       subsystem.maintenanceActions.forEach((maintenanceAction) => {
         maintenanceAction.repairParts.forEach((repairPart) => {
           count++;
@@ -40,7 +40,7 @@ function getRepairRequestColSpan(repairRequest) {
 
 function getSystemColSpan(system) {
   let count = 0;
-  system.subsystems.forEach((subsystem) => {
+  system.automotiveSubsystems.forEach((subsystem) => {
     subsystem.maintenanceActions.forEach((maintenanceAction) => {
       maintenanceAction.repairParts.forEach((repairPart) => {
         count++;
