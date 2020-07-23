@@ -37,7 +37,9 @@ module.exports = {
             if (isMatch) {
               db.User.updateOne({ _id: req.body.id }, {password:newPassword})
               .then((dbModel) => res.json(dbModel));
-            };
+            } else{
+              res.json({error:"The password is incorrect "})
+            }
           });
       })
       .catch((err) => res.status(422).json(err));

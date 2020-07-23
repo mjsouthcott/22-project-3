@@ -98,7 +98,8 @@ export default function Profile(props) {
       };
 
       API.updateUserPassword(data).then((res) => {
-        if (res.data) {
+        console.log(res.data)
+        if (!res.data.error) {
           setError({
             message: "Password is changed successfully",
             severity: "success",
