@@ -22,7 +22,7 @@ export default function WelcomeAlbum() {
 
   return (
     <React.Fragment>
-      <img align="center" src="/assets/vehicleBanner.jpg" alt="logo" width="300px" height="200px" style={{ marginLeft: "auto", marginRight: "auto", marginBottom: "2%",display: "block"}}/>
+      {/* <img align="center" src="/assets/vehicleBanner.jpg" alt="logo" width="300px" height="200px" style={{ marginLeft: "auto", marginRight: "auto", marginBottom: "2%",display: "block"}}/> */}
       <CssBaseline />
       <div className={classes.heroContent}>
         <Container maxWidth="lg">

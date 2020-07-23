@@ -136,6 +136,14 @@ export const operatorListItems = (
 
 export const technicianListItems = (
   <div>
+      <NavLink to="/create-repairWorkorder">
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Create Repair Work Order" />
+      </ListItem>
+    </NavLink>
     <NavLink to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>

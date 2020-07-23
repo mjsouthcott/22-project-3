@@ -95,8 +95,8 @@ export default function Navigation(props) {
     content: {
       flexGrow: 1,
       height: "100vh",
-      overflow: "auto",
-      backgroundColor : '#81613c'
+      overflow: "auto"
+      // backgroundColor : '#81613c'
     },
     container: {
       paddingTop: theme.spacing(4),
