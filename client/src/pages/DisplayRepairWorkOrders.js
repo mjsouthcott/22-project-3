@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import RepairWorkOrderTable from "../components/RepairWorkOrder/index";
+import RepairWorkOrderTable from "../components/RepairWorkOrderTable/index";
 import API from "../utils/API";
 import UserContext from "../utils/UserContext";
 
