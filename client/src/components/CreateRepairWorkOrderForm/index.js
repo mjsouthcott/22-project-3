@@ -9,6 +9,7 @@ import {
   TextField,
   Typography,
   Container,
+  Divider,
 } from "@material-ui/core";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -16,6 +17,7 @@ import "./style.css";
 import automotiveSystems from "../../utils/automotiveSystems";
 import automotiveSubsystemStatuses from "../../utils/automotiveSubsystemStatuses";
 import repairPartUnits from "../../utils/repairPartUnits";
+import API from "../../utils/API";
 var to = require("to-case");
 
 function RepairWorkOrderForm(props) {
@@ -33,6 +35,7 @@ function RepairWorkOrderForm(props) {
   const classes = useStyles();
 
   const RepairWorkOrderFormSchema = Yup.object().shape({
+    repairRequest: Yup.string().required("Required"),
     automotiveSystems: Yup.array().of(
       // Automotive systems
       Yup.object().shape({
@@ -46,6 +49,7 @@ function RepairWorkOrderForm(props) {
                 // Maintenance actions
                 Yup.object().shape({
                   actionTaken: Yup.string().required("Required"),
+                  labourHours: Yup.number().required("Required"),
                   repairParts: Yup.array().of(
                     // Repair parts
                     Yup.object().shape({
@@ -85,17 +89,61 @@ function RepairWorkOrderForm(props) {
               initialValues={{ automotiveSystems }}
               validationSchema={RepairWorkOrderFormSchema}
               onSubmit={(values) => {
-                const repairWorkOrder = values;
+                const { repairRequest, ...repairWorkOrder } = values;
 
+                console.log(repairRequest);
                 console.log(repairWorkOrder);
 
-                // TODO: Add API call to save repair work order
-
-                // TODO: Add redirect to display repair request page
+                API.saveRepairWorkOrder(repairWorkOrder)
+                  .then((res) => {
+                    API.updateRepairRequestRepairWorkOrder(
+                      repairRequest,
+                      res.data._id
+                    );
+                  })
+                  .then(() => {
+                    API.updateRepairRequestStatus(repairRequest, "Complete");
+                  })
+                  .then(() => {
+                    API.updateUserAvailableStatus(props.user._id, true);
+                  })
+                  .then(() => {
+                    let targetVehicle;
+                    props.vehicles.forEach((vehicle) => {
+                      vehicle.repairRequests.forEach((repairRequest) => {
+                        if (repairRequest._id === repairRequest)
+                          targetVehicle = vehicle._id;
+                      });
+                    });
+                    API.updateVehicleServiceableStatus(targetVehicle, true);
+                  });
               }}
             >
               {({ errors, touched, values }) => (
                 <Form>
+                  <FormGroup className={classes.formGroup}>
+                    <Field
+                      name="repairRequest"
+                      as={TextField}
+                      select
+                      label="Repair Request"
+                    >
+                      {props.vehicles.map((vehicle) =>
+                        vehicle.repairRequests.map((repairRequest) => (
+                          <MenuItem
+                            key={repairRequest._id}
+                            value={repairRequest._id}
+                          >
+                            {repairRequest.number}
+                          </MenuItem>
+                        ))
+                      )}
+                    </Field>
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name={`repairRequest`} />
+                    </span>
+                  </FormGroup>
+                  <Divider style={{ marginBottom: 10 }}></Divider>
                   {automotiveSystems.map((system, index1) => (
                     <div key={system.serial}>
                       {/* System heading */}
@@ -150,6 +198,20 @@ function RepairWorkOrderForm(props) {
                                 <span className={classes.errorMessage}>
                                   <ErrorMessage
                                     name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].actionTaken`}
+                                  />
+                                </span>
+                                {/* ) : null} */}
+                              </FormGroup>
+                              <FormGroup className={classes.formGroup}>
+                                <Field
+                                  name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].labourHours`}
+                                  as={TextField}
+                                  label="Labour Hours"
+                                />
+                                {/* {errors.automotiveSystems[index1].subsystems[index2].recommendedAction && touched.automotiveSystems[index1].subsystems[index2].recommendedAction ? ( */}
+                                <span className={classes.errorMessage}>
+                                  <ErrorMessage
+                                    name={`automotiveSystems.${index1}.subsystems.${index2}.maintenanceActions[0].labourHours`}
                                   />
                                 </span>
                                 {/* ) : null} */}

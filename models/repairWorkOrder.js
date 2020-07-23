@@ -46,6 +46,10 @@ const repairWorkOrderSchema = new Schema(
                         trim: true,
                         required: true,
                       },
+                      labourHours: {
+                        type: Number,
+                        required: true,
+                      },
                       repairParts: {
                         type: [
                           {
