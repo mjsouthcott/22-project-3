@@ -9,6 +9,7 @@ import {
   TextField,
   Typography,
   Container,
+  Divider,
 } from "@material-ui/core";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -33,6 +34,7 @@ function RepairWorkOrderForm(props) {
   const classes = useStyles();
 
   const RepairWorkOrderFormSchema = Yup.object().shape({
+    repairRequest: Yup.string().required("Required"),
     automotiveSystems: Yup.array().of(
       // Automotive systems
       Yup.object().shape({
@@ -46,6 +48,7 @@ function RepairWorkOrderForm(props) {
                 // Maintenance actions
                 Yup.object().shape({
                   actionTaken: Yup.string().required("Required"),
+                  labourHours: Yup.number().required("Required"),
                   repairParts: Yup.array().of(
                     // Repair parts
                     Yup.object().shape({
@@ -96,6 +99,29 @@ function RepairWorkOrderForm(props) {
             >
               {({ errors, touched, values }) => (
                 <Form>
+                  <FormGroup className={classes.formGroup}>
+                    <Field
+                      name="repairRequest"
+                      as={TextField}
+                      select
+                      label="Repair Request"
+                    >
+                      {props.vehicles.map((vehicle) =>
+                        vehicle.repairRequests.map((repairRequest) => (
+                          <MenuItem
+                            key={repairRequest._id}
+                            value={repairRequest._id}
+                          >
+                            {repairRequest.number}
+                          </MenuItem>
+                        ))
+                      )}
+                    </Field>
+                    <span className={classes.errorMessage}>
+                      <ErrorMessage name={`repairRequest`} />
+                    </span>
+                  </FormGroup>
+                  <Divider style={{ marginBottom: 10 }}></Divider>
                   {automotiveSystems.map((system, index1) => (
                     <div key={system.serial}>
                       {/* System heading */}

@@ -21,7 +21,6 @@ function CreateRepairWorkOrder() {
             filteredVehicles.push(vehicle);
         });
       });
-      console.log(filteredVehicles);
       setVehicles(filteredVehicles);
     });
   });
