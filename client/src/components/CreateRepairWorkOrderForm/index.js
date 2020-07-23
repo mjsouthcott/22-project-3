@@ -104,11 +104,10 @@ function RepairWorkOrderForm(props) {
                   .then(() => {
                     API.updateRepairRequestStatus(repairRequest, "Complete");
                   })
-                  .then(() =>
-                    API.updateUserAvailableStatus(props.user._id, true)
-                  )
                   .then(() => {
-                    // TODO: update vehicle serviceable status to true
+                    API.updateUserAvailableStatus(props.user._id, true);
+                  })
+                  .then(() => {
                     let targetVehicle;
                     props.vehicles.forEach((vehicle) => {
                       vehicle.repairRequests.forEach((repairRequest) => {
@@ -116,7 +115,7 @@ function RepairWorkOrderForm(props) {
                           targetVehicle = vehicle._id;
                       });
                     });
-                    API.updateVehicleServiceableStatus(props.vehicle._id, true);
+                    API.updateVehicleServiceableStatus(targetVehicle, true);
                   });
               }}
             >
