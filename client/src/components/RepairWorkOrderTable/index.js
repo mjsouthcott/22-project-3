@@ -82,7 +82,26 @@ function RepairWorkOrderTable(props) {
                                     {subsystem.description}
                                   </TableCell>
                                   <TableCell rowSpan={1}>
-                                    {subsystem.status}
+                                    {subsystem.status ===
+                                      "Maintenance action required" ||
+                                    subsystem.status ===
+                                      "Operator action required" ? (
+                                      <Chip
+                                        label={subsystem.status}
+                                        style={{
+                                          color: "white",
+                                          backgroundColor: "red",
+                                        }}
+                                      />
+                                    ) : (
+                                      <Chip
+                                        label={subsystem.status}
+                                        style={{
+                                          color: "white",
+                                          backgroundColor: "green",
+                                        }}
+                                      />
+                                    )}
                                   </TableCell>
                                   <TableCell rowSpan={1}>
                                     {subsystem.maintenanceActions[0]

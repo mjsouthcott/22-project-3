@@ -101,6 +101,12 @@ export default {
     });
   },
 
+  updateCommandPostLocation: function (vehicleId, newLocation) {
+    return axios.patch(`/api/vehicles/${vehicleId}`, {
+      location: newLocation,
+    });
+  },
+
   saveVehicle: function (vehicleData) {
     return axios.post("/api/vehicles", vehicleData);
   },
