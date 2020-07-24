@@ -11,6 +11,8 @@ import {
   Container,
   Divider,
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import CheckIcon from "@material-ui/icons/Check";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "./style.css";
@@ -33,6 +35,13 @@ function RepairWorkOrderForm(props) {
     },
   });
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(() => setOpen(false), 1500);
+  };
 
   const RepairWorkOrderFormSchema = Yup.object().shape({
     repairRequest: Yup.string().required("Required"),
@@ -88,7 +97,7 @@ function RepairWorkOrderForm(props) {
             <Formik
               initialValues={{ automotiveSystems }}
               validationSchema={RepairWorkOrderFormSchema}
-              onSubmit={(values) => {
+              onSubmit={(values, { resetForm }) => {
                 const { repairRequest, ...repairWorkOrder } = values;
                 API.saveRepairWorkOrder(repairWorkOrder)
                   .then((res) => {
@@ -113,6 +122,12 @@ function RepairWorkOrderForm(props) {
                     });
                     console.log(targetVehicle);
                     API.updateVehicleServiceableStatus(targetVehicle, true);
+
+                    // Show alert with form submission feedback
+                    handleClick();
+
+                    // Reset form
+                    resetForm();
                   });
               }}
             >
@@ -284,6 +299,17 @@ function RepairWorkOrderForm(props) {
           )}
         </CardContent>
       </Card>
+      {open && (
+        <Alert
+          icon={<CheckIcon fontSize="inherit" />}
+          variant="filled"
+          severity="success"
+          hidden={true}
+          style={{ marginTop: 20 }}
+        >
+          Repair Work Order created
+        </Alert>
+      )}
     </Container>
   );
 }
