@@ -30,22 +30,22 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/eTripleRDB", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-});
-// mongoose.connect(
-//   process.env.MONGODB_URI ||
-//     "mongodb://user:password123@ds023458.mlab.com:23458/heroku_xd6m9tvz",
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     useFindAndModify: false,
-//     useCreateIndex: true,
-//   }
-// );
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/eTripleRDB", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false,
+//   useCreateIndex: true,
+// });
+mongoose.connect(
+  process.env.MONGODB_URI ||
+    "mongodb://user:password123@ds023458.mlab.com:23458/heroku_xd6m9tvz",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  }
+);
 
 // Start the API server
 app.listen(PORT, function () {
