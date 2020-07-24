@@ -16,18 +16,13 @@ const repairWorkOrderSeed = [
             status: "Maintenance action required",
             maintenanceActions: [
               {
-                actionTaken: "Changed engine oil and filter",
+                actionTaken: "Topped up engine oil",
                 labourHours: 1,
                 repairParts: [
                   {
                     type: "Oil",
-                    quantity: 10,
+                    quantity: 15,
                     unit: "L",
-                  },
-                  {
-                    type: "Oil filter",
-                    quantity: 1,
-                    unit: "N/A",
                   },
                 ],
               },
