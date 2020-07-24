@@ -23,33 +23,30 @@ const useStyles = makeStyles({
   },
 });
 
-function getRepairRequestColSpan(repairRequest) {
+function getRepairRequestRowSpan(repairRequest) {
   let count = 0;
   repairRequest.repairWorkOrder.automotiveSystems.forEach((system) => {
     system.automotiveSubsystems.forEach((subsystem) => {
       subsystem.maintenanceActions.forEach((maintenanceAction) => {
-        maintenanceAction.repairParts.forEach((repairPart) => {
-          count++;
-        });
+        maintenanceAction.repairParts.forEach((repairPart) => {});
       });
     });
   });
+  console.log(count);
   return count;
 }
 
-function getSystemColSpan(system) {
+function getSystemRowSpan(system) {
   let count = 0;
   system.automotiveSubsystems.forEach((subsystem) => {
     subsystem.maintenanceActions.forEach((maintenanceAction) => {
-      maintenanceAction.repairParts.forEach((repairPart) => {
-        count++;
-      });
+      maintenanceAction.repairParts.forEach((repairPart) => {});
     });
   });
   return count;
 }
 
-function getSubsystemColSpan(subsystem) {
+function getSubsystemRowSpan(subsystem) {
   let count = 0;
   subsystem.maintenanceActions.forEach((maintenanceAction) => {
     maintenanceAction.repairParts.forEach((repairPart) => {
@@ -59,7 +56,7 @@ function getSubsystemColSpan(subsystem) {
   return count;
 }
 
-function getMaintenanceActionColSpan(maintenanceAction) {
+function getMaintenanceActionRowSpan(maintenanceAction) {
   let count = 0;
   maintenanceAction.repairParts.forEach((repairPart) => {
     count++;
@@ -93,7 +90,7 @@ function RepairWorkOrderTable(props) {
                   <TableRow>
                     <TableCell>Repair Request Number</TableCell>
                     <TableCell align="right">Automotive System</TableCell>
-                    <TableCell align="right">Automotive Sub-System</TableCell>
+                    <TableCell align="right">Automotive Subsystem</TableCell>
                     <TableCell align="right">Status</TableCell>
                     <TableCell align="right">
                       Maintenance Action Taken
@@ -107,63 +104,64 @@ function RepairWorkOrderTable(props) {
                 <TableBody>
                   {props.repairRequests.map((repairRequest) => (
                     <Fragment>
-                      <TableRow key={repairRequest.repairWorkOrder._id}>
-                        <TableCell
-                          component="th"
-                          scope="row"
-                          colSpan={getRepairRequestColSpan(repairRequest)}
-                        >
+                      <TableRow>
+                        <TableCell rowSpan={29}>
                           {repairRequest.number}
                         </TableCell>
-                        <TableCell>
+                      </TableRow>
+                      {repairRequest.repairWorkOrder.automotiveSystems.map(
+                        (system) => (
                           <Fragment>
-                            {repairRequest.repairWorkOrder.automotiveSystems.map(
-                              (system) => (
+                            <TableRow>
+                              <TableCell rowSpan={4}>
+                                {system.description}
+                              </TableCell>
+                            </TableRow>
+                            {system.automotiveSubsystems.map((subsystem) => (
+                              <Fragment>
                                 <TableRow>
-                                  <TableCell
-                                    colSpawn={getSystemColSpan(system)}
-                                  >
-                                    {system.description}
+                                  <TableCell rowSpan={1}>
+                                    {subsystem.description}
+                                  </TableCell>
+                                  <TableCell rowSpan={1}>
+                                    {subsystem.status}
+                                  </TableCell>
+                                  <TableCell rowSpan={1}>
+                                    {subsystem.maintenanceActions[0]
+                                      ? subsystem.maintenanceActions[0]
+                                          .actionTaken
+                                      : "N/A"}
+                                  </TableCell>
+                                  <TableCell rowSpan={1}>
+                                    {subsystem.maintenanceActions[0]
+                                      ? subsystem.maintenanceActions[0]
+                                          .labourHours
+                                      : "N/A"}
+                                  </TableCell>
+                                  <TableCell rowSpan={1}>
+                                    {subsystem.maintenanceActions[0]
+                                      ? subsystem.maintenanceActions[0]
+                                          .repairParts[0].type
+                                      : "N/A"}
+                                  </TableCell>
+                                  <TableCell rowSpan={1}>
+                                    {subsystem.maintenanceActions[0]
+                                      ? subsystem.maintenanceActions[0]
+                                          .repairParts[0].quantity
+                                      : "N/A"}
+                                  </TableCell>
+                                  <TableCell rowSpan={1}>
+                                    {subsystem.maintenanceActions[0]
+                                      ? subsystem.maintenanceActions[0]
+                                          .repairParts[0].unit
+                                      : "N/A"}
                                   </TableCell>
                                 </TableRow>
-                              )
-                            )}
+                              </Fragment>
+                            ))}
                           </Fragment>
-                        </TableCell>
-                      </TableRow>
-                      {/* Automotive Systems */}
-                      {/* {repairRequest.repairWorkOrder.systems.map((system) => (
-                        <Fragment>
-                          <TableRow key={system.serial}>
-                            <TableCell
-                              align="right"
-                              colSpan={getSystemColSpan(system)}
-                            >
-                              {system.description}
-                            </TableCell>
-                          </TableRow> */}
-                      {/* Automotive Sub-Systems */}
-                      {/* {system.subsystems.map((subsystem) => (
-                            <Fragment>
-                              <TableRow key={subsystem.serial}>
-                                <TableCell align="right">
-                                  {subsystem.description}
-                                </TableCell>
-                                <TableCell align="right">
-                                  {subsystem.status}
-                                </TableCell>
-                              </TableRow>
-                            </Fragment>
-                          ))}
-                        </Fragment>
-                      ))} */}
-
-                      {/* Statuses */}
-                      {/* Maintenance Actions Taken */}
-                      {/* Labour Hours */}
-                      {/* Repair Parts */}
-                      {/* Quantities */}
-                      {/* Units */}
+                        )
+                      )}
                     </Fragment>
                   ))}
                 </TableBody>
