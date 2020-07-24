@@ -26,15 +26,20 @@ import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import DriveEtaIcon from "@material-ui/icons/DriveEta";
 import API from "../utils/API";
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(2),
+    paddingTop: theme.spacing(2),
   },
   card: {
     padding: theme.spacing(4),
   },
   items: {
     margin: theme.spacing(2),
+    [theme.breakpoints.down('md')]: {
+      margin: theme.spacing(0),
+    },
   },
   details: {
     display: "flex",
@@ -93,7 +98,13 @@ export default function Profile(props) {
       };
 
       API.updateUserPassword(data).then((res) => {
-        if (res.data) {
+        if (res.data.error) {
+          setError({
+            message: "Password entered is incorrect.",
+            severity: "error",
+          });
+
+        } else {
           setError({
             message: "Password is changed successfully",
             severity: "success",
@@ -102,11 +113,6 @@ export default function Profile(props) {
             oldPassword: "",
             newPassword: "",
             confirm: "",
-          });
-        } else {
-          setError({
-            message: "Password entered is incorrect.",
-            severity: "error",
           });
         }
       });
@@ -123,8 +129,8 @@ export default function Profile(props) {
   }, []);
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={6}>
+
+      <Grid container spacing={6} className={classes.root}>
         <Grid item xl={8} md={6} sm={12}>
           {/* edit user profile  */}
           <Card {...rest} className={clsx(classes.card, className)}>
@@ -132,11 +138,11 @@ export default function Profile(props) {
               <CardContent>
                 <div className={classes.details}>
                   <div>
-                    <Typography gutterBottom variant="h3">
+                    <Typography gutterBottom variant="h4">
                       {userInfo.firstName} {userInfo.lastName}
                     </Typography>
 
-                    <Typography className={classes.locationText} variant="h5">
+                    <Typography className={classes.locationText} variant="h6">
                       {userInfo.role}
                     </Typography>
                   </div>
@@ -176,9 +182,10 @@ export default function Profile(props) {
                         <ListItem button className={classes.nested}>
                         Type: {vehicle.type}
                         </ListItem>
-                        
+                        <Divider />
+
                         <ListItem button className={classes.nested}>
-                        serviceable: {vehicle.serviceable? "Yes" : "No"}
+                        Serviceable: {vehicle.serviceable? "Yes" : "No"}
                         </ListItem>
                         
                       </List>
@@ -253,6 +260,5 @@ export default function Profile(props) {
           </Card>
         </Grid>
       </Grid>
-    </div>
   );
 }

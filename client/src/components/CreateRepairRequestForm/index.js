@@ -23,8 +23,8 @@ function RepairRequestForm(props) {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
       setCurrentLocation({
-        latitude: pos.coords.latitude,
-        longitude: pos.coords.longitude,
+        latitude: pos.coords.latitude.toFixed(7),
+        longitude: pos.coords.longitude.toFixed(7),
       });
     });
   }, []);

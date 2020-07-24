@@ -1,53 +1,52 @@
-const mongoose = require("mongoose")
-const db = require("../models")
+const mongoose = require("mongoose");
+const db = require("../models");
 
-mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://localhost/eTripleRDB"
-)
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/eTripleRDB");
 
 const repairWorkOrderSeed = [
   {
-    systems: [
+    automotiveSystems: [
       {
         serial: 1,
-        description: 'Engine',
-        subsystems: [
+        description: "Engine",
+        automotiveSubsystems: [
           {
-            serial: '1A',
-            description: 'Engine oil',
-            status: 'Maintenance Action Required',
+            serial: "1A",
+            description: "Engine oil",
+            status: "Maintenance action required",
             maintenanceActions: [
               {
-                actionTaken: 'Changed engine oil and filter',
+                actionTaken: "Changed engine oil and filter",
+                labourHours: 1,
                 repairParts: [
                   {
-                    type: 'Oil',
+                    type: "Oil",
                     quantity: 10,
-                    unit: 'L'
+                    unit: "L",
                   },
                   {
-                    type: 'Oil filter',
+                    type: "Oil filter",
                     quantity: 1,
-                    unit: 'N/A'
+                    unit: "N/A",
                   },
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-]
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
 
-db.RepairWorkOrder
-  .insertMany(repairWorkOrderSeed)
+db.RepairWorkOrder.insertMany(repairWorkOrderSeed)
   .then(() => {
-    console.log(repairWorkOrderSeed.length + " RepairWorkOrder records inserted!")
-    process.exit(0)
+    console.log(
+      repairWorkOrderSeed.length + " RepairWorkOrder records inserted!"
+    );
+    process.exit(0);
   })
-  .catch(err => {
-    console.error(err)
-    process.exit(1)
-  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });

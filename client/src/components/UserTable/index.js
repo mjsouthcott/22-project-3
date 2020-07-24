@@ -81,7 +81,7 @@ function UserTable(props) {
                       <img
                         src={getRankIconSrc(user)}
                         alt={user.rank}
-                        height="100"
+                        height="90"
                       ></img>
                     </TableCell>
                     <TableCell align="right">{user.rank}</TableCell>
