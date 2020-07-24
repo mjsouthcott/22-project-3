@@ -23,48 +23,6 @@ const useStyles = makeStyles({
   },
 });
 
-function getRepairRequestRowSpan(repairRequest) {
-  let count = 0;
-  repairRequest.repairWorkOrder.automotiveSystems.forEach((system) => {
-    system.automotiveSubsystems.forEach((subsystem) => {
-      subsystem.maintenanceActions.forEach((maintenanceAction) => {
-        maintenanceAction.repairParts.forEach((repairPart) => {});
-      });
-    });
-  });
-  console.log(count);
-  return count;
-}
-
-function getSystemRowSpan(system) {
-  let count = 0;
-  system.automotiveSubsystems.forEach((subsystem) => {
-    subsystem.maintenanceActions.forEach((maintenanceAction) => {
-      maintenanceAction.repairParts.forEach((repairPart) => {});
-    });
-  });
-  return count;
-}
-
-function getSubsystemRowSpan(subsystem) {
-  let count = 0;
-  subsystem.maintenanceActions.forEach((maintenanceAction) => {
-    maintenanceAction.repairParts.forEach((repairPart) => {
-      count++;
-    });
-  });
-  return count;
-}
-
-function getMaintenanceActionRowSpan(maintenanceAction) {
-  let count = 0;
-  maintenanceAction.repairParts.forEach((repairPart) => {
-    count++;
-  });
-
-  return count;
-}
-
 function RepairWorkOrderTable(props) {
   const classes = useStyles();
 
