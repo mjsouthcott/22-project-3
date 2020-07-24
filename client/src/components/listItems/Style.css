@@ -5,6 +5,9 @@ a {
 }
 
 a.active > div {
-	background-color: #3f51b5!important ;
+	background-color:rgba(51, 59, 77, 0.8) !important ;
+	color:white;
+}
+a.active .MuiListItemIcon-root {
 	color:white;
 }

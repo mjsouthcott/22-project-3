@@ -30,11 +30,10 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
     paddingTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -70,6 +69,7 @@ export default function Login(props) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+      <img align="center" src="/assets/logo.png" alt="logo" width="240px" height="auto" style={{ marginLeft: "auto", marginRight: "auto", marginTop: "40%", display: "block"}}/>
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Sign in
@@ -81,30 +81,7 @@ export default function Login(props) {
             username: "matthewsouthcott",
             password: "password",
           }}
-          // // Operations Manager
-          // initialValues={{
-          //   username: "maxguo",
-          //   password: "password",
-          // }}
 
-          // // Operator
-          // initialValues={{
-          //   username: "mathieuleblanc",
-          //   password: "password",
-          // }}
-
-          // // Tech
-          // initialValues={{
-          //   username: "danieltremblay",
-          //   password: "password",
-          // }}
-
-          // End of test -----------------------------------------------------
-
-          // initialValues={{
-          //   username: "",
-          //   password: "",
-          // }}
           onSubmit={handleFormSubmit}
         >
           {({ errors, touched, values }) => (
@@ -140,7 +117,7 @@ export default function Login(props) {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="primary"
+                style = {{color: 'white', backgroundColor : 'rgba(51, 59, 77)'}}
                 className={classes.submit}
               >
                 Sign In
