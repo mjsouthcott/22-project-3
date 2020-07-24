@@ -34,7 +34,6 @@ function getRepairRequestColSpan(repairRequest) {
       });
     });
   });
-  console.log(repairRequest);
   return count;
 }
 
@@ -118,10 +117,14 @@ function RepairWorkOrderTable(props) {
                         </TableCell>
                         <TableCell>
                           <Fragment>
-                            {repairRequest.repairWorkOrder.systems.map(
+                            {repairRequest.repairWorkOrder.automotiveSystems.map(
                               (system) => (
                                 <TableRow>
-                                  <TableCell>Test</TableCell>
+                                  <TableCell
+                                    colSpawn={getSystemColSpan(system)}
+                                  >
+                                    {system.description}
+                                  </TableCell>
                                 </TableRow>
                               )
                             )}
