@@ -112,15 +112,15 @@ const automotiveSystems = [
     description: "General",
     automotiveSubsystems: [
       {
-        serial: "12A",
+        serial: "7A",
         description: "Cleanliness",
       },
       {
-        serial: "12B",
+        serial: "7B",
         description: "Lubrication",
       },
       {
-        serial: "12C",
+        serial: "7C",
         description: "Component security",
       },
     ],
