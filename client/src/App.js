@@ -35,7 +35,6 @@ function App() {
     }
   });
 
-
   // check server session for user info when page is opened
   // login the user if logged in before
   useEffect(() => {
@@ -80,9 +79,9 @@ function App() {
     <Router>
       <UserContext.Provider value={userState.user}>
         {/* render login form if not logged in  */}
-        {userState.display.Login == "yes" && <Login handleLogin={handleLogin} />}
+        {userState.display.Login === "yes" && <Login handleLogin={handleLogin} />}
         {/* render the dashbord and other pages if logged in  */}
-        {userState.display.Routs == "yes"&& (
+        {userState.display.Routs === "yes"&& (
           <LayoutCanvas>
             <Switch>
               <Route exact path="/" component={WelcomeAlbum} />

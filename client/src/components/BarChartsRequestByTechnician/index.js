@@ -54,7 +54,7 @@ export default function BarCharts() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey="Repair Requests" fill={'blue'}/>
+      <Bar dataKey="Repair Requests" fill={'#333b4c'}/>
     </BarChart>
     </ResponsiveContainer>
     </React.Fragment>
