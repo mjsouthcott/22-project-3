@@ -1,5 +1,5 @@
 # e-Triple "R"
-Repair Request ?????????? (forgot the word)
+Electronic Repair Recovery Request 
 
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/mjsouthcott/22-project-3)
@@ -39,23 +39,22 @@ MaxGuo: https://github.com/Maxguojiaqi
 * `MongoDB`
 * `React`
 * Various `npm` Packages
-* `axios`
-* `bcryptjs`
-* `express`
-* `express-session`
-* `formik`
-* `http-proxy-middleware`
-* `mongoose`
-* `mongoose-hidden`
-* `moment`
-* `mysql2`
-* `passport`
-* `passport-local`
-* `react-dom`
-* `react-router-dom`
-* `recharts`
-* `to-case`
-* `yup`
+  * `axios`
+  * `bcryptjs`
+  * `express`
+  * `express-session`
+  * `formik`
+  * `http-proxy-middleware`
+  * `mongoose`
+  * `mongoose-hidden`
+  * `mysql2`
+  * `passport`
+  * `passport-local`
+  * `react-dom`
+  * `react-router-dom`
+  * `recharts`
+  * `to-case`
+  * `yup`
 
 
 
