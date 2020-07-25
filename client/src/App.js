@@ -79,15 +79,24 @@ function App() {
     <Router>
       <UserContext.Provider value={userState.user}>
         {/* render login form if not logged in  */}
-        {userState.display.Login === "yes" && <Login handleLogin={handleLogin} />}
+        {userState.display.Login === "yes" && (
+          <Login handleLogin={handleLogin} />
+        )}
         {/* render the dashbord and other pages if logged in  */}
-        {userState.display.Routs === "yes"&& (
+        {userState.display.Routs === "yes" && (
           <LayoutCanvas>
             <Switch>
               <Route exact path="/" component={WelcomeAlbum} />
               <Route exact path="/dashboard">
                 {userState.user.role === "Maintenance Manager" ? (
                   <Dashboard />
+                ) : (
+                  <Unauthorized />
+                )}
+              </Route>
+              <Route exact path="/setup-mobileWorkshop">
+                {userState.user.role === "Maintenance Manager" ? (
+                  <SetUpMobileWorkshop />
                 ) : (
                   <Unauthorized />
                 )}

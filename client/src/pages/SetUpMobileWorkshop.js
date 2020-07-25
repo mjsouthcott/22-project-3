@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -12,10 +12,28 @@ import CheckIcon from "@material-ui/icons/Check";
 import { Formik, Form } from "formik";
 import API from "../utils/API";
 import UserContext from "../utils/UserContext";
-import "./style.css";
 
 function SetUpMobileWorkshop() {
+  const [location, setLocation] = useState();
+  const [vehicle, setVehicle] = useState();
+
   const currentUser = useContext(UserContext);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      setLocation({
+        latitude: pos.coords.latitude.toFixed(7),
+        longitude: pos.coords.longitude.toFixed(7),
+      });
+    });
+    API.getVehicles().then((res) => {
+      const targetVehicle = res.data.find(
+        (vehicle) =>
+          vehicle.occupant && vehicle.occupant._id === currentUser._id
+      );
+      setVehicle(targetVehicle);
+    });
+  }, []);
 
   const useStyles = makeStyles({
     typography: {
@@ -37,25 +55,6 @@ function SetUpMobileWorkshop() {
     setTimeout(() => setOpen(false), 1500);
   };
 
-  function setLocation() {
-    API.getVehicles()
-      .then((res) => {
-        const targetVehicle = res.data.find(
-          (vehicle) =>
-            vehicle.occupant && vehicle.occupant._id === currentUser._id
-        );
-        return targetVehicle;
-      })
-      .then((targetVehicle) => {
-        navigator.geolocation.getCurrentPosition((pos) => {
-          API.updateCommandPostLocation(targetVehicle._id, {
-            latitude: pos.coords.latitude.toFixed(7),
-            longitude: pos.coords.longitude.toFixed(7),
-          });
-        });
-      });
-  }
-
   return (
     <Container maxWidth="sm">
       <Card>
@@ -67,14 +66,12 @@ function SetUpMobileWorkshop() {
             Set up mobile workshop in current location
           </Typography>
           <Formik
-            onSubmit={() => {
-              setLocation();
+            initialValues={{}}
+            onSubmit={(values) => {
+              API.updateCommandPostLocation(vehicle._id, location);
 
               // Show alert with form submission feedback
               handleClick();
-
-              // Reset form
-              resetForm();
             }}
           >
             {() => (
@@ -93,7 +90,8 @@ function SetUpMobileWorkshop() {
           hidden={true}
           style={{ marginTop: 20 }}
         >
-          Mobile workshop set up in current location
+          Mobile workshop set up in current location ({location.latitude},{" "}
+          {location.longitude})
         </Alert>
       )}
     </Container>
