@@ -22,8 +22,10 @@ import CreateVehicle from "./pages/CreateVehicle";
 import DisplayUsers from "./pages/DisplayUsers";
 import DisplayVehicles from "./pages/DisplayVehicles";
 import DisplayRepairRequests from "./pages/DisplayRepairRequests";
-import API from "./utils/API";
 import DisplayRepairWorkOrders from "./pages/DisplayRepairWorkOrders";
+import SetUpMobileWorkshop from "./pages/SetUpMobileWorkshop";
+
+import API from "./utils/API";
 
 function App() {
   const [userState, setUserState] = useState({

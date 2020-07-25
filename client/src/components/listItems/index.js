@@ -7,6 +7,7 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 import CommuteIcon from '@material-ui/icons/Commute';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
+import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
 
 
 // import NavLink from '@material-ui/core/NavLink';
@@ -68,6 +69,14 @@ export const maintenanceManagerListItems = (
           <AirportShuttleIcon />
         </ListItemIcon>
         <ListItemText primary="Create Technician Vehicle" />
+      </ListItem>
+    </NavLink>
+    <NavLink to="/setup-mobileWorkshop">
+      <ListItem button>
+        <ListItemIcon>
+          <PhonelinkSetupIcon />
+        </ListItemIcon>
+        <ListItemText primary="Setup Mobile Workshop" />
       </ListItem>
     </NavLink>
     <NavLink to="/display-users">
