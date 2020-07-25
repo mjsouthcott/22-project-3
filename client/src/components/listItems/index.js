@@ -4,21 +4,18 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import AirportShuttleIcon from "@material-ui/icons/AirportShuttle";
 import PeopleIcon from "@material-ui/icons/People";
 import AssignmentIcon from "@material-ui/icons/Assignment";
-import CommuteIcon from '@material-ui/icons/Commute';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import AssignmentLateIcon from '@material-ui/icons/AssignmentLate';
-import PhonelinkSetupIcon from '@material-ui/icons/PhonelinkSetup';
-
+import CommuteIcon from "@material-ui/icons/Commute";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import AssignmentLateIcon from "@material-ui/icons/AssignmentLate";
+import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
 
 // import NavLink from '@material-ui/core/NavLink';
 import { NavLink } from "react-router-dom";
 import "./Style.css";
 
-
-
 export const opsManagerListItems = (
   <div>
-    <NavLink to="/create-user" >
+    <NavLink to="/create-user">
       <ListItem button>
         <ListItemIcon>
           <PersonAddIcon />
@@ -76,7 +73,7 @@ export const maintenanceManagerListItems = (
         <ListItemIcon>
           <PhonelinkSetupIcon />
         </ListItemIcon>
-        <ListItemText primary="Setup Mobile Workshop" />
+        <ListItemText primary="Set Up Mobile Workshop" />
       </ListItem>
     </NavLink>
     <NavLink to="/display-users">
@@ -145,20 +142,20 @@ export const operatorListItems = (
 
 export const technicianListItems = (
   <div>
-      <NavLink to="/create-repairWorkorder">
-      <ListItem button>
-        <ListItemIcon>
-          <AssignmentIcon />
-        </ListItemIcon>
-        <ListItemText primary="Create Repair Work Order" />
-      </ListItem>
-    </NavLink>
     <NavLink to="/display-repairRequests">
       <ListItem button>
         <ListItemIcon>
           <AssignmentLateIcon />
         </ListItemIcon>
         <ListItemText primary="Display Repair Requests" />
+      </ListItem>
+    </NavLink>
+    <NavLink to="/create-repairWorkorder">
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Create Repair Work Order" />
       </ListItem>
     </NavLink>
     <NavLink to="/display-repairWorkorders">
